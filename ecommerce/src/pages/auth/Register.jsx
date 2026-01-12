@@ -81,18 +81,16 @@ function RegisterForm() {
     <div className="container my-5 pb-5">
       <div className="row shadow-lg rounded-4 overflow-hidden auth-wrapper">
 
-        {/* LEFT DESIGN SECTION */}
         <div className="col-md-6 d-none d-md-flex auth-left text-white">
           <div className="auth-left-content">
-            <h3>Empower your shopping with a trusted marketplace</h3>
+            <h3>Welcome to Power House</h3>
             <p>
-              Explore quality products from verified sellers and enjoy a smooth, secure
-              shopping experience.
+              Your trusted marketplace for quality products from verified sellers, designed
+              for a smooth and secure shopping experience.
             </p>
           </div>
         </div>
 
-        {/* RIGHT FORM SECTION */}
         <div className="col-md-6 bg-white p-5">
           <h3 className="text-center mb-4">Register</h3>
 
@@ -189,7 +187,7 @@ function RegisterForm() {
 
             {error && <p className="text-danger text-center">{error}</p>}
 
-            <button className="btn btn-primary w-100 mt-3">
+            <button className="btn btn-primary w-100 mt-3" style={{ backgroundColor: "var(--violet-color)" }}>
               Register now
             </button>
 

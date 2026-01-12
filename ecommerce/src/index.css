@@ -1,13 +1,35 @@
-
-*{
-  margin: 0px;
-  padding: 0px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;  
 }
 
 body {
-  height: 100vh;
-   margin: 0px;
-  padding: 0px;
-  
+  overflow-y: scroll; 
+  scrollbar-width: 0px;
+  min-height: 100vh; 
 }
 
+body::-webkit-scrollbar {
+  width: 0px; 
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-container main {
+  display: block;
+  flex: 1;
+  padding: 20px;
+}
+
+
+:root {
+  --violet-color: #4c00b0;
+}

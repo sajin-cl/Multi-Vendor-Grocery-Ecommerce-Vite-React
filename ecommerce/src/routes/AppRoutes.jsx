@@ -1,22 +1,23 @@
 import { createBrowserRouter } from 'react-router-dom';
-import App from '../components/App';
 import RegisterForm from '../pages/auth/Register';
 import LoginForm from '../pages/auth/Login';
+import UserLayout from '../layouts/UserLayout';
+import Home from '../pages/user/Home'
+
+
 
 const router = createBrowserRouter([
 
   {
-    path: '/',
-    element: <App />
+    path: '/', element: <UserLayout />,
+    children: [
+      { index: true, element: <Home /> }
+    ]
   },
-  {
-    path: '/register',
-    element: <RegisterForm />
-  },
-  {
-    path: '/login',
-    element: <LoginForm />
-  }
+
+  //Authentication
+  { path: '/register', element: <RegisterForm /> },
+  { path: '/login', element: <LoginForm /> },
 
 ]);
 
