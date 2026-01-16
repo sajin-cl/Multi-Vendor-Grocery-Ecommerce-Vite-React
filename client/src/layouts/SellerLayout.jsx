@@ -6,7 +6,7 @@ function SellerLayout() {
   return (
     <>
       <SellerHeader />
-      <main>
+      <main className="seller-content" >
         <Outlet />
       </main>
     </>

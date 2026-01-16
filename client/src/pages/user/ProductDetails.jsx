@@ -2,45 +2,41 @@ import "../../style/ProductDetails.css";
 
 function ProductDetails() {
   return (
-    <div className="container">
-      <div className="product-container row">
-        <div className="product-image col-12 col-md-6 text-center mb-4 mb-md-0">
+    <div className="container p-4">
+      <div className="row align-items-start gy-4">
+        
+        <div className="col-12 col-md-5 text-center">
           <img
             src="/src/assets/images/beauty-category3.webp"
-            alt="image"
-            className="img-fluid"
+            alt="Facial Cream"
+            className="img-fluid rounded shadow-sm"
+            style={{ maxHeight: "350px", objectFit: "contain" }}
           />
         </div>
 
-        <div className="product-info col-12 col-md-6">
-          <h2>Facial  Cream</h2>
-          <p className="text-muted fs-6">category</p>
+        <div className="col-12 col-md-7 p-4">
+          <h2 className="fw-semibold mb-1">Facial Cream</h2>
+          <div className="text-muted small mb-2">Beauty &amp; Skincare</div>
 
-          <ul>
-            <li>Deeply cleanses pores and removes blackheads & impurities</li>
-            <li>Activated charcoal helps absorb excess oil and dirt</li>
-            <li>Peel-off formula removes dead skin cells for smoother skin</li>
-           <li>Suitable for all skin types, especially oily & acne-prone skin</li>
-           <li>Ayurvedic / natural ingredients focus</li>
-          </ul>
-
-          <p className="stock">
-            Availability: <b>50 In Stock</b>
-          </p>
-
-          <div className="price-section">
-            <span className="new-price">₹199.00</span>
-            <span className="old-price ms-2">299.00</span>
+          <div className="mb-2">
+            Availability: <span className="fw-bold text-success">50 In Stock</span>
           </div>
 
-          <div className="actions d-flex flex-column flex-sm-row">
-            <div className="qty mb-2 mb-sm-0">
-              <button>-</button>
-              <span>1</span>
-              <button>+</button>
+          <div className="d-flex align-items-end mb-3">
+            <span className="fw-bold fs-3">₹199.00</span>
+            <span className="text-muted text-decoration-line-through ms-2 fs-6">
+              ₹299.00
+            </span>
+          </div>
+          
+          <div className="d-flex flex-column flex-sm-row align-items-start">
+            <div className="d-flex border rounded overflow-hidden me-sm-3 mb-2 mb-sm-0">
+              <button className="btn btn-light px-3">-</button>
+              <span className="px-3 d-flex align-items-center">1</span>
+              <button className="btn btn-light px-3">+</button>
             </div>
 
-            <button className="add-cart ms-sm-3">
+            <button className="btn btn-primary px-4">
               Add to Cart
             </button>
           </div>

@@ -10,6 +10,12 @@ import OrderSuccess from '../pages/user/OrderSuccess';
 import MyOrders from '../pages/user/MyOrders';
 import SellerLayout from '../layouts/SellerLayout';
 import SellerDashboard from '../pages/seller/SellerDashboard';
+import SellerProducts from '../pages/seller/SellerProducts';
+import SellerOrders from '../pages/seller/SellerOrders';
+import SellerEarnings from '../pages/seller/SellerEanings';
+import AddProduct from '../pages/seller/AddProduct';
+import UpdateProduct from '../pages/seller/UpdateProduct';
+import UpdateOrder from '../pages/seller/UpdateOrder';
 
 
 
@@ -27,11 +33,17 @@ const router = createBrowserRouter([
     ]
   },
 
-  
+
   {
     path: '/seller', element: <SellerLayout />,
     children: [
-      { index: true, element: <SellerDashboard /> }
+      { index: true, element: <SellerDashboard /> },
+      { path: 'products', element: <SellerProducts /> },
+      { path: 'orders', element: <SellerOrders /> },
+      { path: 'update-order', element: <UpdateOrder /> },
+      { path: 'earnings', element: <SellerEarnings /> },
+      { path: 'add-product', element: <AddProduct /> },
+      { path: 'update-product', element: <UpdateProduct /> }
     ]
   },
 
