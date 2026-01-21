@@ -1,33 +1,11 @@
-import { useState, useEffect } from "react";
 import "../style/header.css";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 function UserHeader() {
 
-  const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { loggedIn, logout } = useAuth();
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:4000/api/auth/check-session", { withCredentials: true })
-      .then((res) => setLoggedIn(res.data.loggedIn))
-      .catch((err) => {
-        if (err.response) console.error(err.response?.data?.message)
-        setLoggedIn(false)
-      });
-  }, []);
-
-
-  const handleLogout = async () => {
-    try {
-      await axios.get("http://localhost:4000/api/auth/logout", { withCredentials: true });
-      setLoggedIn(false);
-      navigate("/login");
-    } catch (err) {
-      console.error("Logout failed", err);
-    }
-  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light sticky-top">
@@ -71,7 +49,7 @@ function UserHeader() {
                 <li className="nav-item d-flex align-items-sm-center">
                   <button
                     className="btn btn-danger btn-sm ms-3 px-3 py-0"
-                    onClick={handleLogout}
+                    onClick={logout}
                   >
                     Logout
                   </button>
