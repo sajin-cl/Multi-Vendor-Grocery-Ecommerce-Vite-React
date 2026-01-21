@@ -87,7 +87,7 @@ function RegisterForm() {
 
         if (err.response?.data?.error) {
           setErrors({ backend: err.response.data.error });
-          setTimeout(() => setErrors(''), 3000)
+          setTimeout(() => setErrors({}), 3000)
         }
       });
   };

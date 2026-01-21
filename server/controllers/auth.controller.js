@@ -42,12 +42,52 @@ exports.login = async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ error: 'Invalid user or password' });
 
+    if (user.isBlocked) {
+      return res.status(403).json({ error: 'User account is blocked' });
+    }
+
     const match = await bcrypt.compare(password, user.password);
     if (!match) return res.status(400).json({ error: 'Invalid user or password' });
 
-    res.json({ message: 'Login successful' });
+    req.session.userData = user._id;
+
+    return res.json({
+      success: true,
+      role: user.role,
+      message: 'Login successful'
+    });
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Server error' });
   }
+};
+
+
+exports.checkSession = (req, res) => {
+  try {
+    if (!req.session || !req.session.userData) {
+      return res.status(401).json({
+        loggedIn: false,
+        message: 'Your session has expired. Please login again.'
+      })
+    }
+    res.json({ loggedIn: true, message: 'session active' });
+  }
+  catch (err) {
+    console.error("Check session error:", err);
+    res.status(500).json({ error: "Server error checking session" });
+  }
+};
+
+exports.logout = (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.error('logout failed');
+      return res.status(500).json({ error: 'logout failed' })
+    }
+
+    res.json({ success: true, message: 'logout successfully' });
+  });
+
 };

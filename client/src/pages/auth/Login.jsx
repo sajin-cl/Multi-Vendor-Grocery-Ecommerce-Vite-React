@@ -51,21 +51,30 @@ function LoginForm() {
     }
 
     axios.post('http://localhost:4000/api/auth/login', formData, {
+      withCredentials: true,
       headers: {
         "Content-Type": "application/json"
       }
     }).then((response) => {
-      console.log(response.data);
+
+      const { role } = response.data
+
       setFormData({
         email: "",
         password: ""
       });
-      navigate('/')
+
+      navigate(
+        role === 'admin' ? '/admin' :
+          role === 'seller' ? '/seller' :
+            '/'
+      );
+
     }).catch((err) => {
       console.log('Login failed')
       if (err.response?.data?.error) {
         setErrors({ backend: err.response.data.error });
-        setTimeout(() => setErrors(''), 3000)
+        setTimeout(() => setErrors({}), 3000)
       }
     })
 

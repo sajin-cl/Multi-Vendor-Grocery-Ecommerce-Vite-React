@@ -25,6 +25,10 @@ const userSchema = mongoose.Schema({
     required: function () {
       return this.role === 'seller'
     }
+  },
+  isBlocked: {
+    type: Boolean,
+    default: false
   }
 
 }, { timestamps: true });

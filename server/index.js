@@ -8,25 +8,35 @@ const database = require('./config/database');
 
 const authRouter = require('./routes/auth.routes');
 
-const port = 4000;
-
 const app = express();
 
 database();
 
 app.use(logger('dev'));
-app.use(cors());
+
+app.use(cors({
+  origin: 'http://localhost:5173', 
+  credentials: true              
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileup());
+
 app.use(
   session({
     secret: "dont tell me",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 2,
+       httpOnly:true,
+       secure:false
+    }
   })
 );
 
 app.use('/api/auth', authRouter);
 
-app.listen(port, async() => console.info(`server: http://localhost:${port}`));
+const PORT = 4000;
+app.listen(PORT, () => console.info(`Server running at http://localhost:${PORT}`));
