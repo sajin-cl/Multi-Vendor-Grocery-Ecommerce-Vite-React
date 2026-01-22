@@ -3,6 +3,7 @@ const cors = require('cors');
 const fileup = require('express-fileupload');
 const session = require('express-session');
 const logger = require('morgan');
+const colorLogger = require('./utils/colorLogger');
 const database = require('./config/database');
 
 

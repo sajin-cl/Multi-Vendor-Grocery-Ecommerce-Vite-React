@@ -66,13 +66,13 @@ const router = createBrowserRouter([
       { index: true, element: <AdminDashboard /> },
       { path: 'categories', element: <Categories /> },
       { path: 'add-category', element: <AddCategory /> },
-      { path: 'update-category', element: <UpdateCategory /> },
+      { path: 'update-category/:id', element: <UpdateCategory /> },
       { path: 'brands', element: <Brands /> },
       { path: 'add-brand', element: <AddBrand /> },
       { path: 'update-brand', element: <UpdateBrand /> },
       { path: 'users', element: <Users /> },
       { path: 'sellers', element: <Sellers /> },
-    
+
     ]
   },
 

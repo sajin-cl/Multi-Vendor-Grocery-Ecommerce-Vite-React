@@ -9,8 +9,8 @@ function AddCategory() {
   const [errors, setErrors] = useState({});
 
   const [formData, setFormData] = useState({
-    categoryName: "",
-    catDescription: ""
+    name: "",
+    description: ""
   });
 
 
@@ -25,13 +25,13 @@ function AddCategory() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:4000/api/admin/category', formData, {
+    axios.post('http://localhost:4000/api/admin/categories', formData, {
       headers: { "Content-Type": "application/json" }
     }).then(response => {
       console.log(response.data);
       setFormData({
-        categoryName: "",
-        catDescription: ""
+        name: "",
+        description: ""
       });
       navigate('/admin/categories')
     })
@@ -61,9 +61,9 @@ function AddCategory() {
                     id="categoryName"
                     className="form-control"
                     placeholder="Enter the category name"
-                    name="categoryName"
+                    name="name"
                     onChange={handleChange}
-                    value={formData.categoryName}
+                    value={formData.name}
                   />
                 </div>
 
@@ -74,9 +74,9 @@ function AddCategory() {
                     className="form-control"
                     id="catDescription"
                     placeholder="Enter the  description"
-                    name="catDescription"
+                    name="description"
                     onChange={handleChange}
-                    value={formData.catDescription}
+                    value={formData.description}
                   />
                 </div>
 

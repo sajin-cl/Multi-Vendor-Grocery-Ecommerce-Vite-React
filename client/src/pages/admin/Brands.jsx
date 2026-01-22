@@ -44,16 +44,7 @@ function Brands() {
 
       <Link
         to="/admin/add-brand"
-        className="btn btn-success rounded-circle shadow d-flex align-items-center justify-content-center"
-        style={{
-          position: "fixed",
-          bottom: "30px",
-          right: "30px",
-          width: "60px",
-          height: "60px",
-          fontSize: "30px",
-          zIndex: 1000,
-        }}
+        className="btn btn-success rounded-circle shadow d-flex align-items-center justify-content-center add-popup-btn"
       >
         +
       </Link>
