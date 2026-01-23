@@ -69,7 +69,7 @@ const router = createBrowserRouter([
       { path: 'update-category/:id', element: <UpdateCategory /> },
       { path: 'brands', element: <Brands /> },
       { path: 'add-brand', element: <AddBrand /> },
-      { path: 'update-brand', element: <UpdateBrand /> },
+      { path: 'update-brand/:id', element: <UpdateBrand /> },
       { path: 'users', element: <Users /> },
       { path: 'sellers', element: <Sellers /> },
 

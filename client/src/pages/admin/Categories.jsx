@@ -22,8 +22,8 @@ function Categories() {
   const handleDelete = (id) => {
     axios
       .delete(`http://localhost:4000/api/admin/categories/${id}`)
-      .then(response => {
-        console.info('category deleted', response.data);
+      .then(() => {
+        console.info('category deleted');
         setRefresh(prev => prev + 1);
       })
       .catch((err) => {

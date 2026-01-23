@@ -7,6 +7,7 @@ function Brands() {
 
 
   const [brands, setBrands] = useState([]);
+  const [refresh, setRefresh] = useState(0);
 
   useEffect(() => {
     axios
@@ -14,7 +15,18 @@ function Brands() {
       .then(response => setBrands(response.data))
       .catch(err => console.error('Brands fetching error', err));
 
-  }, []);
+  }, [refresh]);
+
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:4000/api/admin/brands/${id}`)
+      .then(() => {
+        setRefresh(prev => prev + 1);
+        console.info('Brand Deleted successfully!')
+      })
+      .catch(err => console.error(err));
+  };
 
 
   return (
@@ -31,14 +43,14 @@ function Brands() {
                   <p className="card-text text-muted">{brand.description}</p>
                   <div className="mt-auto d-flex justify-content-between">
                     <Link
-                      to={`/admin/update-brand`}
+                      to={`/admin/update-brand/${brand._id}`}
                       className="btn btn-success px-3 py-1"
                     >
                       <small>Edit</small>
                     </Link>
                     <button
                       className="btn btn-danger px-3 py-1"
-
+                      onClick={() => { handleDelete(brand._id) }}
                     >
                       <small>Delete</small>
                     </button>
