@@ -53,11 +53,15 @@ exports.login = async (req, res) => {
     const match = await bcrypt.compare(password, user.password);
     if (!match) return res.status(400).json({ error: 'Invalid user or password' });
 
-    req.session.userData = user._id;
+    req.session.userData = {
+      id: user._id,
+      role: user.role
+    }
 
     return res.json({
       success: true,
       role: user.role,
+      id:user._id,
       message: 'Login successful'
     });
 
@@ -90,7 +94,6 @@ exports.logout = (req, res) => {
       console.error('logout failed');
       return res.status(500).json({ error: 'logout failed' })
     }
-
     res.json({ success: true, message: 'logout successfully' });
   });
 

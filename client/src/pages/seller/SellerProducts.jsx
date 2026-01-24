@@ -20,18 +20,19 @@ function SellerProducts() {
   return (
     <div className="container mt-4">
       <div className="row">
-        {products.map((product) => (
-          <div key={product.id} className="col-6 col-md-4 col-lg-3 mb-4">
+        {products.map((product, index) => (
+          <div key={product.id + '-' + index} className="col-6 col-md-4 col-lg-3 mb-4">
             <div className="card h-100 shadow">
               <img src={product.image} className="card-img-top" alt={product.name} />
               <div className="card-body d-flex flex-column">
                 <h6 className="card-title">{product.name}</h6>
+                <p className="card-text text-muted">description</p>
                 <p className={`card-text ${product.stock === 0 ? "text-danger" : "text-success"}`}>
                   {product.stock === 0 ? "Out of Stock" : `Stock: ${product.stock}`}
                 </p>
                 <p className="card-text">${product.price}</p>
                 <div className="mt-auto d-flex justify-content-between">
-                  <Link  to={'/seller/update-product'} className="btn btn-purple px-3 py-1"><small>Edit</small></Link>
+                  <Link to={'/seller/update-product'} className="btn btn-purple px-3 py-1"><small>Edit</small></Link>
                   <button className="btn btn-danger px-4 py-0"><small>Delete</small></button>
                 </div>
               </div>

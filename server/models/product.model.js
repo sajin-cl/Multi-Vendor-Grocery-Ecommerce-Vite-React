@@ -6,6 +6,9 @@ const productSchema = mongoose.Schema({
     required: true,
     trim: true
   },
+  description: {
+    type: String
+  },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',
@@ -30,7 +33,14 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true,
     trim: true
+  },
+  sellerId: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: true
   }
 }, { timestamps: true });
 
 const Product = mongoose.model('Product', productSchema);
+
+module.exports = Product;

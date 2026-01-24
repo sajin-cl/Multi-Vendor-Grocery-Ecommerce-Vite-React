@@ -9,7 +9,9 @@ const database = require('./config/database');
 
 const authRouter = require('./routes/auth.routes');
 const adminRouter = require('./routes/admin.routes');
-const sellerRouter = require('./routes/seller.routes');
+const productRouter = require('./routes/products.routes');
+const categoryRouter = require('./routes/categories.routes');
+const brandRouter = require('./routes/brands.routes')
 
 const app = express();
 
@@ -26,13 +28,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileup());
 
+app.use('/assets', express.static('public/assets'))
+
 app.use(
   session({
     secret: "dont tell me",
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 60 * 30,
+      maxAge: 1000 * 60 * 80,
       httpOnly: true,
       secure: false
     }
@@ -41,7 +45,9 @@ app.use(
 
 app.use('/api/auth', authRouter);
 app.use('/api/admin', adminRouter);
-app.use('/api/seller', sellerRouter);
+app.use('/api/products', productRouter);
+app.use('/api/categories', categoryRouter);
+app.use('/api/brands', brandRouter);
 
 
 const PORT = 4000;
