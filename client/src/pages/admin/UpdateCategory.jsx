@@ -41,9 +41,8 @@ function UpdateCategory() {
   const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .patch(`http://localhost:4000/api/admin/categories/${id}`, data)
-      .then(response => {
-        setData(response.data);
+      .patch(`http://localhost:4000/api/admin/categories/${id}`, data, { withCredentials: true })
+      .then(() => {
         navigate('/admin/categories');
         console.log('category updated')
       })

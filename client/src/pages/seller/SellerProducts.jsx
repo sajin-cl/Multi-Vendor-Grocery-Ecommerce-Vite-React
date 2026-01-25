@@ -1,20 +1,30 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function SellerProducts() {
 
-  const products = [
-    { id: 1, name: "Red T-Shirt", image: "https://picsum.photos/200/200?random=1", stock: 10, price: 20 },
-    { id: 2, name: "Blue Jeans", image: "https://picsum.photos/200/200?random=2", stock: 0, price: 40 },
-    { id: 3, name: "Sneakers", image: "https://picsum.photos/200/200?random=3", stock: 5, price: 60 },
-    { id: 4, name: "Hat", image: "https://picsum.photos/200/200?random=5", stock: 2, price: 15 },
-    { id: 4, name: "bat", image: "https://picsum.photos/200/200?random=12", stock: 2, price: 15 },
-    { id: 4, name: "sat", image: "https://picsum.photos/200/200?random=6", stock: 2, price: 15 },
-    { id: 4, name: "dot", image: "https://picsum.photos/200/200?random=7", stock: 2, price: 15 },
-    { id: 4, name: "pot", image: "https://picsum.photos/200/200?random=8", stock: 2, price: 15 },
-    { id: 4, name: "seat", image: "https://picsum.photos/200/200?random=9", stock: 2, price: 15 },
-    { id: 4, name: "heat", image: "https://picsum.photos/200/200?random=10", stock: 2, price: 15 },
-    { id: 4, name: "rat", image: "https://picsum.photos/200/200?random=11", stock: 2, price: 15 }
-  ];
+  const [products, setProducts] = useState([]);
+
+  const [refresh, setRefresh] = useState(0);
+
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:4000/api/products', { withCredentials: true })
+      .then(response => setProducts(response.data))
+      .catch(err => console.error('Failed to fetch products', err));
+  }, [refresh]);
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:4000/api/products/${id}`, { withCredentials: true })
+      .then(() => {
+        setRefresh(prev => prev + 1)
+        console.info('Product deleted successfully');
+      })
+      .catch(err => console.error('Failed to delete product', err))
+  }
 
 
   return (
@@ -23,23 +33,52 @@ function SellerProducts() {
         {products.map((product, index) => (
           <div key={product.id + '-' + index} className="col-6 col-md-4 col-lg-3 mb-4">
             <div className="card h-100 shadow">
-              <img src={product.image} className="card-img-top" alt={product.name} />
+              <img
+                src={`http://localhost:4000${product.image_url}`}
+                className="card-img-top"
+                alt={product.name}
+              />
               <div className="card-body d-flex flex-column">
-                <h6 className="card-title">{product.name}</h6>
-                <p className="card-text text-muted">description</p>
-                <p className={`card-text ${product.stock === 0 ? "text-danger" : "text-success"}`}>
+                <h6
+                  className="card-title"
+                >
+                  {product.name}
+                </h6>
+                <p
+                  className="card-text text-muted"
+                >
+                  {product.description.length > 27 ? product.description.substring(0, 26) + ".." : product.description}
+                </p>
+                <p
+                  className={`card-text ${product.stock === 0 ? "text-danger" : "text-success"}`}
+                >
                   {product.stock === 0 ? "Out of Stock" : `Stock: ${product.stock}`}
                 </p>
-                <p className="card-text">${product.price}</p>
+                <p
+                  className="card-text"
+                >
+                  ${product.price}
+                </p>
                 <div className="mt-auto d-flex justify-content-between">
-                  <Link to={'/seller/update-product'} className="btn btn-purple px-3 py-1"><small>Edit</small></Link>
-                  <button className="btn btn-danger px-4 py-0"><small>Delete</small></button>
+                  <Link
+                    to={`/seller/update-product/${product._id}`}
+                    className="btn btn-purple px-3 py-1"
+                  >
+                    <small>Edit</small>
+                  </Link>
+                  <button
+                    className="btn btn-danger px-4 py-0"
+                    onClick={() => { handleDelete(product._id) }}
+                  ><small>Delete</small>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      {products.length <= 0 && <div className="d-flex align-items-center h-50 justify-content-center text-muted"  > No Products found</div>}
 
       <Link
         to="/seller/add-product"

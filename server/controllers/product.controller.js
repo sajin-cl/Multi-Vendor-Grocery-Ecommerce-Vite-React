@@ -3,13 +3,9 @@ const Product = require('../models/product.model');
 const Brand = require('../models/brand.model');
 
 exports.addProducts = async (req, res) => {
-  console.log('req.body:', req.body);
-  console.log('req.files:', req.files);
 
   try {
     const { name, description, category, brand, stock, price } = req.body;
-
-    const sellerId = req.session.userData.id;
 
     if (!name || !description || !category || !brand || !stock || !price) return res.status(400).json({ error: 'All fields are required' });
 
@@ -23,8 +19,8 @@ exports.addProducts = async (req, res) => {
 
 
     const image = req.files.productImage;
-    const filename = Date.now() + '_' + image.name;
-    const uploadPath = `public/assets/product/${filename}`;
+    const fileName = Date.now() + '_' + image.name;
+    const uploadPath = `public/assets/product/${fileName}`;
 
     await image.mv(uploadPath);
 
@@ -35,8 +31,9 @@ exports.addProducts = async (req, res) => {
       category,
       stock,
       price,
-      sellerId,
-      image_url: `/assets/product/${filename}`
+      sellerId: req.session.userData.id,
+      isSeller: req.session.userData.role === 'seller' ? true : false,
+      image_url: `/assets/product/${fileName}`
     });
 
     res.status(201).json({
@@ -50,3 +47,96 @@ exports.addProducts = async (req, res) => {
     res.status(500).json({ error: 'Failed to add Product' });
   }
 };
+
+
+exports.getProducts = async (req, res) => {
+  try {
+
+    const products = await Product.find().sort({ createdAt: 1 });
+    res.status(200).json(products);
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch products' });
+  }
+};
+
+exports.editProducts = async (req, res) => {
+  try {
+
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    res.status(200).json(product);
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'failed to fetch product' });
+  }
+};
+
+exports.updateProducts = async (req, res) => {
+  console.log('req.files', req.files)
+  console.log('req.body', req.body)
+
+  try {
+
+    const { id } = req.params;
+
+    const { name, description, category, brand, stock, price } = req.body;
+
+    if (!name || !description || !category || !brand || !stock || !price) return res.status(400).json({ error: 'All fields are required' });
+
+    const categoryExists = await Category.findById(category);
+    if (!categoryExists) return res.status(400).json({ error: 'Invalid category' });
+
+    const brandExists = await Brand.findById(brand);
+    if (!brandExists) return res.status(400).json({ error: 'Invalid Brand' });
+
+
+    const updatedData = {
+      name,
+      description,
+      category,
+      brand,
+      stock,
+      price,
+      sellerId: req.session?.userData?.id,
+      isSeller: req.session?.userData?.role === 'seller' ? true : false
+    }
+
+    if (req.files && req.files.productImage) {
+      const image = req.files.productImage;
+      const fileName = Date.now() + "_" + image.name;
+      const uploadPath = `public/assets/product/${fileName}`;
+      await image.mv(uploadPath);
+
+      updatedData.image_url = `/assets/product/${fileName}`;
+    }
+
+    const updatedProduct = await Product.findByIdAndUpdate(id, updatedData, { new: true });
+    if (!updatedProduct) return res.status(404).json({ error: 'Product not found' });
+
+    return res.status(200).json({
+      message: 'Product updated',
+      product: updatedProduct
+    })
+
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to update products' });
+  }
+};
+
+
+exports.deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Product.findByIdAndDelete(id);
+    res.status(200).json({ message: 'Product deleted successfully' });
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to delete product' });
+  }
+}

@@ -8,7 +8,10 @@ const brandSchema = mongoose.Schema({
   },
   description: {
     type: String,
-
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false
   }
 }, { timestamps: true });
 

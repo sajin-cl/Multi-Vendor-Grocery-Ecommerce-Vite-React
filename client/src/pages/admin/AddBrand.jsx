@@ -26,7 +26,7 @@ function AddBrand() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post('http://localhost:4000/api/admin/brands', formData)
+      .post('http://localhost:4000/api/admin/brands', formData, { withCredentials: true })
       .then(response => {
         console.info(response.data);
         setFormData({
@@ -80,7 +80,7 @@ function AddBrand() {
                 </div>
 
                 {errors.backend && (<div className="text-center text-danger mb-2">{errors.backend}</div>)}
-                
+
                 <div className="d-grid">
                   <button
                     type="submit"

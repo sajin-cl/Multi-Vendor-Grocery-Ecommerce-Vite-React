@@ -11,8 +11,9 @@ exports.addCategory = async (req, res) => {
     const existing = await Category.findOne({ name });
     if (existing) return res.status(400).json({ error: 'A Category with this name already exists' });
 
+    const isAdmin = req.session.userData?.role === 'admin' ? true : false;
 
-    const category = await Category.create({ name, description });
+    const category = await Category.create({ name, description, isAdmin });
     res.status(201).json({ message: 'Category created', category })
 
   }
@@ -56,7 +57,7 @@ exports.updateCategory = async (req, res) => {
 
     const category = await Category.findById(id);
 
-    const existing = await Category.findOne({ name });
+    const existing = await Category.findOne({ name, _id: { $ne: id } });
     if (existing) return res.status(400).json({ error: 'A category with this name already exists' });
 
     if (name !== undefined) category.name = name;
@@ -92,7 +93,9 @@ exports.addBrand = async (req, res) => {
     const existing = await Brand.findOne({ name });
     if (existing) return res.status(400).json({ error: 'A brand with this name already exists' });
 
-    const brand = await Brand.create({ name, description });
+    const isAdmin = req.session.userData?.role === 'admin';
+
+    const brand = await Brand.create({ name, description, isAdmin });
     res.status(201).json({ message: 'Brand created', brand });
   }
   catch (err) {
@@ -133,7 +136,7 @@ exports.updateBrand = async (req, res) => {
 
     const brand = await Brand.findById(id);
 
-    const existing = await Brand.findOne({ name });
+    const existing = await Brand.findOne({ name, _id: { $ne: id } });
     if (existing) return res.status(400).json({ error: 'A brand with this name already exists' });
 
     if (name !== undefined) brand.name = name;

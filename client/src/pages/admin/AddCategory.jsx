@@ -26,7 +26,8 @@ function AddCategory() {
     e.preventDefault();
 
     axios.post('http://localhost:4000/api/admin/categories', formData, {
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true
     }).then(response => {
       console.log(response.data);
       setFormData({

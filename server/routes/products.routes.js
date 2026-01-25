@@ -6,6 +6,10 @@ const sellerAuth = require('../middleware/sellerAuth');
 const productsController = require('../controllers/product.controller');
 
 router.post('', sellerAuth, productsController.addProducts);
+router.get('', sellerAuth, productsController.getProducts);
+router.get('/:id', sellerAuth, productsController.editProducts);
+router.patch('/:id', sellerAuth, productsController.updateProducts);
+router.delete('/:id', sellerAuth, productsController.deleteProduct);
 
 
 

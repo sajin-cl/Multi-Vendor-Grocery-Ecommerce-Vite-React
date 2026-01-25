@@ -56,7 +56,7 @@ const router = createBrowserRouter([
       { path: 'update-order', element: <UpdateOrder /> },
       { path: 'earnings', element: <SellerEarnings /> },
       { path: 'add-product', element: <AddProduct /> },
-      { path: 'update-product', element: <UpdateProduct /> }
+      { path: 'update-product/:id', element: <UpdateProduct /> }
     ]
   },
 

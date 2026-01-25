@@ -11,7 +11,7 @@ function Brands() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:4000/api/admin/brands')
+      .get('http://localhost:4000/api/admin/brands', { withCredentials: true })
       .then(response => setBrands(response.data))
       .catch(err => console.error('Brands fetching error', err));
 
@@ -20,7 +20,7 @@ function Brands() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:4000/api/admin/brands/${id}`)
+      .delete(`http://localhost:4000/api/admin/brands/${id}`, { withCredentials: true })
       .then(() => {
         setRefresh(prev => prev + 1);
         console.info('Brand Deleted successfully!')
@@ -62,7 +62,7 @@ function Brands() {
         </div>
 
       ) : (
-        <div className="d-flex align-items-center h-50 justify-content-center tesxt-muted"  > No Brands found</div>
+        <div className="d-flex align-items-center h-50 justify-content-center text-muted"  > No Brands found</div>
       )}
 
       <Link

@@ -17,7 +17,7 @@ function UpdateBrand() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/admin/brands/${id}`)
+      .get(`http://localhost:4000/api/admin/brands/${id}`, { withCredentials: true })
       .then(response => setBrand(response.data))
       .catch(err => {
         console.error('Brand fetching error');
@@ -38,7 +38,7 @@ function UpdateBrand() {
   const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .patch(`http://localhost:4000/api/admin/brands/${id}`, brand)
+      .patch(`http://localhost:4000/api/admin/brands/${id}`, brand, { withCredentials: true })
       .then(response => {
         setBrand(response.data);
         console.log('Brand updated');

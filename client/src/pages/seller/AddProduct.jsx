@@ -87,7 +87,7 @@ function AddProduct() {
           productImage: null
         });
 
-        navigate('/seller')
+        navigate('/seller/products')
       })
       .catch(err => {
         console.error('product submition failed', err)

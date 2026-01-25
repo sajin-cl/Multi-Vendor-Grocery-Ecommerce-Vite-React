@@ -61,7 +61,7 @@ exports.login = async (req, res) => {
     return res.json({
       success: true,
       role: user.role,
-      id:user._id,
+      id: user._id,
       message: 'Login successful'
     });
 
@@ -73,19 +73,16 @@ exports.login = async (req, res) => {
 
 
 exports.checkSession = (req, res) => {
-  try {
-    if (!req.session || !req.session.userData) {
-      return res.status(401).json({
-        loggedIn: false,
-        message: 'Your session has expired. Please login again.'
-      })
-    }
-    res.json({ loggedIn: true, message: 'session active' });
+
+  if (!req.session || !req.session.userData) {
+    return res.status(401).json({
+      loggedIn: false,
+      message: 'Your session has expired. Please login again.'
+    })
   }
-  catch (err) {
-    console.error("Check session error:", err);
-    res.status(500).json({ error: "Server error checking session" });
-  }
+  res.json({ loggedIn: true, message: 'session active' });
+
+
 };
 
 exports.logout = (req, res) => {

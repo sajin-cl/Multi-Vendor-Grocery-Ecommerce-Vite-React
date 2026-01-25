@@ -10,7 +10,7 @@ function Categories() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:4000/api/admin/categories')
+      .get('http://localhost:4000/api/admin/categories', { withCredentials: true })
       .then(response => {
         setCategories(response.data);
       })
@@ -21,7 +21,7 @@ function Categories() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:4000/api/admin/categories/${id}`)
+      .delete(`http://localhost:4000/api/admin/categories/${id}`, { withCredentials: true })
       .then(() => {
         console.info('category deleted');
         setRefresh(prev => prev + 1);

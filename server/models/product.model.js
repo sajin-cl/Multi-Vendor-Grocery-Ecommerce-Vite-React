@@ -38,6 +38,10 @@ const productSchema = mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'User',
     required: true
+  },
+  isSeller: {
+    type: Boolean,
+    default: false
   }
 }, { timestamps: true });
 
