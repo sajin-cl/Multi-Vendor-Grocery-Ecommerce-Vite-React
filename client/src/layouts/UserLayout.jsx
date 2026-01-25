@@ -7,7 +7,7 @@ function UserLayout() {
     <>
       <UserHeader />
       <main>
-        <Outlet />
+        <Outlet /> 
       </main>
     </>
   )

@@ -80,7 +80,13 @@ exports.checkSession = (req, res) => {
       message: 'Your session has expired. Please login again.'
     })
   }
-  res.json({ loggedIn: true, message: 'session active' });
+
+  const { id, role } = req.session.userData;
+
+  res.json({
+    loggedIn: true, message: 'session active',
+    user: { id, role }
+  });
 
 
 };

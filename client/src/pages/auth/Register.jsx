@@ -33,6 +33,7 @@ function RegisterForm() {
     else if (data.password && data.confirmPassword && data.password !== data.confirmPassword) {
       newErrors.confirmPassword = "Passwords do not match";
     }
+    else if (!data) newErrors.data = "server error";
 
     if (data.role === "seller" && !data.shopName.trim()) {
       newErrors.shopName = "Shop name required for sellers";
@@ -84,11 +85,10 @@ function RegisterForm() {
       }))
       .catch((err) => {
         console.error('registeration failed');
+        const error = err.response?.data?.error || 'Something went wrong on the server'
+        setErrors({ backend: error });
+        setTimeout(() => setErrors({}), 3000)
 
-        if (err.response?.data?.error) {
-          setErrors({ backend: err.response.data.error });
-          setTimeout(() => setErrors({}), 3000)
-        }
       });
   };
 

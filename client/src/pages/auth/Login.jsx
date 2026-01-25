@@ -10,6 +10,12 @@ function LoginForm() {
 
   const [errors, setErrors] = useState({});
 
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  });
+
+
   const validate = (data) => {
     const newErrors = {};
 
@@ -18,11 +24,6 @@ function LoginForm() {
 
     return newErrors;
   };
-
-  const [formData, setFormData] = useState({
-    email: "",
-    password: ""
-  });
 
 
   const handleChange = (e) => {
@@ -72,19 +73,15 @@ function LoginForm() {
 
     }).catch((err) => {
       console.log('Login failed')
-      if (err.response?.data?.error) {
-        setErrors({ backend: err.response.data.error });
-        setTimeout(() => setErrors({}), 3000)
-      }
+      const error = err.response?.data?.error || "Something went wrong on the server"
+      setErrors({ backend: error });
+      setTimeout(() => { setErrors({}) }, 3000)
     })
 
   };
 
-
-
   return (
     <>
-
       <div className="container my-5">
         <div className="row shadow-lg rounded-4 overflow-hidden auth-wrapper">
 
