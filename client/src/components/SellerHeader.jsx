@@ -18,11 +18,11 @@ function SellerHeader() {
         <div className="container-fluid">
           <div className="d-flex align-items-center">
             <img
-              src="/logo.png"
+              src="/logo-icon.png"
               alt="logo"
               style={{ height: "32px", width: "32px" }}
             />
-            <span className="text-white fw-bold ms-2">Power <span className="text-warning">House</span></span>
+            <span className="text-white fw-bold ms-2">POWER <span className="text-warning">HOUSE</span></span>
           </div>
 
           <button

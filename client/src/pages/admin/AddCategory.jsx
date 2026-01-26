@@ -81,7 +81,7 @@ function AddCategory() {
                   />
                 </div>
 
-                {errors.backend && (<div className="text-center text-danger mb-2">{errors.backend}</div>)}
+                {errors.backend && (<div className="text-center text-danger mb-3">{errors.backend}</div>)}
 
                 <div className="d-grid">
                   <button type="submit" className="btn btn-success btn-lg " id="atr-submit-btn">Submit</button>

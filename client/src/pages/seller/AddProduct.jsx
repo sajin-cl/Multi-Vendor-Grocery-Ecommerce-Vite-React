@@ -214,7 +214,7 @@ function AddProduct() {
                   />
                 </div>
 
-                {errors.backend && (<div className="text-center text-danger mb-2">{errors.backend}</div>)}
+                {errors.backend && (<div className="text-center text-danger mb-3">{errors.backend}</div>)}
 
                 <div className="d-grid">
                   <button

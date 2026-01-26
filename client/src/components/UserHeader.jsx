@@ -10,10 +10,10 @@ function UserHeader() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light sticky-top">
       <div className="container-fluid">
-        <img src="/logo.png" alt="logo" style={{ height: "32px", width: "32px" }} />
+        <img src="/logo-icon.png" alt="logo" style={{ height: "32px", width: "32px" }} className="me-2"/>
         <Link className="navbar-brand text-white fw-bold fs-6">
           <small>
-            Power <span className="text-warning">House</span>
+            POWER <span className="text-warning">HOUSE</span>
           </small>
         </Link>
 
@@ -30,7 +30,7 @@ function UserHeader() {
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link className="nav-link text-white" to="/">
-                Home
+                <i className="fa-solid fa-house fs-7 me-1"></i> Home
               </Link>
             </li>
 
@@ -38,12 +38,13 @@ function UserHeader() {
               <>
                 <li className="nav-item">
                   <Link to="/cart" className="nav-link text-white">
-                    Cart
+                    <i className="fa-solid fa-cart-shopping fs-7 me-1"></i> Cart
                   </Link>
+                  
                 </li>
                 <li className="nav-item">
                   <Link to="/myorders" className="nav-link text-white">
-                    Orders
+                    <i className="fa-solid fa-bag-shopping fs-7 me-1"></i> Orders
                   </Link>
                 </li>
                 <li className="nav-item d-flex align-items-sm-center">
@@ -51,7 +52,7 @@ function UserHeader() {
                     className="btn btn-danger btn-sm ms-3 px-3 py-0"
                     onClick={logout}
                   >
-                    Logout
+                    <i className="fa-solid fa-right-from-bracket fs-7 me-1"></i> Logout
                   </button>
                 </li>
               </>
@@ -59,17 +60,18 @@ function UserHeader() {
               <>
                 <li className="nav-item">
                   <Link className="nav-link text-white" to="/register">
-                    Register
+                    <i className="bi bi-person-plus-fill me-1"></i> Register
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link text-white" to="/login">
-                    Login
+                    <i className="bi bi-box-arrow-in-right me-1"></i> Login
                   </Link>
                 </li>
               </>
             )}
           </ul>
+
         </div>
       </div>
     </nav>

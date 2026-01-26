@@ -29,6 +29,7 @@ import AddBrand from '../pages/admin/AddBrand';
 import UpdateBrand from '../pages/admin/UpdateBrand';
 import Users from '../pages/admin/Users';
 import Sellers from '../pages/admin/Sellers';
+
 import NotFound from '../components/NotFound';
 
 
@@ -77,10 +78,11 @@ const router = createBrowserRouter([
     ]
   },
 
+
   { path: '*', element: <NotFound /> },
 
-  
-  //Authentication
+
+  //Authentication Purpose::
   { path: '/register', element: <RegisterForm /> },
   { path: '/login', element: <LoginForm /> },
 

@@ -11,7 +11,8 @@ const authRouter = require('./routes/auth.routes');
 const adminRouter = require('./routes/admin.routes');
 const productRouter = require('./routes/products.routes');
 const categoryRouter = require('./routes/categories.routes');
-const brandRouter = require('./routes/brands.routes')
+const brandRouter = require('./routes/brands.routes');
+
 
 const app = express();
 

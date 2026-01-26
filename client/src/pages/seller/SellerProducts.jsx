@@ -31,7 +31,7 @@ function SellerProducts() {
     <div className="container mt-4">
       <div className="row">
         {products.map((product, index) => (
-          <div key={product.id + '-' + index} className="col-6 col-md-4 col-lg-3 mb-4">
+          <div key={product._id + '-' + index} className="col-6 col-md-4 col-lg-3 mb-4 product-card">
             <div className="card h-100 shadow">
               <img
                 src={`http://localhost:4000${product.image_url}`}
@@ -40,7 +40,7 @@ function SellerProducts() {
               />
               <div className="card-body d-flex flex-column">
                 <h6
-                  className="card-title"
+                  className="card-title text-purple fw-semibold"
                 >
                   {product.name}
                 </h6>
@@ -55,9 +55,10 @@ function SellerProducts() {
                   {product.stock === 0 ? "Out of Stock" : `Stock: ${product.stock}`}
                 </p>
                 <p
-                  className="card-text"
+                  className="card-text fw-bold fs-6"
+                  style={{fontFamily: "Inter"}}
                 >
-                  ${product.price}
+                  Price: ₹{product.price}
                 </p>
                 <div className="mt-auto d-flex justify-content-between">
                   <Link

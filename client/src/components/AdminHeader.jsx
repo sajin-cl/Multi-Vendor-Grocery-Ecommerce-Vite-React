@@ -14,16 +14,16 @@ function AdminHeader() {
 
   return (
     <>
-      <nav className="navbar navbar-light sticky-top admin-navbar">
+      <nav className="navbar navbar-light sticky-top admin-navbar py-2">
         <div className="container-fluid">
           <div className="d-flex align-items-center">
             <img
-              src="/logo.png"
+              src="/logo-icon.png"
               alt="logo"
-              style={{ height: "32px", width: "32px" }}
+              style={{ height: "28px", width: "28px" }}
             />
             <span className="text-white fw-bold ms-2">
-              Admin <span className="text-warning">Panel</span>
+              ADMIN <span className="text-warning">PANEL</span>
             </span>
           </div>
 

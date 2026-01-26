@@ -6,11 +6,15 @@ function ProductCard({ product }) {
     <>
       <div className="col">
         <div className="card product-card h-100 ">
-          <img src={product.prodImage} alt="images" className="card-img-top"
-            style={{ maxWidth: "250px", height: "250px", margin: "auto" }} />
+          <img
+            src={`http://localhost:4000${product.image_url}`}
+            alt={product.name}
+            className="card-img-top"
+            style={{ maxWidth: "250px", height: "250px", margin: "auto" }}
+          />
           <div className="card-body P-2">
-            <div className="card-title product-name text-primary fw-bold mb-0">{product.productName}</div>
-            <div className="card-text product-desc text-muted mb-3">{product.productDesc}</div>
+            <div className="card-title product-name text-primary fw-bold mb-0">{product.name}</div>
+            <div className="card-text product-desc text-muted mb-3">{product.description}</div>
             <div className="mt-auto text-center">
               <Link to={'/product-details'} className="view-btn">View</Link>
             </div>

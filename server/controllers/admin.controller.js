@@ -1,5 +1,6 @@
 const Category = require('../models/category.model');
-const Brand = require('../models/brand.model')
+const Brand = require('../models/brand.model');
+const User = require('../models/auth.model');
 
 exports.addCategory = async (req, res) => {
   try {
@@ -161,5 +162,50 @@ exports.deleteBrand = async (req, res) => {
   catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to delete brand' })
+  }
+};
+
+
+exports.getUsers = async (req, res) => {
+  try {
+    const users = await User.find({ role: 'user' }).sort({ name: 1 });
+    res.status(200).json(users)
+  }
+  catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Failed to fetch users' });
+  }
+};
+
+exports.deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const user = await User.findByIdAndDelete(id);
+    if (!user) return res.status(400).json('user not found');
+
+    res.status(200).json({ messsage: 'user deleted successfully' });
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to delete user' });
+  }
+};
+
+exports.toggleBlockUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const user = await User.findById(id);
+    if (!user) return res.status(400).json('user not found');
+
+    user.isBlocked = !user.isBlocked;
+    await user.save();
+
+    res.status(200).json({ message: user.isBlocked ? "user blocked" : "user unblocked" })
+  }
+  catch (err) {
+    console.error('failed to block or unblock user');
+    res.status(500).json({ error: 'Failed to block or unblock user' });
   }
 };

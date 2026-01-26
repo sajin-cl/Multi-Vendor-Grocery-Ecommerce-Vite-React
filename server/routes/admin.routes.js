@@ -20,4 +20,9 @@ router.patch('/brands/:id', adminAuth, adminController.updateBrand);
 router.delete('/brands/:id', adminAuth, adminController.deleteBrand);
 
 
+router.get('/users', adminController.getUsers);
+router.delete('/users/:id', adminAuth, adminController.deleteUser);
+router.patch('/users/:id/toggle-block', adminAuth, adminController.toggleBlockUser);
+
+
 module.exports = router;

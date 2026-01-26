@@ -59,7 +59,7 @@ body::-webkit-scrollbar {
 .page-container main {
   display: block;
   flex: 1;
-  padding: 20px;
+  padding: 2px 20px;
 }
 
 
@@ -102,4 +102,8 @@ body::-webkit-scrollbar {
 
 .text-purple {
   color: #800080;
+}
+
+.fs-7 {
+  font-size: 0.860rem;
 }

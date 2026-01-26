@@ -1,24 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Users() {
-  const [users, setUsers] = useState([
-    { id: 1, name: "Afsal khan", email: "afsalkhan@gmail.com", status: "active" },
-    { id: 2, name: "Adharsh", email: "adharshkannadi@gamil.com", status: "blocked" },
-    { id: 3, name: "nithin", email: "vempuli@gmail.com", status: "active" },
-    { id: 4, name: "Jeni", email: "jeni@gmail.com", status: "active" },
-  ]);
 
- 
-  const toggleStatus = (id) => {
-    setUsers(
-      users.map((user) =>
-        user.id === id
-          ? { ...user, status: user.status === "active" ? "blocked" : "active" }
-          : user
-      )
-    );
+  const [refresh, setRefresh] = useState(0);
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/api/admin/users", { withCredentials: true })
+      .then((response) => setUsers(response.data))
+      .catch((err) => {
+        console.error(
+          "Failed to fetch users:",
+          err.response?.data?.error || err?.message
+        );
+      });
+  }, [refresh]);
+
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:4000/api/admin/users/${id}`, { withCredentials: true })
+      .then(() => {
+        console.info('user deleted successfully');
+        setRefresh(prev => prev + 1);
+      })
+      .catch(err => console.error('failed to delete user', err))
   };
 
+
+  const handleToggleBlockUser = (id) => {
+    axios
+      .patch(`http://localhost:4000/api/admin/users/${id}/toggle-block`, null, { withCredentials: true })
+      .then(() => {
+        console.info('User toggle status changed');
+        setRefresh(prev => prev + 1);
+      })
+      .catch(err => console.error('failed to change status', err.response))
+  }
 
   return (
     <div className="container mt-4">
@@ -26,33 +47,36 @@ function Users() {
 
       <div className="row">
         {users.map((user) => (
-          <div key={user.id} className="col-12 col-md-6 col-lg-4 mb-4">
+          <div key={user._id} className="col-12 col-md-6 col-lg-4 mb-4">
             <div className="card h-100 shadow">
               <div className="card-body d-flex flex-column">
+
+                {/* Show name + email */}
                 <h6 className="card-title">{user.name}</h6>
                 <p className="card-text">{user.email}</p>
-                <p
-                  className={`card-text ${
-                    user.status === "active" ? "text-success" : "text-danger"
-                  }`}
-                >
-                  {user.status === "active" ? "Active" : "Blocked"}
+
+                {/* Show status */}
+                <p className={`card-text ${user.isBlocked ? "text-danger" : "text-success"}`}>
+                  {user.isBlocked ? "Blocked" : "Active"}
                 </p>
+
+                {/* Buttons */}
                 <div className="mt-auto d-flex justify-content-between">
                   <button
-                    className={`btn btn-${
-                      user.status === "active" ? "warning" : "success"
-                    } px-3 py-1`}
-                    onClick={() => toggleStatus(user.id)}
+                    className={`btn btn-${user.isBlocked ? "success" : "warning"} px-3 py-1`}
+                    onClick={() => { handleToggleBlockUser(user._id) }}
                   >
-                    <small>{user.status === "active" ? "Block" : "Unblock"}</small>
+                    <small>{user.isBlocked ? "Unblock" : "Block"}</small>
                   </button>
+
                   <button
                     className="btn btn-danger px-3 py-1"
+                    onClick={() => { handleDelete(user._id) }}
                   >
                     <small>Delete</small>
                   </button>
                 </div>
+
               </div>
             </div>
           </div>

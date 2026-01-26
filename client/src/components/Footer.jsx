@@ -31,10 +31,10 @@ function Footer() {
         </ul>
 
         <div className="footer-social">
-          <i className="fa fa-facebook"></i>
-          <i className="fa fa-twitter"></i>
-          <i className="fa fa-instagram"></i>
-          <i className="fa fa-linkedin"></i>
+          <i className="fab fa-facebook"></i>
+          <i className="fab fa-twitter"></i>
+          <i className="fab fa-instagram"></i>
+          <i className="fab fa-linkedin"></i>
         </div>
 
       </div>
