@@ -49,8 +49,8 @@ function UpdateProduct() {
         setFormValues({
           name: prod.name || '',
           description: prod.description || '',
-          brand: prod.brand || '',
-          category: prod.category || '',
+          brand: prod.brand?._id || '',
+          category: prod.category?._id || '',
           stock: prod.stock || 0,
           price: prod.price || 0,
           productImage: null

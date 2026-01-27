@@ -104,6 +104,10 @@ body::-webkit-scrollbar {
   color: #800080;
 }
 
+.bg-purple {
+  background-color: #800080;
+}
+
 .fs-7 {
   font-size: 0.860rem;
 }

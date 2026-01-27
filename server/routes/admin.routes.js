@@ -29,4 +29,8 @@ router.get('/sellers', adminController.getSellers);
 router.delete('/sellers/:id', adminAuth, adminController.deleteSeller);
 router.patch('/sellers/:id/toggle-block', adminAuth, adminController.toggleBlockSeller);
 
+
+router.get('/orders', adminAuth, adminController.getAllOrders);
+router.patch('/orders/:orderId/status', adminAuth, adminController.updateOrderStatus);
+
 module.exports = router;

@@ -1,50 +1,81 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function SellerOrders() {
-  const orders = [
-    { id: 101, buyer: "John Doe",totalAmount:1000, status: "Pending" },
-    { id: 102, buyer: "Jane Smith",totalAmount:200, status: "Shipped" },
-    { id: 103, buyer: "Alice Johnson",totalAmount:1500, status: "Delivered" },
-  ];
+  const [orders, setOrders] = useState([]);
 
+  // Fetch seller orders on mount
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/api/seller/orders", { withCredentials: true })
+      .then((res) => setOrders(res.data))
+      .catch((err) => console.error("Failed to fetch orders:", err.response?.data || err));
+  }, []);
 
+  // Update item status: 'shipped' or 'delivered'
+  const updateStatus = (orderId, itemId, newStatus) => {
+    axios
+      .patch(
+        `http://localhost:4000/api/seller/orders/${orderId}/item/${itemId}/status`,
+        { status: newStatus },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        // Update state locally after backend update
+        setOrders((prev) =>
+          prev.map((order) =>
+            order._id === orderId
+              ? {
+                ...order,
+                items: order.items.map((item) =>
+                  item._id === itemId ? { ...item, status: newStatus } : item
+                ),
+              }
+              : order
+          )
+        );
+      })
+      .catch((err) => console.error("Failed to update status:", err.response?.data || err));
+  };
 
   return (
-    <div className="container mt-4">
-      <h3>Orders</h3>
+    <div className="container py-4">
+      <h3>My Seller Orders</h3>
+      {orders.length === 0 && <p>No orders yet.</p>}
 
-      <div className="card shadow-sm mt-3">
-        <div className="card-body p-0">
-          <table className="table mb-0">
-            <thead className="table-light">
-              <tr>
-                <th>Order ID</th>
-                <th>Buyer</th>
-                <th>Order Date</th>
-                <th>Total amount</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map(order => (
-                <tr key={order.id}>
-                  <td>{order.id}</td>
-                  <td>{order.buyer}</td>
-                  <td>-</td>
-                  <td>${order.totalAmount}</td>
-                  <td>{order.status} </td>
-                  <td>
-                    <Link to={'/seller/update-order'}>
-                      <i className="fa fa-eye text-dark"></i>
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {orders.map((order) => (
+        <div key={order._id} className="border p-3 mb-3">
+          <p><b>Order ID:</b> {order._id}</p>
+          {order.items.map((item) => (
+            <div key={item._id} className="d-flex justify-content-between align-items-center mb-1">
+              <div>
+                {item.product.name} x {item.quantity} - ₹{item.price * item.quantity}
+              </div>
+              <div>
+                {item.status === "pending" && (
+                  <button
+                    className="btn btn-warning btn-sm"
+                    onClick={() => updateStatus(order._id, item._id, "shipped")}
+                  >
+                    Ship
+                  </button>
+                )}
+                {item.status === "shipped" && (
+                  <button
+                    className="btn btn-success btn-sm"
+                    onClick={() => updateStatus(order._id, item._id, "delivered")}
+                  >
+                    Deliver
+                  </button>
+                )}
+                {item.status === "delivered" && (
+                  <span className="text-success">Delivered</span>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
+      ))}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 const Category = require('../models/category.model');
 const Brand = require('../models/brand.model');
 const User = require('../models/auth.model');
+const Order = require('../models/order.models');
 
 exports.addCategory = async (req, res) => {
   try {
@@ -258,3 +259,54 @@ exports.toggleBlockSeller = async (req, res) => {
     res.status(500).json({ error: 'Failed to block or unblock seller' });
   }
 }
+
+
+exports.getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find()
+      .populate("user", "fullName email")
+      .populate("items.product", "name price");
+
+    res.status(200).json(orders);
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch orders" });
+  }
+};
+
+
+
+exports.updateOrderStatus = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { status } = req.body;
+
+    const order = await Order.findById(orderId);
+    if (!order) return res.status(404).json({ error: "Order not found" });
+
+    // Only allow shipped/delivered if all items are shipped/delivered
+    if (status === "shipped") {
+      const allItemsShipped = order.items.every(i => i.status === "shipped");
+      if (!allItemsShipped) {
+        return res.status(400).json({ error: "All items must be shipped by sellers first" });
+      }
+    }
+
+    if (status === "delivered") {
+      const allItemsDelivered = order.items.every(i => i.status === "delivered");
+      if (!allItemsDelivered) {
+        return res.status(400).json({ error: "All items must be delivered first" });
+      }
+    }
+
+    order.status = status;
+    await order.save();
+
+    res.json({ message: "Order status updated", order });
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to update status" });
+  }
+};

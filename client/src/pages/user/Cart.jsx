@@ -1,13 +1,18 @@
-import { useEffect } from 'react';
 import '../../style/cart.css'
+import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom"
 
 function Cart() {
+
+  const navigate = useNavigate();
 
   const [cartItems, setCartItems] = useState([]);
 
   const [refresh, setRefresh] = useState(0);
+
+  const [errors, setErrors] = useState({});
 
 
   useEffect(() => {
@@ -19,6 +24,8 @@ function Cart() {
       })
       .catch(err => {
         console.error(err.response?.data || err);
+        setErrors({ backend: err.response?.data?.error });
+        setTimeout(() => { setErrors({}) }, 3000);
       })
 
   }, [refresh]);
@@ -35,10 +42,14 @@ function Cart() {
           prev.map(item => (item._id === itemId ? { ...item, quantity: response.data.quantity } : item))
         );
       })
-      .catch(err => console.error(err.response?.data || err));
+      .catch(err => {
+        console.error(err.response?.data || err);
+        setErrors({ backend: err.response?.data?.error });
+        setTimeout(() => { setErrors({}) }, 3000);
+      });
   };
 
-  
+
   const removeItem = (itemId) => {
     axios
       .delete(`http://localhost:4000/api/cart/${itemId}`, { withCredentials: true })
@@ -46,7 +57,11 @@ function Cart() {
         console.log('cart item removed');
         setRefresh(prev => prev + 1);
       })
-      .catch(err => console.error(err.response?.data || err));
+      .catch(err => {
+        console.error(err.response?.data || err);
+        setErrors({ backend: err.response?.data?.error });
+        setTimeout(() => { setErrors({}) }, 3000);
+      });
   };
 
 
@@ -55,7 +70,22 @@ function Cart() {
   const total = subtotal + shipping;
 
 
-  if (!cartItems.length) return <div className="container py-4">Your cart is empty.</div>;
+  const handlePlaceOrder = () => {
+    axios.post("http://localhost:4000/api/orders/checkout", {}, { withCredentials: true })
+      .then(res => {
+        console.log("Order placed:", res.data);
+        navigate("/order-success", { state: { orderId: res.data._id } });
+      })
+      .catch(err => {
+        console.error(err.response?.data || err);
+        setErrors({ backend: err.response?.data?.error || "Failed to place order" });
+        setTimeout(() => { setErrors({}) }, 3000);
+      });
+  };
+
+
+
+  if (!cartItems.length) return <div className="container py-4 d-flex justify-content-center h-100">Your cart is empty.</div>;
 
   return (
 
@@ -63,7 +93,7 @@ function Cart() {
       <h3 className="mb-4">Shopping Cart</h3>
 
       <div className="row">
-        {/* Cart Items */}
+
         <div className="col-12 col-lg-8">
           {cartItems.map((item, index) => (
             <div
@@ -115,7 +145,7 @@ function Cart() {
 
         </div>
 
-        {/* Order Summary */}
+
         <div className="col-12 col-lg-4">
           <div className="summary p-3">
             <h5>Order Summary</h5>
@@ -137,13 +167,21 @@ function Cart() {
               <span>₹{total}</span>
             </div>
 
-            <button className="btn btn-primary w-100 mt-3">
+            <button
+              className="btn btn-primary w-100 mt-3"
+              onClick={handlePlaceOrder}
+            >
               Proceed to Checkout
             </button>
+
+
+            {errors.backend && <div className="text-danger mt-2 text-center">{errors.backend}</div>}
+
           </div>
         </div>
       </div>
     </div>
+
   );
 }
 

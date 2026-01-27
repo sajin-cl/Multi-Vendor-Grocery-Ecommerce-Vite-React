@@ -52,12 +52,20 @@ exports.addProducts = async (req, res) => {
 
 exports.getProducts = async (req, res) => {
   try {
+    let filter = {};
 
-    const products = await Product.find().sort({ createdAt: 1 });
+    // If seller is logged in, show only their products
+    if (req.session?.userData?.role === 'seller') {
+      filter.sellerId = req.session.userData.id;
+    }
+
+    // Fetch products from DB with filter
+    const products = await Product.find(filter).sort({ createdAt: 1 });
     if (!products) return res.status(400).json({ error: 'Failed to fetch products' });
 
-    const visibleProducts = [];
 
+    const visibleProducts = [];
+    
     for (let product of products) {
 
       const seller = await User.findById(product.sellerId);
@@ -68,12 +76,13 @@ exports.getProducts = async (req, res) => {
     }
 
     res.status(200).json(visibleProducts);
-    console.log('visible product', visibleProducts)
+    console.log('visible products:', visibleProducts);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to fetch products' });
   }
 };
+
 
 exports.getProductsId = async (req, res) => {
   try {

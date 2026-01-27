@@ -13,6 +13,8 @@ const productRouter = require('./routes/products.routes');
 const categoryRouter = require('./routes/categories.routes');
 const brandRouter = require('./routes/brands.routes');
 const cartRouter = require('./routes/cart.routes');
+const orderRouter = require('./routes/orders.routes');
+const sellerOrdersRouter = require('./routes/sellerOrders.routes');
 
 
 const app = express();
@@ -50,6 +52,8 @@ app.use('/api/products', productRouter);
 app.use('/api/categories', categoryRouter);
 app.use('/api/brands', brandRouter);
 app.use('/api/cart', cartRouter);
+app.use('/api/orders', orderRouter);
+app.use('/api/seller/orders', sellerOrdersRouter)
 
 
 const PORT = 4000;

@@ -12,7 +12,7 @@ function ProductDetails() {
   const [count, setCount] = useState(1);
   const [error, setError] = useState("");
 
- 
+
   const qtyInc = () => {
     if (product && count < product.stock) {
       setCount(prev => prev + 1);
@@ -69,7 +69,7 @@ function ProductDetails() {
     <div className="container p-4 border my-3">
       <div className="row align-items-start gy-4">
 
-      
+
         <div className="col-12 col-md-5 text-center">
           <img
             src={`http://localhost:4000${product.image_url}`}
@@ -79,11 +79,11 @@ function ProductDetails() {
           />
         </div>
 
-      
+
         <div className="col-12 col-md-7 p-4">
           <div className="d-flex justify-content-between align-items-center mb-2">
             <h2 className="fw-semibold mb-1">{product.name}</h2>
-            <span className="badge bg-success">{product.brand?.name}</span>
+            <span className="badge bg-purple">{product.brand?.name}</span>
           </div>
 
           <div className="text-muted small mb-2">{product.category?.name}</div>
@@ -97,14 +97,14 @@ function ProductDetails() {
 
           <div className="d-flex align-items-end mb-3">
             <span className="fw-bold fs-3">₹{product.price}</span>
-            {product.price > 0 && (
+            {product.oldPrice && product.oldPrice > product.price && (
               <span className="text-muted text-decoration-line-through ms-2 fs-6">
-                ₹{product.price + 50} 
+                ₹{product.oldPrice}
               </span>
             )}
           </div>
 
-          
+
           <div className="d-flex flex-column flex-sm-row align-items-start">
             <div className="d-flex border rounded overflow-hidden me-sm-3 mb-2 mb-sm-0">
               <button
@@ -133,7 +133,7 @@ function ProductDetails() {
             </button>
           </div>
 
-          
+
           {error && <div className="text-danger mt-2">{error}</div>}
         </div>
       </div>

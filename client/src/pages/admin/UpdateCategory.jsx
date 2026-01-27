@@ -19,7 +19,7 @@ function UpdateCategory() {
 
   useEffect(() => {
 
-    axios.get(`http://localhost:4000/api/admin/categories/${id}`)
+    axios.get(`http://localhost:4000/api/admin/categories/${id}`,{withCredentials:true})
       .then(response => setData(response.data))
       .catch((err) => {
         console.error('category fetching error');

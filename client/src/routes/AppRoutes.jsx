@@ -17,7 +17,7 @@ import SellerOrders from '../pages/seller/SellerOrders';
 import SellerEarnings from '../pages/seller/SellerEanings';
 import AddProduct from '../pages/seller/AddProduct';
 import UpdateProduct from '../pages/seller/UpdateProduct';
-import UpdateOrder from '../pages/seller/UpdateOrder';
+
 
 import AdminLayout from '../layouts/AdminLayout';
 import AdminDashboard from '../pages/admin/AdminDashboard'
@@ -29,6 +29,8 @@ import AddBrand from '../pages/admin/AddBrand';
 import UpdateBrand from '../pages/admin/UpdateBrand';
 import Users from '../pages/admin/Users';
 import Sellers from '../pages/admin/Sellers';
+import AdminOrders from '../pages/admin/AdminOrders';
+
 
 import NotFound from '../components/NotFound';
 
@@ -42,7 +44,7 @@ const router = createBrowserRouter([
       { path: '/product-details/:id', element: <ProductDetails /> },
       { path: '/cart', element: <Cart /> },
       { path: '/checkout', element: <Checkout /> },
-      { path: '/test', element: <OrderSuccess /> },  //-->order success page tick
+      { path: '/order-success', element: <OrderSuccess /> },
       { path: '/myorders', element: <MyOrders /> }
     ]
   },
@@ -53,7 +55,6 @@ const router = createBrowserRouter([
       { index: true, element: <SellerDashboard /> },
       { path: 'products', element: <SellerProducts /> },
       { path: 'orders', element: <SellerOrders /> },
-      { path: 'update-order', element: <UpdateOrder /> },
       { path: 'earnings', element: <SellerEarnings /> },
       { path: 'add-product', element: <AddProduct /> },
       { path: 'update-product/:id', element: <UpdateProduct /> }
@@ -72,6 +73,7 @@ const router = createBrowserRouter([
       { path: 'update-brand/:id', element: <UpdateBrand /> },
       { path: 'users', element: <Users /> },
       { path: 'sellers', element: <Sellers /> },
+      { path: 'orders', element: <AdminOrders /> },
 
     ]
   },

@@ -1,14 +1,18 @@
 import "../../style/OrderSuccess.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function OrderSuccess() {
-  
+
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  const orderId = location.state?.orderId || "N/A"
 
   return (
     <div className="container d-flex justify-content-center align-items-center min-vh-100">
       <div className="success-box text-center p-4">
-        
+
         <div className="success-icon mb-3">✔</div>
 
         <h3>Order Placed Successfully!</h3>
@@ -17,7 +21,7 @@ function OrderSuccess() {
         </p>
 
         <p className="order-id">
-          Order ID: <b>#ORD12345</b>
+          Order ID: <b>#{orderId}</b>
         </p>
 
         <div className="d-flex flex-column flex-sm-row gap-3 mt-4">

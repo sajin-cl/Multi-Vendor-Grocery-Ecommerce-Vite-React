@@ -66,6 +66,11 @@ function AdminHeader() {
               <i className="fa fa-user-circle me-2"></i> Sellers
             </Link>
           </li>
+          <li>
+            <Link to="/admin/orders" className="text-white">
+              <i className="fa fa-shopping-cart me-2"></i> Orders
+            </Link>
+          </li>
 
         </ul>
 
