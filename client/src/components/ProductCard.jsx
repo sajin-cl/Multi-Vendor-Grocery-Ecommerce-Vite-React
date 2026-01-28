@@ -17,6 +17,7 @@ function ProductCard({ product }) {
             <div className="card-text product-desc text-muted mb-3">{product.description}</div>
             <div className="mt-auto text-center">
               <Link to={`/product-details/${product._id}`} className="view-btn">View</Link>
+              
             </div>
           </div>
         </div>

@@ -1,16 +1,31 @@
 import "../style/header.css";
 import { useAuth } from "../hooks/useAuth";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function UserHeader() {
-
   const { loggedIn, logout } = useAuth();
+  const [cartCount, setCartCount] = useState(0);
+  const [refresh, setRefresh] = useState(0); 
 
+  useEffect(() => {
+    if (!loggedIn) return setCartCount(0);
+
+    axios.get("http://localhost:4000/api/cart", { withCredentials: true })
+      .then(res => {
+        const totalItems = res.data.reduce((acc, item) => acc + item.quantity, 0);
+        setCartCount(totalItems);
+        setRefresh(prev => prev + 1)
+      })
+      .catch(err => console.error("Failed to fetch cart count:", err));
+
+  }, [loggedIn, refresh]); 
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light sticky-top">
       <div className="container-fluid">
-        <img src="/logo-icon.png" alt="logo" style={{ height: "32px", width: "32px" }} className="me-2"/>
+        <img src="/logo-icon.png" alt="logo" style={{ height: "32px", width: "32px" }} className="me-2" />
         <Link className="navbar-brand text-white fw-bold fs-6">
           <small>
             POWER <span className="text-warning">HOUSE</span>
@@ -36,11 +51,18 @@ function UserHeader() {
 
             {loggedIn ? (
               <>
-                <li className="nav-item">
+                <li className="nav-item position-relative">
                   <Link to="/cart" className="nav-link text-white">
                     <i className="fa-solid fa-cart-shopping fs-7 me-1"></i> Cart
+                    {cartCount > 0 && (
+                      <span
+                        className="position-absolute top-20 start-100 translate-middle badge rounded-pill bg-danger"
+                        style={{ fontSize: '0.6rem', padding: '2px 5px' }}
+                      >
+                        {cartCount}
+                      </span>
+                    )}
                   </Link>
-                  
                 </li>
                 <li className="nav-item">
                   <Link to="/myorders" className="nav-link text-white">
@@ -71,7 +93,6 @@ function UserHeader() {
               </>
             )}
           </ul>
-
         </div>
       </div>
     </nav>

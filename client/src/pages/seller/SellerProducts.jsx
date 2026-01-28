@@ -47,7 +47,7 @@ function SellerProducts() {
                 <p
                   className="card-text text-muted"
                 >
-                  {product.description.length > 27 ? product.description.substring(0, 26) + ".." : product.description}
+                  {product.description.length > 27 ? product.description.slice(0, 26) + ".." : product.description}
                 </p>
                 <p
                   className={`card-text ${product.stock === 0 ? "text-danger" : "text-success"}`}
