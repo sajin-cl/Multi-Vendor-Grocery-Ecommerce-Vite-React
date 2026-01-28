@@ -287,14 +287,14 @@ exports.updateOrderStatus = async (req, res) => {
 
     // Only allow shipped/delivered if all items are shipped/delivered
     if (status === "shipped") {
-      const allItemsShipped = order.items.every(i => i.status === "shipped");
+      const allItemsShipped = order.items.every(item => item.status === "shipped");
       if (!allItemsShipped) {
         return res.status(400).json({ error: "All items must be shipped by sellers first" });
       }
     }
 
     if (status === "delivered") {
-      const allItemsDelivered = order.items.every(i => i.status === "delivered");
+      const allItemsDelivered = order.items.every(item => item.status === "delivered");
       if (!allItemsDelivered) {
         return res.status(400).json({ error: "All items must be delivered first" });
       }
@@ -310,3 +310,34 @@ exports.updateOrderStatus = async (req, res) => {
     res.status(500).json({ error: "Failed to update status" });
   }
 };
+
+
+exports.getAdminDashboard = async (req, res) => {
+
+  try {
+
+    const totalUsers = await User.countDocuments({ role: 'user' });
+    const totalSellers = await User.countDocuments({ role: 'seller' });
+
+    const totalCategories = await Category.countDocuments();
+    const totalBrands = await Brand.countDocuments();
+    const totalOrders = await Order.countDocuments();
+
+    const orders = await Order.find({}, 'total');
+    const revenue = orders.reduce((acc, order) => acc + order.total, 0);
+
+    res.status(200).json({
+      totalUsers,
+      totalSellers,
+      totalCategories,
+      totalBrands,
+      totalOrders,
+      revenue
+    })
+
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch dashboard data' })
+  }
+}

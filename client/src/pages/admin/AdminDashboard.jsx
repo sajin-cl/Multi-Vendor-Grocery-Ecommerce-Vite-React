@@ -1,16 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 function AdminDashboard() {
- 
+
   const [stats, setStats] = useState({
-    totalUsers: 120,
-    totalSellers: 35,
-    totalCategories: 8,
-    totalBrands: 10,
-    totalOrders: 250,
-    revenue: 56000,
+    totalUsers: 0,
+    totalSellers: 0,
+    totalCategories: 0,
+    totalBrands: 0,
+    totalOrders: 0,
+    revenue: 0,
   });
+
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:4000/api/admin/dashboard', { withCredentials: true })
+      .then(response => setStats(response.data))
+      .catch(err => console.error(err.response?.data?.error || err.message));
+  }, []);
 
   return (
     <div className="container mt-4">

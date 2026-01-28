@@ -28,7 +28,7 @@ function SellerEarnings() {
           <div className="card text-center shadow-sm">
             <div className="card-body">
               <h6 className="card-title">Total Earnings</h6>
-              <p className="card-text display-6">${earnings.totalEarnings}</p>
+              <p className="card-text display-6" style={{fontFamily:"Intel"}}>₹{earnings.totalEarnings}</p>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@ function SellerEarnings() {
           <div className="card text-center shadow-sm">
             <div className="card-body">
               <h6 className="card-title">Pending Payout</h6>
-              <p className="card-text display-6">${earnings.pendingPayout}</p>
+              <p className="card-text display-6" style={{fontFamily:"Intel"}}>₹{earnings.pendingPayout}</p>
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@ function SellerEarnings() {
           <div className="card text-center shadow-sm">
             <div className="card-body">
               <h6 className="card-title">Completed Payout</h6>
-              <p className="card-text display-6">${earnings.completedPayout}</p>
+              <p className="card-text display-6" style={{fontFamily:"Intel"}}>₹{earnings.completedPayout}</p>
             </div>
           </div>
         </div>

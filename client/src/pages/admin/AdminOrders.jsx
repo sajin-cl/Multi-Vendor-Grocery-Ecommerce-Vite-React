@@ -60,7 +60,7 @@ function AdminOrders() {
                 </div>
                 <div className="item-price-status d-flex align-items-center gap-3">
                   <span>₹{item.price * item.quantity}</span>
-                  <span className={item.status === "shipped" ? "text-success fw-bold" : "text-muted"}>
+                  <span className={item.status === "shipped" ? "text-success fw-semibold" : "text-muted fw-semibold"}>
                     {item.status}
                   </span>
                 </div>
@@ -68,28 +68,32 @@ function AdminOrders() {
             ))}
 
             {/* Progress */}
-            <p className="mt-2">
-              <span className="text-danger">Shipped:</span> {order.items.filter(i => i.status === 'shipped').length} / {order.items.length}
-              <span className="text-success ms-4">Delivered:</span> {order.items.filter(i => i.status === 'delivered').length} / {order.items.length}
-            </p>
+            {order.status !== "delivered" && (
+              <>
+                <p className="mt-2">
+                  <span className="text-danger">Shipped:</span> {order.items.filter(item => item.status === 'shipped').length} / {order.items.length}
+                  <span className="text-success ms-4">Delivered:</span> {order.items.filter(item => item.status === 'delivered').length} / {order.items.length}
+                </p>
 
 
-            <div className="mt-2">
-              <button
-                className="btn btn-success me-2 px-2 py-0"
-                onClick={() => updateOrderStatus(order._id, "shipped")}
-                disabled={!allItemsShipped || order.status === "shipped" || order.status === "delivered"}
-              >
-                Mark Shipped
-              </button>
-              <button
-                className="btn btn-primary px-2 py-0"
-                onClick={() => updateOrderStatus(order._id, "delivered")}
-                disabled={!allItemsDelivered || order.status === "delivered"}
-              >
-                Mark Delivered
-              </button>
-            </div>
+                <div className="mt-2">
+                  <button
+                    className="btn btn-success me-2 px-2 py-0"
+                    onClick={() => updateOrderStatus(order._id, "shipped")}
+                    disabled={!allItemsShipped || order.status === "shipped" || order.status === "delivered"}
+                  >
+                    Mark Shipped
+                  </button>
+                  <button
+                    className="btn btn-primary px-2 py-0"
+                    onClick={() => updateOrderStatus(order._id, "delivered")}
+                    disabled={!allItemsDelivered || order.status === "delivered"}
+                  >
+                    Mark Delivered
+                  </button>
+                </div>
+              </>
+            )}
 
 
             {errors[order._id] && <div className="text-danger mt-2">{errors[order._id]}</div>}

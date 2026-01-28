@@ -1,4 +1,5 @@
 const Order = require('../models/order.models');
+const Product = require('../models/product.model');
 
 exports.getSellerOrders = async (req, res) => {
   try {
@@ -93,5 +94,48 @@ exports.getSellerEarnings = async (req, res) => {
   catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to fetch earnings" });
+  }
+};
+
+exports.getSellerDashboard = async (req, res) => {
+  try {
+    const sellerId = req.session?.userData?.id;
+    if (!sellerId) return res.status(401).json({ error: 'Unauthorized seller' });
+
+    const totalProducts = await Product.countDocuments({ sellerId });
+
+    const orders = await Order.find({ 'items.seller': sellerId });
+    if (!orders) return res.status(404).json({ error: 'orders not found' });
+
+    let totalOrders = 0;
+    let pendingOrders = 0;
+    let totalEarnings = 0;
+
+    for (const order of orders) {
+
+      totalOrders++;
+      let hasPending = false;
+
+      for (const item of order.items) {
+        if (item.seller.toString() !== sellerId) continue;
+
+        totalEarnings += item.quantity * item.price;
+
+        if (item.status === 'pending') hasPending = true;
+      }
+      if (hasPending) pendingOrders++;
+
+    };
+    res.status(200).json({
+      totalProducts,
+      totalOrders,
+      pendingOrders,
+      totalEarnings
+    })
+
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch dashboard data" });
   }
 };

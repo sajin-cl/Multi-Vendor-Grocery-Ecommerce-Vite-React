@@ -1,14 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from 'axios';
+
 
 function SellerDashboard() {
-  
-  const stats = {
-    totalProducts: 12,
-    totalOrders: 8,
-    pendingOrders: 3,
-    totalEarnings: 1240,
-  };
+
+  const [stats, setStats] = useState({
+    totalProducts: 0,
+    totalOrders: 0,
+    pendingOrders: 0,
+    totalEarnings: 0,
+  });
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:4000/api/seller/dashboard', { withCredentials: true })
+      .then(response => setStats(response.data))
+      .catch(err => console.error(err.response?.data?.error || err.message));
+
+  }, []);
 
 
   return (
@@ -44,7 +54,7 @@ function SellerDashboard() {
           <div className="card text-center shadow-sm bg-info text-white p-2">
             <div className="card-body">
               <h5 className="card-title ">Earnings</h5>
-              <p className="card-text display-6">${stats.totalEarnings}</p>
+              <p className="card-text display-6" style={{ fontFamily: "Intel" }}>₹{stats.totalEarnings}</p>
             </div>
           </div>
         </div>
