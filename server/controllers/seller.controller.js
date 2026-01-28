@@ -50,4 +50,48 @@ exports.updateItemStatus = async (req, res) => {
     console.error(err);
     res.status(500).json({ error: "Failed to update item status" });
   }
-}
+};
+
+
+exports.getSellerEarnings = async (req, res) => {
+  try {
+    const sellerId = req.session?.userData?.id;
+    if (!sellerId) return res.status(401).json({ error: "Unauthorized seller" });
+
+    const orders = await Order.find({ "items.seller": sellerId });
+
+    let total = 0;
+    let pending = 0;
+    let completed = 0;
+
+    for (const order of orders) {
+      for (const item of order.items) {
+        if (item.seller.toString() !== sellerId) {
+          continue;
+        }
+
+        const amount = item.price * item.quantity;
+
+        if (item.status === 'delivered') {
+          completed += amount;
+          total += amount;
+        }
+        else if (item.status === 'shipped') {
+          pending += amount;
+          total += amount;
+        }
+      }
+    }
+
+    return res.json({
+      totalEarnings: total,
+      pendingPayout: pending,
+      completedPayout: completed
+    });
+
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch earnings" });
+  }
+};

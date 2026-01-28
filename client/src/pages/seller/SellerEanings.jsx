@@ -1,12 +1,21 @@
-import React from "react";
+import { useEffect } from "react";
+import axios from 'axios';
+import { useState } from "react";
 
 function SellerEarnings() {
 
-  const earningsSummary = {
-    totalEarnings: 1240,
-    pendingPayout: 300,
-    completedPayout: 940,
-  };
+  const [earnings, setEarnings] = useState({
+    totalEarnings: 0,
+    pendingPayout: 0,
+    completedPayout: 0
+  });
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:4000/api/seller/earnings', { withCredentials: true })
+      .then(response => setEarnings(response.data))
+      .catch(err => console.error(err.response?.data?.error || err.message));
+  }, []);
 
 
 
@@ -19,7 +28,7 @@ function SellerEarnings() {
           <div className="card text-center shadow-sm">
             <div className="card-body">
               <h6 className="card-title">Total Earnings</h6>
-              <p className="card-text display-6">${earningsSummary.totalEarnings}</p>
+              <p className="card-text display-6">${earnings.totalEarnings}</p>
             </div>
           </div>
         </div>
@@ -27,7 +36,7 @@ function SellerEarnings() {
           <div className="card text-center shadow-sm">
             <div className="card-body">
               <h6 className="card-title">Pending Payout</h6>
-              <p className="card-text display-6">${earningsSummary.pendingPayout}</p>
+              <p className="card-text display-6">${earnings.pendingPayout}</p>
             </div>
           </div>
         </div>
@@ -35,7 +44,7 @@ function SellerEarnings() {
           <div className="card text-center shadow-sm">
             <div className="card-body">
               <h6 className="card-title">Completed Payout</h6>
-              <p className="card-text display-6">${earningsSummary.completedPayout}</p>
+              <p className="card-text display-6">${earnings.completedPayout}</p>
             </div>
           </div>
         </div>
