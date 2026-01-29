@@ -54,8 +54,8 @@ function MyOrders() {
             ))}
 
             <div className="d-flex justify-content-between">
-              <span>Shipping</span>
-              <span>₹{order.shipping}</span>
+              <span className="fw-bold">Shipping</span>
+              <span className="fw-bold">₹{order.shipping}</span>
             </div>
           </div>
 

@@ -84,7 +84,6 @@ function Cart() {
   };
 
 
-
   if (!cartItems.length) return <div className="container py-4 d-flex justify-content-center h-100">Your cart is empty.</div>;
 
   return (
@@ -134,7 +133,7 @@ function Cart() {
                     className="btn btn-link text-danger p-0"
                     onClick={() => { removeItem(item._id) }}
                   >
-                    Remove
+                   <i className="fas fa-trash fs-5"></i>
                   </button>
                 </div>
               </div>

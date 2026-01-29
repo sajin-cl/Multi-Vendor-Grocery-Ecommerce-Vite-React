@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import "../../style/ProductDetails.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function ProductDetails() {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const [product, setProduct] = useState(null);
   const [count, setCount] = useState(1);
@@ -51,7 +50,7 @@ function ProductDetails() {
       axios.post("http://localhost:4000/api/cart", { productId: product._id, quantity: count }, { withCredentials: true })
         .then(res => {
           setInCart(true);
-          setCartItemId(res.data._id); 
+          setCartItemId(res.data._id);
           setError("");
         })
         .catch(err => {

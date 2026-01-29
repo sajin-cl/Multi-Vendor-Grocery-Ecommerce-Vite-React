@@ -22,7 +22,6 @@ export const useAuth = () => {
       } catch (err) {
         if (!active) return;
         console.error(err.response?.data?.message || "Session check failed");
-        navigate("/login");
       }
     };
 
@@ -33,7 +32,7 @@ export const useAuth = () => {
     return () => { active = false; clearInterval(interval); };
 
   }, []);
-  
+
 
   const logout = async () => {
     try {
