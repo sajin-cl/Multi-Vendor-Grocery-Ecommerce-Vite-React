@@ -7,10 +7,9 @@ import axios from "axios";
 function UserHeader() {
   const { loggedIn, logout } = useAuth();
   const [cartCount, setCartCount] = useState(0);
-  const [refresh, setRefresh] = useState(0); 
+  const [refresh, setRefresh] = useState(0);
 
   useEffect(() => {
-    if (!loggedIn) return setCartCount(0);
 
     axios.get("http://localhost:4000/api/cart", { withCredentials: true })
       .then(res => {
@@ -20,7 +19,7 @@ function UserHeader() {
       })
       .catch(err => console.error("Failed to fetch cart count:", err));
 
-  }, [loggedIn, refresh]); 
+  }, [refresh]);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light sticky-top">

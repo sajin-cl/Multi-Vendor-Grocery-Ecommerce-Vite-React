@@ -18,11 +18,11 @@ function Cart() {
     axios
       .get(`http://localhost:4000/api/cart`, { withCredentials: true })
       .then(response => {
-        console.log(response.data);
+        console.log('cart item:', response?.data);
         setCartItems(response.data);
       })
       .catch(err => {
-        console.error(err.response?.data || err);
+        console.error(err.response?.data || err.message);
         setErrors({ backend: err.response?.data?.error });
         setTimeout(() => { setErrors({}) }, 3000);
       })
