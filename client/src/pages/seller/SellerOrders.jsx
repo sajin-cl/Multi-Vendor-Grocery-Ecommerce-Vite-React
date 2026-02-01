@@ -71,8 +71,8 @@ function SellerOrders() {
                 {item.status === "delivered" && (
                   <span className="text-success">Delivered</span>
                 )}
-                {item.status === "canceled" && (
-                  <span className="text-danger">Canceled</span>
+                {item.status === "cancelled" && (
+                  <span className="text-danger ">Canceled</span>
                   )}
 
               </div>

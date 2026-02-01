@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import axios from 'axios';
+import {Link} from "react-router-dom"
 
 
 function SellerDashboard() {
@@ -26,22 +26,22 @@ function SellerDashboard() {
       <h3>Seller Dashboard</h3>
 
       <div className="row my-3">
-        <div className="col-md-3 mb-3">
+        <Link className="col-md-3 mb-3 text-light" to={'/seller/products'}>
           <div className="card text-center shadow-sm bg-warning p-2">
             <div className="card-body">
               <h5 className="card-title">Products</h5>
               <p className="card-text display-6">{stats.totalProducts}</p>
             </div>
           </div>
-        </div>
-        <div className="col-md-3 mb-3">
+        </Link>
+        <Link className="col-md-3 mb-3 text-light" to={'/seller/orders'}>
           <div className="card text-center text-white shadow-sm bg-success p-2">
             <div className="card-body">
               <h5 className="card-title">Total Orders</h5>
               <p className="card-text display-6">{stats.totalOrders}</p>
             </div>
           </div>
-        </div>
+        </Link>
         <div className="col-md-3 mb-3">
           <div className="card text-center shadow-sm bg-danger text-white p-2">
             <div className="card-body">
@@ -50,14 +50,14 @@ function SellerDashboard() {
             </div>
           </div>
         </div>
-        <div className="col-md-3 mb-3">
+        <Link className="col-md-3 mb-3 text-light" to={'/seller/earnings'}>
           <div className="card text-center shadow-sm bg-info text-white p-2">
             <div className="card-body">
               <h5 className="card-title ">Earnings</h5>
               <p className="card-text display-6" style={{ fontFamily: "Intel" }}>₹{stats.totalEarnings}</p>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );

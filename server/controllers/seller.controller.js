@@ -119,7 +119,7 @@ exports.getSellerDashboard = async (req, res) => {
       for (const item of order.items) {
         if (item.seller.toString() !== sellerId) continue;
 
-        totalEarnings += item.quantity * item.price;
+        if (item.status !== 'cancelled') totalEarnings += item.quantity * item.price;
 
         if (item.status === 'pending') hasPending = true;
       }
