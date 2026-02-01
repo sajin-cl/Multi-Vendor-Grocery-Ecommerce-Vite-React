@@ -40,7 +40,7 @@ function AdminOrders() {
 
       {orders.map(order => {
 
-        const allItemsShipped = order.items.every(item => item.status === "shipped");
+
         const allItemsDelivered = order.items.every(item => item.status === "delivered");
 
         return (
@@ -55,7 +55,7 @@ function AdminOrders() {
               <p><b>Total:</b> ₹{order.total}</p>
               <p>
                 <b>Status:</b>{" "}
-                <span className={order.status === "cancelled" ? "text-danger fw-bold" : ""}>
+                <span className={order.status === "cancelled" ? "text-danger" : order.status === "delivered" ? "text-success" : "text-muted"}>
                   {order.status}
                 </span>
               </p>
@@ -72,7 +72,15 @@ function AdminOrders() {
                   </div>
                   <div className="item-price-status d-flex align-items-center gap-3">
                     <span>₹{item.price * item.quantity}</span>
-                    <span className={item.status === "shipped" ? "text-success fw-semibold" : "text-muted fw-semibold"}>
+                    <span
+                      className={
+                        item.status === "shipped"
+                          ? "text-warning fw-semibold"
+                          : item.status === "delivered"
+                            ? "text-success fw-semibold"
+                            : "text-muted fw-semibold"
+                      }
+                    >
                       {item.status}
                     </span>
                   </div>
@@ -93,21 +101,21 @@ function AdminOrders() {
                   <button
                     className="btn btn-success me-2 px-2 py-0"
                     onClick={() => updateOrderStatus(order._id, "shipped")}
-                    disabled={!allItemsShipped || order.status === "shipped" || order.status === "delivered"}
+                    disabled={!allItemsDelivered || order.status === "shipped"}
                   >
                     Mark Shipped
                   </button>
                   <button
                     className="btn btn-primary px-2 py-0 me-2"
                     onClick={() => updateOrderStatus(order._id, "delivered")}
-                    disabled={!allItemsDelivered || order.status === "delivered"}
+                    disabled={!allItemsDelivered }
                   >
                     Mark Delivered
                   </button>
                   <button
                     className="btn btn-danger px-2 py-0"
                     onClick={() => updateOrderStatus(order._id, "cancelled")}
-                    disabled={order.status === "delivered" || order.status === "cancelled"}
+                    disabled={order.status === "delivered" || !order.status === "shipped"}
                   >
                     Cancel Order
                   </button>

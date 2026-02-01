@@ -287,17 +287,7 @@ exports.updateOrderStatus = async (req, res) => {
       return res.status(404).json({ error: "Order not found" });
     }
 
-    if (status === "shipped") {
-      const allItemsShipped = order.items.every(
-        item => item.status === "shipped"
-      );
-      if (!allItemsShipped) {
-        return res.status(400).json({
-          error: "All items must be shipped by sellers first"
-        });
-      }
-    }
-
+   
     if (status === "delivered") {
       const allItemsDelivered = order.items.every(
         item => item.status === "delivered"
