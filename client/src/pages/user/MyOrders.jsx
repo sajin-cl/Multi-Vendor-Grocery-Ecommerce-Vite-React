@@ -19,12 +19,12 @@ function MyOrders() {
 
   return (
     <div className="container py-4">
-      <h3 className="mb-4">My Orders</h3>
+      <h5 className="mb-4 border-bottom pb-2">My Orders</h5>
 
       {orders.map((order) => (
         <div key={order._id} className="order-card p-3 mb-4 border rounded">
           <div className="d-flex justify-content-between align-items-center mb-2">
-            <h5>Order ID: {order._id}</h5>
+            <h6 className="text-danger">Order ID: #{order._id}</h6>
             <span
               className={`badge p-2 ${order.status === "delivered"
                 ? "bg-success"
@@ -55,12 +55,12 @@ function MyOrders() {
             ))}
 
             <div className="d-flex justify-content-between">
-              <span className="fw-bold">Shipping</span>
-              <span className="fw-bold">₹{order.shipping}</span>
+              <span>Shipping</span>
+              <span>₹{order.shipping}</span>
             </div>
           </div>
 
-          <div className="d-flex justify-content-between fw-bold">
+          <div className="d-flex justify-content-between fw-bold pt-2 border-top">
             <span>Total:</span>
             <span>₹{order.total}</span>
           </div>

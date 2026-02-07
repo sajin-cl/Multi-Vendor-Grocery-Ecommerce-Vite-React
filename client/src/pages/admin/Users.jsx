@@ -43,7 +43,7 @@ function Users() {
 
   return (
     <div className="container mt-4">
-      <h3 className="mb-4">User Management</h3>
+      <h5 className="border-bottom mb-4 pb-2">Manage Users</h5>
 
       <div className="row">
         {users.map((user) => (
@@ -51,16 +51,16 @@ function Users() {
             <div className="card h-100 shadow">
               <div className="card-body d-flex flex-column">
 
-              
+
                 <h6 className="card-title">{user.fullName}</h6>
                 <p className="card-text">{user.email}</p>
 
-             
+
                 <p className={`card-text ${!user.isBlocked ? "text-success" : "text-danger"}`}>
                   {user.isBlocked ? "Blocked" : "Active"}
                 </p>
 
-                
+
                 <div className="mt-auto d-flex justify-content-between">
                   <button
                     className={`btn btn-${!user.isBlocked ? "warning" : "success"} px-3 py-1`}

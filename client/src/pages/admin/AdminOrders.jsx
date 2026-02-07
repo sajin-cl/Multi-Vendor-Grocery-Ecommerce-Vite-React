@@ -28,9 +28,11 @@ function AdminOrders() {
       });
   };
 
+  let orderDate, orderTime;
+
   return (
     <div className="container py-4">
-      <h3>All Orders</h3>
+      <h5 className="border-bottom mb-4 pb-2">Manage Orders</h5>
 
       {orders.length === 0 && <p>No orders found.</p>}
 
@@ -40,12 +42,17 @@ function AdminOrders() {
         return (
           <div key={order._id} className="border p-3 mb-3">
 
-
             <div className="fw-bold mb-2 text-purple">
               Customer: {order.user?.fullName}
             </div>
-            <p><b>Order ID:</b> {order._id}</p>
-            <p><b>Placed On:</b> {new Date(order.createdAt).toLocaleDateString()}</p>
+            <p><b>Order ID:</b> #{order._id}</p>
+            <p>
+              <b>Order Date & Time:</b>{" "}
+              {new Date(order.createdAt).toLocaleString("en-IN", {
+                dateStyle: "medium",
+                timeStyle: "short"
+              })}
+            </p>
             <p><b>Total:</b> ₹{order.total}</p>
             <p>
               <b>Status:</b>{" "}
@@ -74,14 +81,6 @@ function AdminOrders() {
                 </div>
               </div>
             ))}
-
-
-            {order.status !== "delivered" && order.status !== "cancelled" && (
-              <p className="mt-2">
-                <span className="text-danger">Shipped:</span> {order.items.filter(i => i.status === 'shipped').length} / {order.items.length}
-                <span className="text-success ms-4">Delivered:</span> {order.items.filter(i => i.status === 'delivered').length} / {order.items.length}
-              </p>
-            )}
 
 
             {order.status !== "delivered" && order.status !== "cancelled" && (

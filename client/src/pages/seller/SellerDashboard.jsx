@@ -23,7 +23,7 @@ function SellerDashboard() {
 
   return (
     <div className="container mt-4">
-      <h3>Seller Dashboard</h3>
+      <h5 className="border-bottom mb-4 pb-2">Seller Dashboard</h5>
 
       <div className="row my-3">
         <Link className="col-md-3 mb-3 text-light" to={'/seller/products'}>

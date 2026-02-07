@@ -36,7 +36,9 @@ function Categories() {
 
   return (
     <div className="container mt-4">
-      <h3 className="mb-4">Category Management</h3>
+      
+    <h5 className="border-bottom mb-4 pb-2">Manage Categories</h5>
+
       {categories.length > 0 ? (
         <div className="row">
           {categories.map((category) => (

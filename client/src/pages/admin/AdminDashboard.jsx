@@ -23,7 +23,7 @@ function AdminDashboard() {
 
   return (
     <div className="container mt-4">
-      <h3 className="mb-4">Admin Dashboard</h3>
+      <h5 className="border-bottom mb-4 pb-2">Admin Dashboard</h5>
 
       <div className="row g-4">
         <div className="col-6 col-md-4 col-lg-2">

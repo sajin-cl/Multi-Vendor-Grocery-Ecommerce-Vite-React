@@ -40,21 +40,34 @@ function SellerOrders() {
 
   return (
     <div className="container py-4">
-      <h3>My Seller Orders</h3>
+      <h5 className="border-bottom mb-4 pb-2">Manage Orders</h5>
+
       {orders.length === 0 && <p>No orders yet.</p>}
 
       {orders.map((order) => (
         <div key={order._id} className="border p-3 mb-3">
-          <p><b>Order ID:</b> {order._id}</p>
+          <p><b>Order ID:</b> #{order._id}</p>
+
+          <p>
+            <b>Placed On:</b>{" "}
+            {new Date(order.createdAt).toLocaleString("en-IN", {
+              dateStyle: "medium",
+              timeStyle: "short"
+            })}
+          </p>
+
+          <p className="fw-bold mb-1">Products List:</p>
           {order.items.map((item) => (
             <div key={item._id} className="d-flex justify-content-between align-items-center mb-1">
-              <div>
-                {item.product.name} x {item.quantity} - ₹{item.price * item.quantity}
-              </div>
+              <ul className="bullet-list mb-0">
+                <li className="mb-0">
+                  {item.product.name} x {item.quantity} – ₹{item.price * item.quantity}
+                </li>
+              </ul>
               <div>
                 {item.status === "pending" && (
                   <button
-                    className="btn btn-warning btn-sm"
+                    className="btn btn-warning py-1 btn-sm px-3"
                     onClick={() => updateStatus(order._id, item._id, "shipped")}
                   >
                     Ship
@@ -62,7 +75,7 @@ function SellerOrders() {
                 )}
                 {item.status === "shipped" && (
                   <button
-                    className="btn btn-success btn-sm"
+                    className="btn btn-success py-1 btn-sm px-3"
                     onClick={() => updateStatus(order._id, item._id, "delivered")}
                   >
                     Deliver
@@ -73,7 +86,7 @@ function SellerOrders() {
                 )}
                 {item.status === "cancelled" && (
                   <span className="text-danger ">Canceled</span>
-                  )}
+                )}
 
               </div>
             </div>

@@ -21,7 +21,8 @@ function SellerEarnings() {
 
   return (
     <div className="container mt-4">
-      <h3>Seller Earnings</h3>
+
+      <h5 className="border-bottom mb-4 pb-2">My Earnings</h5>
 
       <div className="row my-3">
         <div className="col-md-4 mb-3">

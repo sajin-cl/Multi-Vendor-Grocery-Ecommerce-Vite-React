@@ -112,3 +112,8 @@ body::-webkit-scrollbar {
 .fs-7 {
   font-size: 0.860rem;
 }
+
+.bullet-list li {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
