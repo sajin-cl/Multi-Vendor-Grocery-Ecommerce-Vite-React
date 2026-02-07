@@ -69,17 +69,8 @@ function Cart() {
   const total = subtotal + shipping;
 
 
-  const handlePlaceOrder = () => {
-    axios.post("http://localhost:4000/api/orders/checkout", {}, { withCredentials: true })
-      .then(res => {
-        console.log("Order placed:", res.data);
-        navigate("/order-success", { state: { orderId: res.data._id } });
-      })
-      .catch(err => {
-        console.error(err.response?.data || err);
-        setErrors({ backend: err.response?.data?.error || "Failed to place order" });
-        setTimeout(() => { setErrors({}) }, 3000);
-      });
+  const goToCheckout = () => {
+    navigate("/checkout");
   };
 
 
@@ -167,7 +158,7 @@ function Cart() {
 
             <button
               className="btn btn-primary w-100 mt-3"
-              onClick={handlePlaceOrder}
+              onClick={goToCheckout}
             >
               Proceed to Checkout
             </button>

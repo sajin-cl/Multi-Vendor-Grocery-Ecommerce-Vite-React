@@ -24,12 +24,26 @@ const orderSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'userInfo'
     },
-    status: {                              
+    status: {
       type: String,
-      enum: ['pending', 'shipped', 'delivered','cancelled'],
+      enum: ['pending', 'shipped', 'delivered', 'cancelled'],
       default: 'pending'
     }
   }],
+  shippingAddress: {
+    name: { type: String, required: true },
+    phone: { type: String, required: true },
+    address: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    pincode: { type: String, required: true }
+  },
+
+  paymentMethod: {
+    type: String,
+    default: 'COD'
+  },
+
   subtotal: {
     type: Number,
     required: true

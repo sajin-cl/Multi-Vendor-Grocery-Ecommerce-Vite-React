@@ -5,10 +5,20 @@ const Cart = require('../models/cart.model');
 exports.placeOrder = async (req, res) => {
   try {
 
-    const userId = req.session.userData.id;
+    const userId = req.session?.userData?.id;
+    if (!userId) return res.status(401).json({ error: 'Unauthorized user' });
+
+
+    const { shippingAddress, paymentMethod } = req.body;
+
+    if (!shippingAddress || !shippingAddress.name || !shippingAddress.phone || !shippingAddress.address || !shippingAddress.city || !shippingAddress.state || !shippingAddress.pincode)
+      return res.status(400).json({ error: 'Complete shipping address required' });
+
+
 
     const cartItems = await Cart.find({ user: userId }).populate('product');
     if (!cartItems.length) return res.status(400).json({ error: 'Cart is empty' });
+
 
     for (let item of cartItems) {
       if (item.product.stock < item.quantity) {
@@ -32,6 +42,8 @@ exports.placeOrder = async (req, res) => {
     const order = await Order.create({
       user: userId,
       items,
+      shippingAddress,
+      paymentMethod: paymentMethod || 'COD',
       subtotal,
       shipping,
       total,

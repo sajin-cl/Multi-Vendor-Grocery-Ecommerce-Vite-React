@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function AdminOrders() {
-
   const [orders, setOrders] = useState([]);
   const [refresh, setRefresh] = useState(0);
   const [errors, setErrors] = useState({});
-
+  const [selectedOrder, setSelectedOrder] = useState(null);
 
   useEffect(() => {
     axios
@@ -14,9 +13,6 @@ function AdminOrders() {
       .then(res => setOrders(res.data))
       .catch(err => console.error(err));
   }, [refresh]);
-
-
-
 
   const updateOrderStatus = (orderId, newStatus) => {
     axios
@@ -27,8 +23,8 @@ function AdminOrders() {
       )
       .then(() => setRefresh(prev => prev + 1))
       .catch(err => {
-        console.error(err.response?.data || err.message);
-        setErrors(prev => ({ ...prev, [orderId]: err.response?.data?.error || err.message }));
+        const message = err.response?.data?.error || err.message;
+        setErrors(prev => ({ ...prev, [orderId]: message }));
         setTimeout(() => setErrors(prev => ({ ...prev, [orderId]: null })), 3000);
       });
   };
@@ -36,98 +32,123 @@ function AdminOrders() {
   return (
     <div className="container py-4">
       <h3>All Orders</h3>
+
       {orders.length === 0 && <p>No orders found.</p>}
 
       {orders.map(order => {
-
-
         const allItemsDelivered = order.items.every(item => item.status === "delivered");
 
         return (
-
           <div key={order._id} className="border p-3 mb-3">
-            <>
-
-              <div className="fw-bold mb-2 text-danger">
-                Customer: {order.user?.fullName}
-              </div>
-              <p><b>Order ID:</b> {order._id}</p>
-              <p><b>Total:</b> ₹{order.total}</p>
-              <p>
-                <b>Status:</b>{" "}
-                <span className={order.status === "cancelled" ? "text-danger" : order.status === "delivered" ? "text-success" : "text-muted"}>
-                  {order.status}
-                </span>
-              </p>
 
 
-              {order.items.map(item => (
+            <div className="fw-bold mb-2 text-danger">
+              Customer: {order.user?.fullName}
+            </div>
+            <p><b>Order ID:</b> {order._id}</p>
+            <p><b>Total:</b> ₹{order.total}</p>
+            <p>
+              <b>Status:</b>{" "}
+              <span className={order.status === "cancelled" ? "text-danger" : order.status === "delivered" ? "text-success" : "text-muted"}>
+                {order.status}
+              </span>
+            </p>
 
-                <div
-                  key={item._id}
-                  className="item-row d-flex align-items-center justify-content-between py-1 border-bottom"
-                >
-                  <div className="item-info">
-                    <span className="fw-bold">{item.product.name}</span> x {item.quantity}
-                  </div>
-                  <div className="item-price-status d-flex align-items-center gap-3">
-                    <span>₹{item.price * item.quantity}</span>
-                    <span
-                      className={
-                        item.status === "shipped"
-                          ? "text-warning fw-semibold"
-                          : item.status === "delivered"
-                            ? "text-success fw-semibold"
-                            : "text-muted fw-semibold"
-                      }
-                    >
-                      {item.status}
-                    </span>
-                  </div>
+
+            {order.items.map(item => (
+              <div key={item._id} className="item-row d-flex align-items-center justify-content-between py-1 border-bottom">
+                <div className="item-info">
+                  <span className="fw-bold">{item.product.name}</span> x {item.quantity}
                 </div>
-              ))}
-            </>
+                <div className="item-price-status d-flex align-items-center gap-3">
+                  <span>₹{item.price * item.quantity}</span>
+                  <span className={
+                    item.status === "shipped"
+                      ? "text-warning fw-semibold"
+                      : item.status === "delivered"
+                        ? "text-success fw-semibold"
+                        : "text-muted fw-semibold"
+                  }>
+                    {item.status}
+                  </span>
+                </div>
+              </div>
+            ))}
 
 
             {order.status !== "delivered" && order.status !== "cancelled" && (
-              <>
-                <p className="mt-2">
-                  <span className="text-danger">Shipped:</span> {order.items.filter(item => item.status === 'shipped').length} / {order.items.length}
-                  <span className="text-success ms-4">Delivered:</span> {order.items.filter(item => item.status === 'delivered').length} / {order.items.length}
-                </p>
-
-
-                <div className="mt-2">
-                  <button
-                    className="btn btn-success me-2 px-2 py-0"
-                    onClick={() => updateOrderStatus(order._id, "shipped")}
-                    disabled={!allItemsDelivered || order.status === "shipped"}
-                  >
-                    Mark Shipped
-                  </button>
-                  <button
-                    className="btn btn-primary px-2 py-0 me-2"
-                    onClick={() => updateOrderStatus(order._id, "delivered")}
-                    disabled={!allItemsDelivered }
-                  >
-                    Mark Delivered
-                  </button>
-                  <button
-                    className="btn btn-danger px-2 py-0"
-                    onClick={() => updateOrderStatus(order._id, "cancelled")}
-                    disabled={order.status === "delivered" || !order.status === "shipped"}
-                  >
-                    Cancel Order
-                  </button>
-                </div>
-              </>
+              <p className="mt-2">
+                <span className="text-danger">Shipped:</span> {order.items.filter(i => i.status === 'shipped').length} / {order.items.length}
+                <span className="text-success ms-4">Delivered:</span> {order.items.filter(i => i.status === 'delivered').length} / {order.items.length}
+              </p>
             )}
 
 
+            {order.status !== "delivered" && order.status !== "cancelled" && (
+              <div className="mt-2">
+                <button
+                  className="btn btn-success me-2 px-3 py-1 btn-sm"
+                  onClick={() => updateOrderStatus(order._id, "shipped")}
+                  disabled={!allItemsDelivered || order.status === "shipped"}
+                >
+                  Mark Shipped
+                </button>
+                <button
+                  className="btn btn-primary btn-sm px-3 py-1 me-2"
+                  onClick={() => updateOrderStatus(order._id, "delivered")}
+                  disabled={!allItemsDelivered}
+                >
+                  Mark Delivered
+                </button>
+                <button
+                  className="btn btn-danger btn-sm px-3 py-1 "
+                  onClick={() => updateOrderStatus(order._id, "cancelled")}
+                  disabled={order.status === "delivered" || !order.status === "shipped"}
+                >
+                  Cancel Order
+                </button>
+              </div>
+            )}
+
+            <button
+              className="btn btn-outline-primary w-100 mt-2"
+              onClick={() => setSelectedOrder(order)}
+            >
+              View Customer Details
+            </button>
+
+
             {errors[order._id] && <div className="text-danger mt-2">{errors[order._id]}</div>}
+
           </div>
         );
       })}
+
+
+      {selectedOrder && (
+        <div className="modal fade show" style={{ display: "block", backgroundColor: "rgba(0,0,0,0.5)" }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Customer Details</h5>
+                <button className="btn-close" onClick={() => setSelectedOrder(null)}></button>
+              </div>
+              <div className="modal-body">
+                <p><b>Name:</b> {selectedOrder.shippingAddress?.name}</p>
+                <p><b>Phone:</b> {selectedOrder.shippingAddress?.phone}</p>
+                <p><b>Address:</b> {selectedOrder.shippingAddress?.address}</p>
+                <p><b>City:</b> {selectedOrder.shippingAddress?.city}</p>
+                <p><b>State:</b> {selectedOrder.shippingAddress?.state}</p>
+                <p><b>Pincode:</b> {selectedOrder.shippingAddress?.pincode}</p>
+              </div>
+              <div className="modal-footer">
+                <button className="btn btn-secondary w-100" onClick={() => setSelectedOrder(null)}>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
