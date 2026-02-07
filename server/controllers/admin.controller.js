@@ -264,6 +264,7 @@ exports.toggleBlockSeller = async (req, res) => {
 exports.getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find()
+      .sort({ createdAt: -1 })
       .populate("user", "fullName email")
       .populate("items.product", "name price");
 
@@ -287,7 +288,7 @@ exports.updateOrderStatus = async (req, res) => {
       return res.status(404).json({ error: "Order not found" });
     }
 
-   
+
     if (status === "delivered") {
       const allItemsDelivered = order.items.every(
         item => item.status === "delivered"
@@ -303,7 +304,7 @@ exports.updateOrderStatus = async (req, res) => {
       order.items.forEach(item => {
         item.status = "cancelled";
       });
-    } 
+    }
 
     order.status = status;
     await order.save();

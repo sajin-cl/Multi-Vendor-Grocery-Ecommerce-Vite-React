@@ -25,7 +25,7 @@ function AdminHeader() {
               style={{ height: "25px", width: "25px"}}
             />
             <span className="text-white fw-bold ms-2">
-              ADMIN <span className="text-warning">PANEL</span>
+             <span className='ms-1 me-2'>POWER HOUSE</span> - <span className="text-warning ms-2">ADMIN PANEL</span> 
             </span>
           </div>
 

@@ -77,6 +77,7 @@ exports.getOrders = async (req, res) => {
     if (!userId) return res.status(401).json({ error: 'Unauthorized user' });
 
     const orders = await Order.find({ user: userId })
+      .sort({ createdAt: -1 })
       .populate('items.product', 'name price image_url');
 
     res.status(200).json(orders);

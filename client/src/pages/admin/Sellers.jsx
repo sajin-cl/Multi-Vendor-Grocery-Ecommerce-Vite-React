@@ -63,7 +63,7 @@ function Sellers() {
                     <small>{!seller.isBlocked ? "Block" : "Unblock"}</small>
                   </button>
                   <button
-                    className="btn btn-danger px-3 py-1"
+                    className="btn btn-danger px-4 py-1"
                     onClick={() => deleteSeller(seller._id)}
                   >
                     <small>Delete</small>

@@ -23,9 +23,8 @@ function AdminOrders() {
       )
       .then(() => setRefresh(prev => prev + 1))
       .catch(err => {
-        const message = err.response?.data?.error || err.message;
-        setErrors(prev => ({ ...prev, [orderId]: message }));
-        setTimeout(() => setErrors(prev => ({ ...prev, [orderId]: null })), 3000);
+        setErrors({ backend: err.response?.data?.error || err.message });
+        setTimeout(() => setErrors({}), 3000);
       });
   };
 
@@ -42,10 +41,11 @@ function AdminOrders() {
           <div key={order._id} className="border p-3 mb-3">
 
 
-            <div className="fw-bold mb-2 text-danger">
+            <div className="fw-bold mb-2 text-purple">
               Customer: {order.user?.fullName}
             </div>
             <p><b>Order ID:</b> {order._id}</p>
+            <p><b>Placed On:</b> {new Date(order.createdAt).toLocaleDateString()}</p>
             <p><b>Total:</b> ₹{order.total}</p>
             <p>
               <b>Status:</b>{" "}
@@ -103,7 +103,7 @@ function AdminOrders() {
                 <button
                   className="btn btn-danger btn-sm px-3 py-1 "
                   onClick={() => updateOrderStatus(order._id, "cancelled")}
-                  disabled={order.status === "delivered" || !order.status === "shipped"}
+                  disabled={order.status === "delivered" || order.status === "shipped"}
                 >
                   Cancel Order
                 </button>
@@ -111,14 +111,14 @@ function AdminOrders() {
             )}
 
             <button
-              className="btn btn-outline-primary w-100 mt-2"
+              className="btn btn-outline-primary w-100 mt-3"
               onClick={() => setSelectedOrder(order)}
             >
               View Customer Details
             </button>
 
 
-            {errors[order._id] && <div className="text-danger mt-2">{errors[order._id]}</div>}
+            {errors.backend && <div className="text-danger mt-2">{errors.backend}</div>}
 
           </div>
         );
