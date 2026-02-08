@@ -15,6 +15,25 @@ function MyOrders() {
 
   }, []);
 
+
+  const cancelOrder = (orderId) => {
+    axios
+      .patch(
+        `http://localhost:4000/api/orders/${orderId}/cancel`, {}, { withCredentials: true })
+      .then(() => {
+        setOrders(prev =>
+          prev.map(order =>
+            order._id === orderId
+              ? { ...order, status: "cancelled" }
+              : order
+          )
+        );
+      })
+      .catch(err => console.error(err.response?.data?.message || "Failed to cancel order"));
+  };
+
+
+
   if (!orders.length) return <div className="container py-4 d-flex justify-content-center h-100">Your Order is empty.</div>
 
   return (
@@ -22,6 +41,7 @@ function MyOrders() {
       <h5 className="mb-4 border-bottom pb-2">My Orders</h5>
 
       {orders.map((order) => (
+
         <div key={order._id} className="order-card p-3 mb-4 border rounded">
           <div className="d-flex justify-content-between align-items-center mb-2">
             <h6 className="text-danger">Order ID: #{order._id}</h6>
@@ -31,7 +51,7 @@ function MyOrders() {
                 : order.status === "shipped"
                   ? "bg-warning"
                   : order.status === 'cancelled'
-                  ? "bg-danger" : "bg-secondary"
+                    ? "bg-danger" : "bg-secondary"
                 }`}
             >
               {order.status}
@@ -64,7 +84,16 @@ function MyOrders() {
             <span>Total:</span>
             <span>₹{order.total}</span>
           </div>
+          {order.status !== 'delivered' && order.status !== 'cancelled' && (
+            <button
+              className="btn btn-danger w-100 mt-4"
+              onClick={() => { cancelOrder(order._id) }}
+            >
+              Cancel Order
+            </button>)}
         </div>
+
+
       ))}
     </div>
   );

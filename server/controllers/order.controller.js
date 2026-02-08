@@ -87,3 +87,33 @@ exports.getOrders = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch orders' });
   }
 };
+
+exports.cancelOrder = async (req, res) => {
+
+  try {
+
+    const { orderId } = req.params
+
+    const order = await Order.findById(orderId);
+    if (!order) return res.status(404).json({ message: "Order not found" });
+
+
+    if (order.status === "delivered") {
+      return res.status(400).json({ message: "Delivered order cannot be cancelled" });
+    }
+
+    order.status = "cancelled";
+
+    order.items.forEach(item => {
+      item.status = "cancelled";
+    });
+
+    await order.save();
+
+    res.json({ message: "Order cancelled successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to cancel order" });
+  }
+
+};
