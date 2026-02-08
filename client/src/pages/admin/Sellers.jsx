@@ -25,7 +25,7 @@ function Sellers() {
       })
   };
 
-  
+
   const toggleBlockSeller = (id) => {
     axios
       .patch(`http://localhost:4000/api/admin/sellers/${id}/toggle-block`, null, { withCredentials: true })
@@ -38,37 +38,51 @@ function Sellers() {
 
   return (
     <div className="container mt-4">
-     <h5 className="border-bottom mb-4 pb-2">Manage Sellers</h5>
+      <h5 className="border-bottom mb-4 pb-2">Manage Sellers</h5>
 
       <div className="row">
         {sellers.map((seller, index) => (
           <div key={seller._id + "-" + index} className="col-12 col-md-6 col-lg-4 mb-4">
-            <div className="card h-100 shadow">
+            <div className="card h-100 shadow-sm border-0">
               <div className="card-body d-flex flex-column">
-                <h5 className="card-title text-purple">{seller.shopName}</h5>
-                <p className="card-text mb-2 fs-7">Seller Name: {seller.fullName}</p>
-                <p className="card-text fs-7">Email: {seller.email}</p>
-                <p
-                  className={`card-text ${!seller.isBlocked ? "text-success" : "text-danger"
-                    }`}
-                >
-                  {!seller.isBlocked ? "Active" : "Blocked"}
+
+                <div className="d-flex justify-content-between align-items-start mb-2">
+                  <h6 className="fw-semibold text-purple mb-0">
+                    {seller.shopName}
+                  </h6>
+
+                  <span
+                    className={`badge ${seller.isBlocked ? "bg-danger" : "bg-success"}`}
+                  >
+                    {seller.isBlocked ? "Blocked" : "Active"}
+                  </span>
+                </div>
+
+            
+                <p className="mb-1 text-muted fs-7">
+                  <b>Seller: </b> {seller.fullName}
                 </p>
-                <div className="mt-auto d-flex justify-content-between">
+                <p className="mb-3 text-muted fs-7">
+                  <b>Email: </b> {seller.email}
+                </p>
+
+              
+                <div className="mt-auto d-flex gap-2">
                   <button
-                    className={`btn btn-${!seller.isBlocked ? "warning" : "success"
-                      } px-3 py-1`}
+                    className={`btn btn-${seller.isBlocked ? "success" : "warning"} btn-sm w-100`}
                     onClick={() => toggleBlockSeller(seller._id)}
                   >
-                    <small>{!seller.isBlocked ? "Block" : "Unblock"}</small>
+                    {seller.isBlocked ? "Unblock" : "Block"}
                   </button>
+
                   <button
-                    className="btn btn-danger px-4 py-1"
+                    className="btn btn-outline-danger btn-sm w-100"
                     onClick={() => deleteSeller(seller._id)}
                   >
-                    <small>Delete</small>
+                    Delete
                   </button>
                 </div>
+
               </div>
             </div>
           </div>

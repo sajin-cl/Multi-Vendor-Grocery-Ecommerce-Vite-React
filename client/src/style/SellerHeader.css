@@ -27,13 +27,25 @@
   overflow-y: auto;
 }
 
-.seller-sidebar li {
+.seller-sidebar li a {
+  display: block;
   padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 5px;
 }
-
 
 .seller-sidebar.open {
   left: 0;
+}
+
+.logout-container {
+  padding: 0px 0px 62px 5px;
+
+}
+
+.logout-container button {
+  border-radius: 170px 0px 0px 170px;
+  padding: 5px;
 }
 
 
@@ -47,11 +59,18 @@
   z-index: 999;
 }
 
-.seller-sidebar li:hover {
+.sidebar-link.active {
   background-color: var(--seller-nav-color);
-  transition: 0.3s;
+  color: white!important;
+  font-weight: bold;
+  border-radius: 0px 170px 170px 0px;
 }
 
+.seller-sidebar li a:hover {
+  background-color: var(--seller-nav-color);
+  border-radius: 0px 170px 170px 0px;
+  transition: 0.3s;
+}
 
 
 @media (min-width: 992px) {

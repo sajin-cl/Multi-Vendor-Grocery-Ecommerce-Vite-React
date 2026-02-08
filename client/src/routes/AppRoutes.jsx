@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import RegisterForm from '../pages/auth/Register';
 import LoginForm from '../pages/auth/Login';
 
@@ -52,7 +52,8 @@ const router = createBrowserRouter([
   {
     path: '/seller', element: <SellerLayout />,
     children: [
-      { index: true, element: <SellerDashboard /> },
+      { index: true, element: <Navigate to="dashboard" replace /> },
+      { path: 'dashboard', element: <SellerDashboard /> },
       { path: 'products', element: <SellerProducts /> },
       { path: 'orders', element: <SellerOrders /> },
       { path: 'earnings', element: <SellerEarnings /> },
@@ -64,7 +65,8 @@ const router = createBrowserRouter([
   {
     path: '/admin', element: <AdminLayout />,
     children: [
-      { index: true, element: <AdminDashboard /> },
+      { index: true, element: <Navigate to="dashboard" replace /> },
+      { path: "dashboard", element: <AdminDashboard /> },
       { path: 'categories', element: <Categories /> },
       { path: 'add-category', element: <AddCategory /> },
       { path: 'update-category/:id', element: <UpdateCategory /> },

@@ -48,37 +48,54 @@ function Users() {
       <div className="row">
         {users.map((user) => (
           <div key={user._id} className="col-12 col-md-6 col-lg-4 mb-4">
-            <div className="card h-100 shadow">
-              <div className="card-body d-flex flex-column">
+            
+            <div className="card h-100 shadow-sm border-0">
+              <div className="card-body d-flex flex-column text-center">
 
-                <img src="/src/assets/images/avatar.png" alt="avatar" className="rounded-circle w-25 mx-auto d-block mb-4" />
-                <h6 className="card-title fs-7">Name : {user.fullName}</h6>
-                <h6 className="card-title fs-7 ">Email : {user.email}</h6>
-
-
-                <p className={`card-text ${!user.isBlocked ? "text-success" : "text-danger"}`}>
+                <span
+                  className={`badge align-self-end mb-2 ${user.isBlocked ? "bg-danger" : "bg-success"
+                    }`}
+                >
                   {user.isBlocked ? "Blocked" : "Active"}
+                </span>
+
+                <img
+                  src="/src/assets/images/avatar.png"
+                  alt="avatar"
+                  className="rounded-circle mx-auto mb-3"
+                  style={{ width: "72px", height: "72px", objectFit: "cover" }}
+                />
+
+                <h6 className="fw-semibold mb-1">
+                  {user.fullName}
+                </h6>
+
+               
+                <p className="text-muted fs-7 mb-3">
+                  {user.email}
                 </p>
 
-
-                <div className="mt-auto d-flex justify-content-between">
+                
+                <div className="mt-auto d-flex gap-2">
                   <button
-                    className={`btn btn-${!user.isBlocked ? "warning" : "success"} px-3 py-1`}
-                    onClick={() => { toggleBlockUser(user._id) }}
+                    className={`btn btn-sm w-100 ${user.isBlocked ? "btn-success" : "btn-warning"
+                      }`}
+                    onClick={() => toggleBlockUser(user._id)}
                   >
-                    <small>{user.isBlocked ? "Unblock" : "Block"}</small>
+                    {user.isBlocked ? "Unblock" : "Block"}
                   </button>
 
                   <button
-                    className="btn btn-danger px-3 py-1"
-                    onClick={() => { deleteUser(user._id) }}
+                    className="btn btn-outline-danger btn-sm w-100"
+                    onClick={() => deleteUser(user._id)}
                   >
-                    <small>Delete</small>
+                    Delete
                   </button>
                 </div>
 
               </div>
             </div>
+
           </div>
         ))}
 

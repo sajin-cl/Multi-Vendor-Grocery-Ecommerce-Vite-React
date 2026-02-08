@@ -19,17 +19,32 @@
   overflow-y: auto;
 }
 
-.admin-sidebar li {
-  padding: 10px;
-}
-
 .admin-sidebar.open {
   left: 0;
 }
 
-.admin-sidebar li:hover {
+
+.admin-sidebar li a {
+  display: block;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+.admin-sidebar li a:hover,
+.admin-sidebar li a.active {
   background-color: var(--admin-nav-color);
   transition: 0.3s;
+  border-radius: 0px 170px 170px 0px;
+}
+
+.logout-container {
+  padding: 0px  0px 62px 5px;
+  
+}
+.logout-container button {
+  border-radius: 170px 0px 0px 170px;
+ padding: 5px;
 }
 
 .overlay {
@@ -47,7 +62,7 @@
     left: 0;
   }
 
-   .admin-content {
+  .admin-content {
     margin-left: 230px;
     padding: 20px;
   }

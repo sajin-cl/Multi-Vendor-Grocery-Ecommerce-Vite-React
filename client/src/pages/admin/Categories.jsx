@@ -6,7 +6,7 @@ import { useState } from "react";
 function Categories() {
 
   const [categories, setCategories] = useState([]);
-  
+
   const [refresh, setRefresh] = useState(0);
 
   useEffect(() => {
@@ -36,8 +36,8 @@ function Categories() {
 
   return (
     <div className="container mt-4">
-      
-    <h5 className="border-bottom mb-4 pb-2">Manage Categories</h5>
+
+      <h5 className="border-bottom mb-4 pb-2">Manage Categories</h5>
 
       {categories.length > 0 ? (
         <div className="row">
@@ -50,15 +50,15 @@ function Categories() {
                   <div className="mt-auto d-flex justify-content-between">
                     <Link
                       to={`/admin/update-category/${category._id}`}
-                      className="btn btn-success px-3 py-1"
+                      className="btn  btn-sm"
                     >
-                      <small>Edit</small>
+                      <i className="fas fa-edit fs-6 "></i>
                     </Link>
                     <button
-                      className="btn btn-danger px-3 py-1"
+                      className="btn  btn-sm "
                       onClick={() => deleteCategory(category._id)}
                     >
-                      <small>Delete</small>
+                      <i className="fas fa-trash fs-6 text-danger"></i>
                     </button>
                   </div>
                 </div>

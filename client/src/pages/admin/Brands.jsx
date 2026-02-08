@@ -7,7 +7,7 @@ function Brands() {
 
 
   const [brands, setBrands] = useState([]);
-  
+
   const [refresh, setRefresh] = useState(0);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function Brands() {
 
   return (
     <div className="container mt-4">
-     <h5 className="border-bottom mb-4 pb-2">Manage Brands</h5>
+      <h5 className="border-bottom mb-4 pb-2">Manage Brands</h5>
 
       {brands.length > 0 ? (
         <div className="row">
@@ -45,15 +45,15 @@ function Brands() {
                   <div className="mt-auto d-flex justify-content-between">
                     <Link
                       to={`/admin/update-brand/${brand._id}`}
-                      className="btn btn-success px-3 py-1"
+                      className="btn  btn-sm"
                     >
-                      <small>Edit</small>
+                      <i className="fas fa-edit fs-6 "></i>
                     </Link>
                     <button
-                      className="btn btn-danger px-3 py-1"
+                      className="btn  btn-sm "
                       onClick={() => { deleteBrand(brand._id) }}
                     >
-                      <small>Delete</small>
+                      <i className="fas fa-trash fs-6 text-danger"></i>
                     </button>
                   </div>
                 </div>
