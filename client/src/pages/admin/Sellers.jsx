@@ -59,11 +59,14 @@ function Sellers() {
                 </div>
 
             
-                <p className="mb-1 text-muted fs-7">
+                <p className="my-2 text-muted fs-7">
                   <b>Seller: </b> {seller.fullName}
                 </p>
-                <p className="mb-3 text-muted fs-7">
+                <p className="mb-2 text-muted fs-7">
                   <b>Email: </b> {seller.email}
+                </p>
+                <p className="mb-3 text-muted fs-7">
+                  <b>Location: </b> {seller.shopAddress}
                 </p>
 
               

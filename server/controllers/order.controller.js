@@ -15,7 +15,6 @@ exports.placeOrder = async (req, res) => {
       return res.status(400).json({ error: 'Complete shipping address required' });
 
 
-
     const cartItems = await Cart.find({ user: userId }).populate('product');
     if (!cartItems.length) return res.status(400).json({ error: 'Cart is empty' });
 
@@ -30,7 +29,8 @@ exports.placeOrder = async (req, res) => {
       product: item.product._id,
       quantity: item.quantity,
       price: item.product.price,
-      seller: item.product.sellerId
+      seller: item.product.sellerId,
+
     }));
 
 

@@ -1,5 +1,6 @@
 const Order = require('../models/order.models');
 const Product = require('../models/product.model');
+const User = require('../models/auth.model');
 
 exports.getSellerOrders = async (req, res) => {
   try {
@@ -139,3 +140,43 @@ exports.getSellerDashboard = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch dashboard data" });
   }
 };
+
+
+exports.getSellerProfile = async (req, res) => {
+  try {
+    const sellerId = req.session?.userData?.id;
+    const seller = await User.findById(sellerId).select("fullName email shopName shopAddress role");
+
+    if (!seller) return res.status(404).json({ error: "seller not found" });
+
+    res.json(seller);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+
+exports.updateSellerProfile = async (req, res) => {
+  try {
+
+    const sellerId = req.session?.userData?.id;
+    if (!sellerId) return res.status(401).json({ error: "Unauthorized" });
+
+    const { fullName, email, shopName, shopAddress } = req.body;
+
+    if (!fullName || !email) return res.status(400).json({ error: "Full name and email are required" });
+
+    if (!shopName || !shopAddress) return res.status(400).json({ error: "Shop name and address are required" });
+
+
+    const updatedSeller = await User.findByIdAndUpdate(sellerId, { fullName, email, shopName, shopAddress }, { new: true });
+    if (!updatedSeller) return res.status(404).json({ error: "Seller not found" });
+
+    res.status(200).json({ message: "Profile updated successfully", updatedSeller });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+}

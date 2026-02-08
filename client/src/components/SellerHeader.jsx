@@ -59,6 +59,11 @@ function SellerHeader() {
               <i className="fa fa-money me-2"></i> Earnings
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/seller/profile" className={linkClass}>
+              <i className="fa fa-user-circle me-2"></i> Profile
+            </NavLink>
+          </li>
         </ul>
 
         <div className="logout-container">

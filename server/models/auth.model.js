@@ -27,6 +27,12 @@ const userSchema = mongoose.Schema({
       return this.role === 'seller'
     }
   },
+  shopAddress: {
+    type: String,
+    required: function () {
+      return this.role === 'seller'
+    }
+  },
   isBlocked: {
     type: Boolean,
     default: false

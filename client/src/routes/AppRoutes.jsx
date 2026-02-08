@@ -14,9 +14,11 @@ import SellerLayout from '../layouts/SellerLayout';
 import SellerDashboard from '../pages/seller/SellerDashboard';
 import SellerProducts from '../pages/seller/SellerProducts';
 import SellerOrders from '../pages/seller/SellerOrders';
+import SellerProfile from '../pages/seller/SellerProfile';
 import SellerEarnings from '../pages/seller/SellerEanings';
 import AddProduct from '../pages/seller/AddProduct';
 import UpdateProduct from '../pages/seller/UpdateProduct';
+import UpdateProfile from '../pages/seller/UpdateProfile';
 
 
 import AdminLayout from '../layouts/AdminLayout';
@@ -33,6 +35,8 @@ import AdminOrders from '../pages/admin/AdminOrders';
 
 
 import NotFound from '../components/NotFound';
+
+
 
 
 const router = createBrowserRouter([
@@ -56,9 +60,11 @@ const router = createBrowserRouter([
       { path: 'dashboard', element: <SellerDashboard /> },
       { path: 'products', element: <SellerProducts /> },
       { path: 'orders', element: <SellerOrders /> },
+      { path: 'profile', element: <SellerProfile /> },
       { path: 'earnings', element: <SellerEarnings /> },
       { path: 'add-product', element: <AddProduct /> },
-      { path: 'update-product/:id', element: <UpdateProduct /> }
+      { path: 'update-product/:id', element: <UpdateProduct /> },
+      { path: 'update-profile/:id', element: <UpdateProfile /> }
     ]
   },
 

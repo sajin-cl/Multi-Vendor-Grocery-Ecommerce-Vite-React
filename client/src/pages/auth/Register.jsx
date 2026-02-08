@@ -19,6 +19,7 @@ function RegisterForm() {
     confirmPassword: "",
     role: "user",
     shopName: "",
+    shopAddress:""
   });
 
 
@@ -79,6 +80,7 @@ function RegisterForm() {
           confirmPassword: "",
           role: "user",
           shopName: "",
+          shopAddress:""
         });
         navigate("/login");
       }))
@@ -206,19 +208,35 @@ function RegisterForm() {
 
 
             {formData.role === "seller" && (
-              <div className="mb-3">
-                <label className="form-label" htmlFor="shop-name">Shop Name</label>
-                <input
-                  type="text"
-                  className={`form-control ${errors.shopName ? "border border-danger" : ""}`}
-                  name="shopName"
-                  id="shop-name"
-                  placeholder="Enter your shop name"
-                  value={formData.shopName || ''}
-                  onChange={handleChange}
-                />
-                {errors.shopName && <div className="text-danger">{errors.shopName}</div>}
-              </div>
+              <>
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="shop-name">Shop Name</label>
+                  <input
+                    type="text"
+                    className={`form-control ${errors.shopName ? "border border-danger" : ""}`}
+                    name="shopName"
+                    id="shop-name"
+                    placeholder="Enter your shop name"
+                    value={formData.shopName || ''}
+                    onChange={handleChange}
+                  />
+                  {errors.shopName && <div className="text-danger">{errors.shopName}</div>}
+                </div>
+
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="shop-address">Shop Address</label>
+                  <input
+                    type="text"
+                    className={`form-control ${errors.shopAddress ? "border border-danger" : ""}`}
+                    name="shopAddress"
+                    id="shop-address"
+                    placeholder="Enter your shop address"
+                    value={formData.shopAddress || ''}
+                    onChange={handleChange}
+                  />
+                  {errors.shopAddress && <div className="text-danger">{errors.shopAddress}</div>}
+                </div>
+              </>
             )}
 
             {errors.backend && <div className="text-danger mb-2 text-center">{errors.backend}</div>}

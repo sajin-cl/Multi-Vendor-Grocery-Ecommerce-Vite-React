@@ -61,6 +61,11 @@ function ProductDetails() {
     }
   };
 
+
+  const descriptionItems = product?.description
+    ? product.description.split('.').filter(item => item.length) 
+    : [];
+
   if (!product) return <div>Loading...</div>;
 
   return (
@@ -79,6 +84,18 @@ function ProductDetails() {
             <span className="badge bg-purple">{product.brand?.name}</span>
           </div>
           <div className="text-muted small mb-2">{product.category?.name}</div>
+
+          {descriptionItems.length > 0 && (
+            <div className="mt-3">
+              <h5>Description:</h5>
+              <ul className="bullet-list ps-4">
+                {descriptionItems.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           <div className="mb-2">
             Availability:{" "}
             <span className={product.stock > 0 ? "text-success" : "text-danger"}>

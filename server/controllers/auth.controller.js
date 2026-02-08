@@ -5,7 +5,7 @@ const validator = require('validator');
 
 exports.register = async (req, res) => {
   try {
-    const { fullName, email, password, confirmPassword, role, shopName } = req.body;
+    const { fullName, email, password, confirmPassword, role, shopName,shopAddress } = req.body;
 
     if (!fullName || !email || !password || !confirmPassword) return res.status(400).json({ error: 'all fields are required' });
     if (password !== confirmPassword) return res.status(400).json({ error: 'Password mismatched' });
@@ -25,7 +25,8 @@ exports.register = async (req, res) => {
       email,
       password: hashedPwd,
       role: role || 'user',
-      shopName: role === 'seller' ? shopName : undefined
+      shopName: role === 'seller' ? shopName : undefined,
+      shopAddress: role === 'seller' ? shopAddress : undefined
     });
 
     res.status(201).json({ message: 'User registered successfully', newUser })
