@@ -1,37 +1,23 @@
 import "../style/header.css";
+import logo from '/logo.png'
 import { useAuth } from "../hooks/useAuth";
 import { NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
-import logo from '/logo.png'
-import axios from "axios";
 import { motion } from 'framer-motion'
-import {logoVariants} from '../animations/globalVarients.js'
-
+import { logoVariants } from '../animations/globalVarients.js';
+import { useCart } from "../context/CartContext.jsx";
 
 
 function UserHeader() {
-  
+
   const { loggedIn, logout } = useAuth();
-  const [cartCount, setCartCount] = useState(0);
-  const [refresh, setRefresh] = useState(0);
 
-  useEffect(() => {
-
-    axios.get("http://localhost:4000/api/cart", { withCredentials: true })
-      .then(res => {
-        const totalItems = res.data.length;
-        setCartCount(totalItems);
-        setRefresh(prev => prev + 1)
-      })
-      .catch(err => console.error("Failed to fetch cart count:", err));
-
-  }, [refresh]);
+  const { cartCount } = useCart();
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light sticky-top">
       <div className="container-fluid">
         <motion.img
-          src={logo} alt="logo" 
+          src={logo} alt="logo"
           className="me-2"
           variants={logoVariants}
           initial="hidden" animate="visible" drag dragConstraints={{ left: 0, top: 0, bottom: 0, right: 0 }}
@@ -80,6 +66,13 @@ function UserHeader() {
                     <i className="fa-solid fa-bag-shopping fs-7 me-1"></i> Orders
                   </NavLink>
                 </li>
+
+                <li className="nav-item">
+                  <NavLink to="/myprofile" className="nav-link text-white">
+                    <i className="fa fa-user fs-7 me-1"></i> My Profile
+                  </NavLink>
+                </li>
+
                 <li className="nav-item d-flex align-items-sm-center">
                   <button
                     className="btn btn-danger btn-sm ms-3 px-3 py-0"

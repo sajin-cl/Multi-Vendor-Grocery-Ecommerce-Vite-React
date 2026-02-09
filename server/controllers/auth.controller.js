@@ -5,7 +5,7 @@ const validator = require('validator');
 
 exports.register = async (req, res) => {
   try {
-    const { fullName, email, password, confirmPassword, role, shopName,shopAddress } = req.body;
+    const { fullName, email, password, confirmPassword, role, shopName, shopAddress } = req.body;
 
     if (!fullName || !email || !password || !confirmPassword) return res.status(400).json({ error: 'all fields are required' });
     if (password !== confirmPassword) return res.status(400).json({ error: 'Password mismatched' });
@@ -75,17 +75,17 @@ exports.login = async (req, res) => {
 
 exports.checkSession = (req, res) => {
 
-  if (!req.session || !req.session.userData) {
+  const { id, role } = req.session.userData;
+
+  if (!req.session || !req.session?.userData) {
     return res.status(401).json({
       loggedIn: false,
-      message: 'Your session has expired. Please login again.'
+      message: 'Your session has expired. Please login again!'
     })
   }
 
-  const { id, role } = req.session.userData;
-
   res.json({
-    loggedIn: true, message: 'session active',
+    loggedIn: true, message: 'session is still active',
     user: { id, role }
   });
 

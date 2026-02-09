@@ -10,17 +10,25 @@ export const useAuth = () => {
 
   useEffect(() => {
 
-    let active = true;
+    let isMounted = true;
 
     const checkSession = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/auth/check-session", {
-          withCredentials: true,
-        });
-        if (!active) return;
-        setLoggedIn(res.data.loggedIn);
-      } catch (err) {
-        if (!active) return;
+        const res = await axios.get("http://localhost:4000/api/auth/check-session", { withCredentials: true });
+
+        if (res.data.loggedIn) {
+          setLoggedIn(true);
+        }
+        else {
+
+          if (loggedIn) { setLoggedIn(false); navigate("/login"); }
+
+        }
+      }
+      catch (err) {
+
+        if (loggedIn) { setLoggedIn(false); navigate("/login") }
+
         console.error(err.response?.data?.message || "Session check failed");
       }
     };
@@ -29,9 +37,10 @@ export const useAuth = () => {
 
     const interval = setInterval(checkSession, 30000);
 
-    return () => { active = false; clearInterval(interval); };
+    return () => { isMounted = false; clearInterval(interval) };
 
-  }, []);
+  }, [loggedIn, navigate]);
+
 
 
   const logout = async () => {

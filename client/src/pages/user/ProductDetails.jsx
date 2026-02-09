@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import "../../style/ProductDetails.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useCart } from "../../context/CartContext";
 
 function ProductDetails() {
 
 
-  const webTitle = document.title = 'Product Details | Power House Ecommerce';
+  const webTitle = (document.title = 'Product Details | Power House Ecommerce');
 
   const { id } = useParams();
+
+  const { cartItems, addToCart, removeCartItem } = useCart();
 
   const [product, setProduct] = useState(null);
   const [count, setCount] = useState(1);
@@ -21,54 +24,67 @@ function ProductDetails() {
   const qtyDec = () => { if (count > 1) setCount(prev => prev - 1); };
 
 
-
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/products/${id}`, { withCredentials: true })
-      .then(res => setProduct(res.data))
-      .catch(err => console.error('Product fetch failed:', err.response?.data || err));
+    fetchProducts();
   }, [id]);
 
 
-
-  const handleCartToggle = () => {
-    if (!product) return;
-
-    if (inCart) {
-      axios.delete(`http://localhost:4000/api/cart/${cartItemId}`, { withCredentials: true })
-        .then(() => {
-          setInCart(false);
-          setCartItemId(null);
-          setError("");
-        })
-        .catch(err => {
-          console.error("Remove from cart failed:", err.response?.data || err);
-          setError(err.response?.data?.error || "Failed to remove from cart.");
-        });
-    } else {
-
-      if (product.stock === 0) {
-        setError("Cannot add to cart. Product is out of stock.");
-        return;
-      }
-
-      axios.post("http://localhost:4000/api/cart", { productId: product._id, quantity: count }, { withCredentials: true })
-        .then(res => {
-          setInCart(true);
-          setCartItemId(res.data._id);
-          setError("");
-        })
-        .catch(err => {
-          console.error("Add to cart failed:", err.response?.data || err);
-          setError(err.response?.data?.error || "Failed to add to cart.");
-
-        });
+  const fetchProducts = async () => {
+    try {
+      const res = await axios.get(`http://localhost:4000/api/products/${id}`, { withCredentials: true });
+      setProduct(res.data);
+    }
+    catch (err) {
+      console.error("Product fetch failed:", err);
     }
   };
+
+  //for addToCart & removeCart button ui
+  useEffect(() => {
+
+    if (!product) return;
+
+    const item = cartItems.find(i => i.product._id === product._id);
+
+    if (item) {
+      setInCart(true);
+      setCartItemId(item._id);
+    }
+    else {
+      setInCart(false);
+      setCartItemId(null)
+    }
+
+  }, [cartItems, product]);
+
+
+
+  const handleCartToggle = async () => {
+    try {
+      if (inCart) await removeCartItem(cartItemId)
+      else {
+        if (product.stock === 0) {
+          setError("Cannot add to cart. Product is out of stock.");
+          setTimeout(() => setError(""), 3000);
+          return;
+        }
+        await addToCart(product._id, count)
+      }
+      setError("");
+    }
+    catch (err) {
+      console.log(err);
+      setError(err.response?.data?.error || "Cart operation failed.");
+      setTimeout(() => setError(""), 3000);
+    }
+  };
+
 
 
   const descriptionItems = product?.description
     ? product.description.split('.').filter(item => item.length)
     : [];
+
 
   if (!product) return <div>Loading...</div>;
 

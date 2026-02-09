@@ -25,12 +25,12 @@ function SellerProfile() {
 
   return (
     <div className="container mt-5">
-      <motion.h2
+      <motion.h4
         className="mb-4"
         initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1, transition: { duration: 0.5 } }}
       >
         My Profile
-      </motion.h2>
+      </motion.h4>
 
       <div className="row">
 

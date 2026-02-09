@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
-import CustomerDetailsModal from "../../components/CustomerDetailsModal";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { cardContainer, cardFromLeft, cardFromRight } from "../../animations/adminVarients.js";
+
+const CustomerDetailsModal = lazy(() => import("../../components/CustomerDetailsModal"));
 
 function AdminOrders() {
   const webTitle = document.title = 'All Orders | Power House Ecommerce';
@@ -143,7 +144,9 @@ function AdminOrders() {
       </motion.div>
 
       {selectedOrder && (
-        <CustomerDetailsModal order={selectedOrder} onCloseBtn={() => setSelectedOrder(null)} />
+        <Suspense fallback={<div className="text-center text-muted">Loading...</div>}>
+          <CustomerDetailsModal order={selectedOrder} onCloseBtn={() => setSelectedOrder(null)} />
+        </Suspense>
       )}
     </div>
   );

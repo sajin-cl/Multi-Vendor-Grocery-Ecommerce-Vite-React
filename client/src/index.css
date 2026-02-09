@@ -69,6 +69,7 @@ body::-webkit-scrollbar {
 /*custom css & Bootstrap class--------*/
 :root {
   --violet-color: #4c00b0;
+  --violet-dark-color: #3c0485;
   --seller-nav-color: #660066;
   --admin-nav-color: #245731;
   --light-green-color: #b0e000;
@@ -80,16 +81,34 @@ body::-webkit-scrollbar {
   border: 1px solid #800080;
   color: #fff;
   border-radius: 5px;
+
+  &:hover {
+    background-color: var(--seller-nav-color);
+    border-color: var(--seller-nav-color);
+    color: #fff;
+  }
 }
 
-.btn-purple:hover {
-  background-color: #660066;
-  border-color: #660066;
+.btn-violet {
+  background-color: var(--violet-color);
+  border: 1px solid var(--violet-color);
   color: #fff;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: var(--violet-dark-color);
+    border-color: var(--violet-dark-color);
+    color: #fff;
+  }
+
 }
 
 .text-violet {
   color: #530bee;
+}
+
+.bg-violet {
+  background-color: var(--violet-color);
 }
 
 .text-purple {

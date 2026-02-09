@@ -7,14 +7,16 @@ const colorLogger = require('./utils/colorLogger');
 const database = require('./config/database');
 
 
-const authRouter = require('./routes/auth.routes');
+const sellerRouter = require('./routes/seller.routes');
+const userRouter = require('./routes/user.routes');
 const adminRouter = require('./routes/admin.routes');
+
+const authRouter = require('./routes/auth.routes');
 const productRouter = require('./routes/products.routes');
 const categoryRouter = require('./routes/categories.routes');
 const brandRouter = require('./routes/brands.routes');
 const cartRouter = require('./routes/cart.routes');
 const orderRouter = require('./routes/orders.routes');
-const sellerRouter = require('./routes/seller.routes');
 
 
 const app = express();
@@ -40,7 +42,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 24 * 60 * 60 * 1000
+      maxAge: 30 * 60 * 1000
     }
 
   })
@@ -48,12 +50,13 @@ app.use(
 
 app.use('/api/auth', authRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/seller', sellerRouter);
+app.use('/api/user', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/categories', categoryRouter);
 app.use('/api/brands', brandRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/orders', orderRouter);
-app.use('/api/seller', sellerRouter)
 
 
 const PORT = 4000;

@@ -9,6 +9,7 @@ import Cart from '../pages/user/Cart';
 import Checkout from '../pages/user/Checkout';
 import OrderSuccess from '../pages/user/OrderSuccess';
 import MyOrders from '../pages/user/MyOrders';
+import MyProfile from '../pages/user/MyProfile';
 
 import SellerLayout from '../layouts/SellerLayout';
 import SellerDashboard from '../pages/seller/SellerDashboard';
@@ -39,6 +40,7 @@ import NotFound from '../components/NotFound';
 
 
 
+
 const router = createBrowserRouter([
 
   {
@@ -49,7 +51,8 @@ const router = createBrowserRouter([
       { path: '/cart', element: <Cart /> },
       { path: '/checkout', element: <Checkout /> },
       { path: '/order-success', element: <OrderSuccess /> },
-      { path: '/myorders', element: <MyOrders /> }
+      { path: '/myorders', element: <MyOrders /> },
+      { path: '/myprofile', element: <MyProfile /> }
     ]
   },
 

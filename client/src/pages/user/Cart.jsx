@@ -1,69 +1,40 @@
 import '../../style/cart.css'
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom"
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useCart } from '../../context/CartContext';
 
 function Cart() {
 
-  
   const webTitle = document.title = 'My Cart | Power House Ecommerce';
 
+  const { cartItems, updateCartItem, removeCartItem } = useCart();
   const navigate = useNavigate();
-
-  const [cartItems, setCartItems] = useState([]);
-
-  const [refresh, setRefresh] = useState(0);
-
   const [errors, setErrors] = useState({});
 
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4000/api/cart`, { withCredentials: true })
-      .then(response => {
-        console.log('cart item:', response?.data);
-        setCartItems(response.data);
-      })
-      .catch(err => {
-        console.error(err.response?.data || err.message);
-        setErrors({ backend: err.response?.data?.error });
-        setTimeout(() => { setErrors({}) }, 3000);
-      })
-
-  }, [refresh]);
-
-
-  const updateQuantity = (itemId, newQty) => {
-
-    if (newQty < 1) return;
-
-    axios
-      .patch(`http://localhost:4000/api/cart/${itemId}`, { quantity: newQty }, { withCredentials: true })
-      .then(response => {
-        setCartItems(prev =>
-          prev.map(item => (item._id === itemId ? { ...item, quantity: response.data.quantity } : item))
-        );
-      })
-      .catch(err => {
-        console.error(err.response?.data || err);
-        setErrors({ backend: err.response?.data?.error });
-        setTimeout(() => { setErrors({}) }, 3000);
-      });
+  const updateQuantity = async (itemId, newQty) => {
+    if (newQty < 0) return;
+    try {
+      await updateCartItem(itemId, newQty);
+    }
+    catch (err) {
+      console.error(err);
+      setErrors({ backend: err.response?.data?.error || "Update failed" });
+      setTimeout(() => setErrors({}), 3000);
+    }
   };
 
 
-  const removeItem = (itemId) => {
-    axios
-      .delete(`http://localhost:4000/api/cart/${itemId}`, { withCredentials: true })
-      .then(() => {
-        console.log('cart item removed');
-        setRefresh(prev => prev + 1);
-      })
-      .catch(err => {
-        console.error(err.response?.data || err);
-        setErrors({ backend: err.response?.data?.error });
-        setTimeout(() => { setErrors({}) }, 3000);
-      });
+  const removeItem = async (itemId) => {
+    try {
+      await removeCartItem(itemId);
+      console.log('Cart item removed');
+    }
+    catch (err) {
+      console.error(err);
+      setErrors({ backend: err.response?.data?.error || "Remove failed" });
+      setTimeout(() => setErrors({}), 3000);
+    }
   };
 
 
@@ -125,6 +96,7 @@ function Cart() {
                   <button
                     className="btn btn-link text-danger p-0"
                     onClick={() => { removeItem(item._id) }}
+                    title='remove item'
                   >
                     <i className="fas fa-trash fs-5"></i>
                   </button>
