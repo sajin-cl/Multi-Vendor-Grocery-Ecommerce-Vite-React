@@ -80,7 +80,7 @@ function Cart() {
                   variants={isLeft ? cardFromLeft : cardFromRight} layout exit="exit"
                 >
                   <motion.img
-                    src={`http://localhost:4000${item.product.image_url}`}
+                    src={`${import.meta.env.VITE_IMG_URL}${item.product.image_url}`}
                     alt={item.product.name}
                     className="cart-img rounded-circle"
                     whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }}

@@ -41,7 +41,7 @@ function SellerProducts() {
               variants={droppingCard}
             >
               <img
-                src={`http://localhost:4000${product.image_url}`}
+                src={`${import.meta.env.VITE_IMG_URL}${product.image_url}`}
                 className="card-img-top"
                 alt={product.name}
 

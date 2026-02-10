@@ -214,7 +214,7 @@ function UpdateProduct() {
                     <>
                       <label htmlFor="current-prodImg" className="form-label text-purple">Current Image:</label>
                       <img
-                        src={`http://localhost:4000${currentImage}`}
+                        src={`${import.meta.env.VITE_IMG_URL}${currentImage}`}
                         alt="current" style={{ width: "100%", height: "250px", objectFit: "cover" }}
                       />
                     </>

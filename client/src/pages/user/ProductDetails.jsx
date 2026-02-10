@@ -96,7 +96,7 @@ function ProductDetails() {
 
 
         <div className="col-12 col-md-5 text-center">
-          <img src={`http://localhost:4000${product.image_url}`} alt={product.name} className="img-fluid rounded shadow-sm" style={{ width: "100%", objectFit: "contain" }} />
+          <img src={`${import.meta.env.VITE_IMG_URL}${product.image_url}`} alt={product.name} className="img-fluid rounded shadow-sm" style={{ width: "100%", objectFit: "contain" }} />
         </div>
 
 
