@@ -1,5 +1,4 @@
 import "../style/header.css";
-import logo from '/logo.png'
 import { useAuth } from "../hooks/useAuth";
 import { NavLink } from "react-router-dom";
 import { motion } from 'framer-motion'
@@ -19,7 +18,7 @@ function UserHeader() {
     <nav className="navbar navbar-expand-lg navbar-light sticky-top w-100">
       <div className="container-fluid">
         <motion.img
-          src={logo} alt="logo"
+          src='/brandLogo.png' alt="logo"
           className="me-2"
           variants={logoVariants}
           initial="hidden" animate="visible" drag dragConstraints={{ left: 0, top: 0, bottom: 0, right: 0 }}

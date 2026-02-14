@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { NavLink } from 'react-router-dom';
-import logo from '/logo.png';
 import { motion } from 'framer-motion'
 import { logoVariants } from '../animations/globalVariants';
 import '../style/SellerHeader.css';
@@ -23,7 +22,7 @@ function SellerHeader() {
         <div className="container-fluid">
           <div className="d-flex align-items-center">
             <motion.img
-              src={logo} alt="logo"
+              src='/brandLogo.png' alt="logo"
               className="me-2"
               variants={logoVariants}
               initial="hidden" animate="visible" drag dragConstraints={{ left: 0, top: 0, bottom: 0, right: 0 }}
