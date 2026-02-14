@@ -13,7 +13,7 @@ exports.addCategory = async (req, res) => {
     const existing = await Category.findOne({ name });
     if (existing) return res.status(400).json({ error: 'A Category with this name already exists' });
 
-    const isAdmin = req.session.userData?.role === 'admin' ? true : false;
+    const isAdmin = req.userData?.role === 'admin' ? true : false;
 
     const category = await Category.create({ name, description, isAdmin });
     res.status(201).json({ message: 'Category created', category })
@@ -95,7 +95,7 @@ exports.addBrand = async (req, res) => {
     const existing = await Brand.findOne({ name });
     if (existing) return res.status(400).json({ error: 'A brand with this name already exists' });
 
-    const isAdmin = req.session.userData?.role === 'admin';
+    const isAdmin = req.userData?.role === 'admin';
 
     const brand = await Brand.create({ name, description, isAdmin });
     res.status(201).json({ message: 'Brand created', brand });

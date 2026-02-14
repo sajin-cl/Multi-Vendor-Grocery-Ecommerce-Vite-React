@@ -27,13 +27,13 @@ jobs:
 
       - name: Run Backend Check
         env:
-          NODE_ENV: development
+          NODE_ENV: production 
           PORT: 8000
           MONGODB_URL: ${{ secrets.MONGODB_URL }}
           APPLICATION_URL: ${{ secrets.APPLICATION_URL }}
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
           ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
         run: echo "Backend environment variables loaded successfully"

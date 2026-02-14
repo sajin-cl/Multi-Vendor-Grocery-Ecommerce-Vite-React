@@ -10,9 +10,7 @@ function LoginForm() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
-
   const [errors, setErrors] = useState({});
-
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -33,7 +31,6 @@ function LoginForm() {
   const handleChange = (e) => {
 
     const { name, value } = e.target;
-
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -57,7 +54,10 @@ function LoginForm() {
 
       const response = await login(formData);
 
-      const { role } = response.data
+      const { token, role } = response.data;
+
+      localStorage.setItem('token', token);
+      localStorage.setItem('role', role)
 
       setFormData({ email: "", password: "" });
 

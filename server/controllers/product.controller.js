@@ -32,8 +32,8 @@ exports.addProducts = async (req, res) => {
       category,
       stock,
       price,
-      sellerId: req.session.userData.id,
-      isSeller: req.session.userData.role === 'seller' ? true : false,
+      sellerId: req.userData?.id,
+      isSeller: req.userData?.role === 'seller' ? true : false,
       image_url: `/assets/product/${fileName}`
     });
 
@@ -54,8 +54,8 @@ exports.getProducts = async (req, res) => {
   try {
     let productFilter = {};
 
-    if (req.session?.userData?.role === 'seller') {
-      productFilter.sellerId = req.session?.userData?.id;
+    if (req.userData?.role === 'seller') {
+      productFilter.sellerId = req.userData?.id;
     }
 
     const products = await Product.find(productFilter).populate('sellerId').sort({ createdAt: 1 });
@@ -115,8 +115,8 @@ exports.updateProducts = async (req, res) => {
       brand,
       stock,
       price,
-      sellerId: req.session?.userData?.id,
-      isSeller: req.session?.userData?.role === 'seller' ? true : false
+      sellerId: req.userData?.id,
+      isSeller: req.userData?.role === 'seller' ? true : false
     }
 
     if (req.files && req.files.productImage) {

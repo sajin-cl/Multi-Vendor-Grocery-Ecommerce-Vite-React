@@ -1,61 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout as logoutService, checkSession as validateSessionService } from "../services/authService";
 
 export const useAuth = () => {
-
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem('token'));
+
 
   useEffect(() => {
-    let isMounted = true;
 
-    const checkSession = async () => {
-      try {
+    const token = localStorage.getItem('token');
 
-        const res = await validateSessionService();
+    if (token) {
+      validateSessionService()
+        .then(() => setLoggedIn(true))
+        .catch(() => {
+          logout();
+        })
 
-        if (isMounted) {
-          if (res.data.loggedIn) {
-            setLoggedIn(true);
-          }
-          else if (loggedIn) {
-            setLoggedIn(false);
-            navigate("/login");
-          }
-        }
-      }
-      catch (err) {
-        if (isMounted && loggedIn) {
-          setLoggedIn(false);
-          navigate("/login");
-          console.error(err || "Session expired");
-        }
-      }
-    };
-
-    checkSession();
-
-    let interval;
-    if (loggedIn) { interval = setInterval(checkSession, 30000); }
-
-    return () => {
-      isMounted = false;
-      if (interval) clearInterval(interval);
-    };
-  }, [loggedIn, navigate]);
-
+    }
+    else {
+      setLoggedIn(false);
+      if (window.location.pathname !== "/login") navigate("/login");
+    }
+  }, []);
 
 
 
   const logout = async () => {
     try {
       await logoutService();
+    } catch (err) {
+      console.error("Logout failed on backend:", err);
+    } finally {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
       setLoggedIn(false);
       navigate("/login");
-    }
-    catch (err) {
-      console.error("Logout failed", err);
     }
   };
 

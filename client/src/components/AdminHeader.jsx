@@ -20,7 +20,7 @@ function AdminHeader() {
         <div className="container-fluid">
           <div className="d-flex align-items-center">
             <motion.img
-              src='/brandLogo.png' alt="logo"
+              src='src/assets/brandLogo.png?v=2' alt="logo"
               className="me-2"
               variants={logoVariants}
               initial="hidden" animate="visible" drag dragConstraints={{ left: 0, top: 0, bottom: 0, right: 0 }}

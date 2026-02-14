@@ -5,7 +5,7 @@ const User = require('../models/auth.model');
 exports.getSellerOrders = async (req, res) => {
   try {
 
-    const sellerId = req.session?.userData?.id;
+    const sellerId = req.userData?.id;
     if (!sellerId) return res.status(401).json({ error: "Unauthorized seller" });
 
 
@@ -31,7 +31,7 @@ exports.updateItemStatus = async (req, res) => {
     const { orderId, itemId } = req.params;
     const { status } = req.body;
 
-    const sellerId = req.session?.userData?.id;
+    const sellerId = req.userData?.id;
     if (!sellerId) return res.status(401).json({ error: "Unauthorized" });
 
     const order = await Order.findById(orderId);
@@ -57,7 +57,7 @@ exports.updateItemStatus = async (req, res) => {
 
 exports.getSellerEarnings = async (req, res) => {
   try {
-    const sellerId = req.session?.userData?.id;
+    const sellerId = req.userData?.id;
     if (!sellerId) return res.status(401).json({ error: "Unauthorized seller" });
 
     const orders = await Order.find({ "items.seller": sellerId });
@@ -100,7 +100,7 @@ exports.getSellerEarnings = async (req, res) => {
 
 exports.getSellerDashboard = async (req, res) => {
   try {
-    const sellerId = req.session?.userData?.id;
+    const sellerId = req.userData?.id;
     if (!sellerId) return res.status(401).json({ error: 'Unauthorized seller' });
 
     const totalProducts = await Product.countDocuments({ sellerId });
@@ -144,7 +144,7 @@ exports.getSellerDashboard = async (req, res) => {
 
 exports.getSellerProfile = async (req, res) => {
   try {
-    const sellerId = req.session?.userData?.id;
+    const sellerId = req.userData?.id;
     const seller = await User.findById(sellerId).select("fullName email shopName shopAddress role");
 
     if (!seller) return res.status(404).json({ error: "seller not found" });
@@ -160,7 +160,7 @@ exports.getSellerProfile = async (req, res) => {
 exports.updateSellerProfile = async (req, res) => {
   try {
 
-    const sellerId = req.session?.userData?.id;
+    const sellerId = req.userData?.id;
     if (!sellerId) return res.status(401).json({ error: "Unauthorized" });
 
     const { fullName, email, shopName, shopAddress } = req.body;

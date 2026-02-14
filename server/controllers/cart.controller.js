@@ -6,7 +6,7 @@ exports.addToCart = async (req, res) => {
 
     const { productId, quantity } = req.body;
 
-    const userId = req.session?.userData?.id;
+    const userId = req.userData?.id;
 
 
     const product = await Product.findById(productId);
@@ -41,7 +41,7 @@ exports.addToCart = async (req, res) => {
 exports.getUserCart = async (req, res) => {
   try {
 
-    const userId = req.session.userData.id;
+    const userId = req.userData?.id;
     if (!userId) return res.status(401).json({ error: 'Not logged in' });
 
     const cartItems = await Cart.find({ user: userId })
@@ -67,7 +67,7 @@ exports.updateCartItems = async (req, res) => {
 
     const { quantity } = req.body;
 
-    const userId = req.session?.userData?.id;
+    const userId = req.userData?.id;
     if (!userId) return res.status(401).json({ error: 'Not logged in' });
 
     const cartItem = await Cart.findOne({ _id: id, user: userId }).populate('product');
@@ -94,7 +94,7 @@ exports.removeCartItem = async (req, res) => {
 
     const { id } = req.params;
 
-    const userId = req.session?.userData?.id;
+    const userId = req.userData?.id;
     if (!userId) return res.status(401).json({ error: 'Not logged in' });
 
     const cartItem = await Cart.findOneAndDelete({ _id: id, user: userId });

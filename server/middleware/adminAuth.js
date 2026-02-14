@@ -1,14 +1,24 @@
-function adminAuth(req, res, next) {
+const jwt = require('jsonwebtoken');
 
-  if (!req.session || !req.session.userData) {
-    return res.status(401).json({ error: 'Please loggedin your account!' });
+const adminAuth = (req, res, next) => {
+
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) return res.status(401).json({ error: 'Please login your account!' });
+
+  try {
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    req.userData = decodedToken;
+
+    if (req.userData.role !== 'admin') {
+      return res.status(403).json({ error: 'Access denied. Admin only.' });
+    }
+    next();
   }
-
-  if (req.session.userData.role !== 'admin') {
-    return res.status(403).json({ error: 'Access denied. Admin only.' });
+  catch (err) {
+    return res.status(401).json({ error: 'Invalid or expired token!' });
   }
-
-  next();
 };
 
 module.exports = adminAuth;

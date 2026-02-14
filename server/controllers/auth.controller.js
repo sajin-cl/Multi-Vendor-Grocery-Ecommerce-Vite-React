@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/auth.model.js');
+const jwt = require('jsonwebtoken');
 const validator = require('validator');
 const nodemailer = require('nodemailer');
 const { forgotPasswordTemplate } = require('../utils/emailTemplates/forgotPasswordTemplate.js');
@@ -56,13 +57,15 @@ exports.login = async (req, res) => {
     const match = await bcrypt.compare(password, user.password);
     if (!match) return res.status(400).json({ error: 'Invalid user or password' });
 
-    req.session.userData = {
-      id: user._id,
-      role: user.role
-    }
+    const token = jwt.sign(
+      { id: user._id, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: '1d' }
+    );
 
     return res.json({
       success: true,
+      token,
       role: user.role,
       id: user._id,
       message: 'Login successful'
@@ -76,36 +79,28 @@ exports.login = async (req, res) => {
 
 
 exports.checkSession = (req, res) => {
-
-
-  if (!req.session || !req.session?.userData) {
-    return res.status(401).json({
-      loggedIn: false,
-      message: 'Your session has expired. Please login again!'
-    })
-  }
-
-   const { id, role } = req.session.userData;
-
-
   res.json({
-    loggedIn: true, message: 'session is still active',
-    user: { id, role }
+    loggedIn: true,
+    user: {
+      id: req.userData.id,
+      role: req.userData.role
+    }
   });
-
 
 };
 
 exports.logout = (req, res) => {
-  req.session.destroy(err => {
-    if (err) {
-      console.error('logout failed');
-      return res.status(500).json({ error: 'logout failed' })
-    }
-    res.status(200).json({ success: true, message: 'logout successfully' });
-  });
-
+  try {
+    res.status(200).json({
+      success: true,
+      message: 'Logged out successfully! Clear your pocket (LocalStorage).'
+    });
+  } catch (err) {
+    res.status(500).json({ error: 'Logout failed' });
+  }
 };
+
+
 
 
 //Forgot password 

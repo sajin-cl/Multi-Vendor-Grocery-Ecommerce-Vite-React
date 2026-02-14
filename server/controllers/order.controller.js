@@ -5,7 +5,7 @@ const Cart = require('../models/cart.model');
 exports.placeOrder = async (req, res) => {
   try {
 
-    const userId = req.session?.userData?.id;
+    const userId = req.userData?.id;
     if (!userId) return res.status(401).json({ error: 'Unauthorized user' });
 
 
@@ -73,7 +73,7 @@ exports.placeOrder = async (req, res) => {
 exports.getOrders = async (req, res) => {
   try {
 
-    const userId = req.session.userData.id;
+    const userId = req.userData?.id;
     if (!userId) return res.status(401).json({ error: 'Unauthorized user' });
 
     const orders = await Order.find({ user: userId })
