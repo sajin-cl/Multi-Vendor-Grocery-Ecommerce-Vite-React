@@ -77,10 +77,10 @@ function UserHeader() {
 
                 <li className="nav-item d-flex align-items-sm-center">
                   <button
-                    className="btn btn-danger btn-sm ms-3 px-3 py-0"
+                    className="btn btn-danger btn-sm  px-3 py-0"
                     onClick={logout}
                   >
-                    <i className="fa-solid fa-right-from-bracket fs-7 me-1"></i> Logout
+                    <i className="fa-solid fa-right-from-bracket fs-7 ms-0 me-1 "></i> Logout
                   </button>
                 </li>
               </>

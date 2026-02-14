@@ -65,7 +65,7 @@ function HomePage() {
         </div>
         <section className="product-section">
           <div className="ms-3 me-3 mb-3 d-flex align-items-center justify-content-between">
-            <h4 className="mb-0">All Products</h4>
+            <h4 className="mb-0"></h4>
 
             <div className="d-flex align-items-center gap-3 ">
               <label className="mb-0 fw-semibold">Category:</label>
