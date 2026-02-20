@@ -87,6 +87,7 @@ function Cart() {
                 >
                   <motion.img
                     src={`${import.meta.env.VITE_IMG_URL}${item.product.image_url}`}
+                    loading='lazy'
                     alt={item.product.name}
                     className="cart-img rounded-circle"
                     whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }}

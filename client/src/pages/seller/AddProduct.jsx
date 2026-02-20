@@ -209,7 +209,7 @@ function AddProduct() {
 
                 {preview && (
                   <div className="mb-3 text-center">
-                    <img src={preview} alt="Preview" style={{ width: "100%", height: "250px", objectFit: "cover" }} />
+                    <img src={preview} alt="Preview" loading="lazy" style={{ width: "100%", height: "250px", objectFit: "cover"}} />
                   </div>
                 )}
 
@@ -221,6 +221,7 @@ function AddProduct() {
                     id="prodImg"
                     name="productImage"
                     onChange={handleChange}
+                    
                   />
                 </div>
 

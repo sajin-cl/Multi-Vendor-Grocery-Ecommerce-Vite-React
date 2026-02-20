@@ -13,13 +13,14 @@ function Footer() {
 
       <div className="footer-top">
         <h6>For better experience, download the PowerHouse app now</h6>
-        <img src={appStore} alt="App Store" />
-        <img src={playStore} alt="Play Store" />
+        <img src={appStore} alt="App Store" loading='lazy' />
+        <img src={playStore} alt="Play Store" loading='lazy'/>
          <div className="footer-logo ms-4">
           <motion.img
             src={footerLogo}
             alt="PowerHouse Logo"
             drag
+            loading='lazy'
           />
         </div>
       </div>

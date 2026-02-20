@@ -11,6 +11,7 @@ function ProductCard({ product }) {
             alt={product.name}
             className="card-img-top "
             style={{ maxWidth: "400px", height: "250px", margin: "auto" }}
+            loading='lazy'
           />
           <div className="card-body P-2">
             <div

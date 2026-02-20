@@ -48,7 +48,7 @@ function LoginForm() {
       setErrors(validateErrors);
       setTimeout(() => setErrors({}), 3000);
       return
-    }
+    } 
 
     try {
 

@@ -213,12 +213,12 @@ function UpdateProduct() {
                     {preview ? (
                       <div className="border rounded p-1">
                         
-                        <img src={preview} alt="New Preview" style={{ width: "100%", height: "200px", objectFit: "contain" }} />
+                        <img src={preview} alt="New Preview" loading="lazy" style={{ width: "100%", height: "200px", objectFit: "contain" }} />
                       </div>
                     ) : currentImage ? (
                       <div className="border rounded p-1">
                       
-                        <img src={`${import.meta.env.VITE_IMG_URL}${currentImage}`} alt="Current" style={{ width: "100%", height: "200px", objectFit: "contain" }} />
+                        <img src={`${import.meta.env.VITE_IMG_URL}${currentImage}`} alt="Current" loading="lazy" style={{ width: "100%", height: "200px", objectFit: "contain" }} />
                       </div>
                     ) : null}
                   </div>

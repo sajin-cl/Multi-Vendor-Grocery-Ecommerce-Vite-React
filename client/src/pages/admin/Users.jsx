@@ -82,6 +82,7 @@ function Users() {
                   alt="avatar"
                   className="rounded-circle mx-auto mb-3"
                   style={{ width: "72px", height: "72px", objectFit: "cover" }}
+                  loading="lazy"
                 />
 
                 <h6 className="fw-semibold mb-1">

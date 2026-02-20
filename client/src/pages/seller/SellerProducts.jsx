@@ -55,7 +55,7 @@ function SellerProducts() {
                 src={`${import.meta.env.VITE_IMG_URL}${product.image_url}`}
                 className="card-img-top"
                 alt={product.name}
-
+                loading="lazy"
               />
               <div className="card-body d-flex flex-column">
                 <h6
