@@ -75,6 +75,14 @@ body::-webkit-scrollbar {
   --light-green-color: #b0e000;
 }
 
+/* purple custom class---------------------*/
+.text-purple {
+  color: #800080;
+}
+
+.bg-purple {
+  background-color: #800080;
+}
 
 .btn-purple {
   background-color: #800080;
@@ -87,6 +95,22 @@ body::-webkit-scrollbar {
     border-color: var(--seller-nav-color);
     color: #fff;
   }
+}
+
+
+/*custom violet class--------------------------*/
+
+.btn-outline-violet {
+  color: #530bee;
+  border: 1px solid #530bee;
+  background-color: transparent;
+}
+
+.btn-outline-violet:hover,
+.btn-outline-violet:focus {
+  color: #fff;
+  background-color: #530bee;
+  border-color: #530bee
 }
 
 .btn-violet {
@@ -111,14 +135,8 @@ body::-webkit-scrollbar {
   background-color: var(--violet-color);
 }
 
-.text-purple {
-  color: #800080;
-}
 
-.bg-purple {
-  background-color: #800080;
-}
-
+/* custom styles---------------------------------*/
 
 .fs-7 {
   font-size: 0.860rem;

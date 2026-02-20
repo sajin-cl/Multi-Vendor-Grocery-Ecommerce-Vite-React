@@ -1,7 +1,7 @@
 import axiosInstance from "../utils/axiosInstance";
 
 // Public Data (For dropdowns and lists)
-export const getAllProducts = () => axiosInstance.get('/products');
+export const getAllProducts = (params) => axiosInstance.get('/products', { params });
 export const getAllCategories = () => axiosInstance.get('/categories');
 export const getAllBrands = () => axiosInstance.get('/brands');
 

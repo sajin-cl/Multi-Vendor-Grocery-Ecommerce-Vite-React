@@ -52,22 +52,42 @@ exports.addProducts = async (req, res) => {
 
 exports.getProducts = async (req, res) => {
   try {
-    let productFilter = {};
 
-    if (req.userData?.role === 'seller') {
-      productFilter.sellerId = req.userData?.id;
-    }
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 12;
+    const skip = (page - 1) * limit;
 
-    const products = await Product.find(productFilter).populate('sellerId').sort({ createdAt: 1 });
-    if (!products) return res.status(400).json({ error: 'Failed to fetch products' });
+    const { category, search } = req.query;
 
-    const visibleProducts = products.filter(product => {
-      return product.sellerId && !product.sellerId.isBlocked;
-    });
+    let filter = {};
+
+    if (req.userData?.role === 'seller') filter.sellerId = req.userData.id;
+
+    if (category) filter.category = req.query.category;
+
+    if (search) filter.search = req.query.search;
 
 
-    res.status(200).json(visibleProducts);
-    console.log('visible products:', visibleProducts);
+    const products = await Product.find(filter)
+      .populate({
+        path: 'sellerId',
+        match: { isBlocked: false }
+      })
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
+    const visibleProducts = products.filter(prod => prod.sellerId !== null);
+    const totalProducts = await Product.countDocuments(filter);
+
+    res.status(200).json({
+      products: visibleProducts,
+      page,
+      totalPages: Math.ceil(totalProducts / limit),
+      totalProducts
+    })
+
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to fetch products' });
