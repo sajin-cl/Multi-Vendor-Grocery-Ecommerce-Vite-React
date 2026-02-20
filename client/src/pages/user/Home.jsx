@@ -58,8 +58,8 @@ function HomePage() {
           search: searchQuery
         });
 
-        setProducts(res.data.products);
-        setTotalPages(res.data.totalPages);
+        setProducts(res.data?.products || []);
+        setTotalPages(res.data?.totalPages || 1);
 
       } catch (err) {
         console.error(err);
@@ -103,7 +103,7 @@ function HomePage() {
               <option value="">All</option>
               {categories.map(cat => (
                 <option key={cat._id} value={cat._id}>
-                  {cat.name.length > 20 ? cat.name.slice(0, 20) + ".." : cat.name}
+                  {cat?.name?.length > 20 ? cat.name.slice(0, 20) + ".." : cat.name}
                 </option>
               ))}
             </select>
@@ -114,11 +114,11 @@ function HomePage() {
 
           {loading ? (
             <div className="text-center p-5 min-vh-100">Loading products...</div>
-          ) : products.length === 0 ? (
+          ) : products?.length === 0 ? (
             <div className="text-center text-muted p-5 min-vh-100">Products not found</div>
           ) : (
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5 g-4 ">
-              {products.map((product, index) => (
+              {products?.map((product, index) => (
                 <motion.div
                   key={product._id}
                   initial={{ opacity: 0, y: 40 }}
