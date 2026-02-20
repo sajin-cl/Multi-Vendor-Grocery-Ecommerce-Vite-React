@@ -81,7 +81,7 @@ exports.getProducts = async (req, res) => {
     const totalProducts = await Product.countDocuments(filter);
 
     res.status(200).json({
-      products: visibleProducts,
+      products: visibleProducts || [],
       page,
       totalPages: Math.ceil(totalProducts / limit),
       totalProducts
