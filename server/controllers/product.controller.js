@@ -63,9 +63,9 @@ exports.getProducts = async (req, res) => {
 
     if (req.userData?.role === 'seller') filter.sellerId = req.userData.id;
 
-    if (category) filter.category = req.query.category;
+    if (category) filter.category = category;
 
-    if (search) filter.search = req.query.search;
+    if (search) filter.name = { $regex: search, $options: "i" };
 
 
     const products = await Product.find(filter)
@@ -79,6 +79,7 @@ exports.getProducts = async (req, res) => {
 
     const visibleProducts = products.filter(prod => prod.sellerId !== null);
     const totalProducts = await Product.countDocuments(filter);
+
 
     res.status(200).json({
       products: visibleProducts || [],

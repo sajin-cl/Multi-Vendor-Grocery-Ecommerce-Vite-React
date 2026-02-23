@@ -93,7 +93,7 @@ exports.logout = (req, res) => {
   try {
     res.status(200).json({
       success: true,
-      message: 'Logged out successfully! Clear your pocket (LocalStorage).'
+      message: 'Logged out successfully!'
     });
   } catch (err) {
     res.status(500).json({ error: 'Logout failed' });
