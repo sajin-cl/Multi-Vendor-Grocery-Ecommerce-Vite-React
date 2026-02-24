@@ -92,3 +92,4 @@ The system includes secure authentication, product management, cart system, orde
 
 Flow:
 User → Seller → Admin → Customer
+
