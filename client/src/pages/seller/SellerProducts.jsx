@@ -16,7 +16,7 @@ function SellerProducts() {
   const fetchAllProducts = async () => {
     try {
       const response = await getAllProducts();
-      setProducts(response.data);
+      setProducts(response.data.products || []);
     }
     catch (err) {
       console.error(err);
@@ -38,6 +38,7 @@ function SellerProducts() {
     }
   };
 
+  
 
   return (
     <div className="container mt-4">

@@ -9,7 +9,7 @@ exports.getSellerOrders = async (req, res) => {
     if (!sellerId) return res.status(401).json({ error: "Unauthorized seller" });
 
 
-    const orders = await Order.find().populate("items.product");
+    const orders = await Order.find().populate("items.product").sort({createdAt:-1});
 
     const sellerOrders = orders
       .map(order => ({
