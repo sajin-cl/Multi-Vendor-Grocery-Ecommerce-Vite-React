@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
+import { HashLoader } from 'react-spinners'
 import { cardContainer, droppingCard } from "../../animations/globalVariants";
 import { getAdminBrands, deleteBrand as deleteBrandApi } from "../../services/adminService";
 
@@ -9,7 +10,7 @@ function Brands() {
   document.title = ('Brand | Power House Ecommerce');
 
   const [brands, setBrands] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(0);
 
 
@@ -20,6 +21,9 @@ function Brands() {
     }
     catch (err) {
       console.error('Brands fetching error', err)
+    }
+    finally {
+      setTimeout(() => { setLoading(false) }, 1000);
     }
   }
 
@@ -46,7 +50,15 @@ function Brands() {
     <div className="container mt-4">
       <h5 className="border-bottom mb-4 pb-2">Manage Brands</h5>
 
-      {brands.length > 0 ? (
+      {loading ? (
+        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "60vh" }}>
+          <HashLoader color="#1dd74b" size={70} />
+
+        </div>
+
+      ) : brands?.length === 0 ? (
+        <div className="d-flex align-items-center h-50 justify-content-center text-muted p-5"  > No Brands found</div>
+      ) : (
         <motion.div
           className="row"
           variants={cardContainer} initial="hidden" animate="visible"
@@ -83,10 +95,8 @@ function Brands() {
             </div>
           ))}
         </motion.div>
-
-      ) : (
-        <div className="d-flex align-items-center h-50 justify-content-center text-muted p-5"  > No Brands found</div>
-      )}
+      )
+      }
 
       <Link
         to="/admin/add-brand"
@@ -94,8 +104,10 @@ function Brands() {
       >
         +
       </Link>
-    </div>
+    </div >
   );
 }
 
 export default Brands;
+
+{/*  */ }

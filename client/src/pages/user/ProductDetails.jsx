@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { getProductById } from "../../services/productService";
+import { ShimmerContentBlock } from 'react-shimmer-effects'
 
 
 function ProductDetails() {
@@ -13,6 +14,7 @@ function ProductDetails() {
 
   const { cartItems, addToCart, removeCartItem } = useCart();
 
+  const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState(null);
   const [count, setCount] = useState(1);
   const [error, setError] = useState("");
@@ -26,11 +28,15 @@ function ProductDetails() {
 
   const fetchProducts = async () => {
     try {
+      setLoading(true);
       const res = await getProductById(id);
       setProduct(res.data);
     }
     catch (err) {
       console.error("Product fetch failed:");
+    }
+    finally {
+      setTimeout(() => { setLoading(false) }, 2000);
     }
   };
 
@@ -82,66 +88,79 @@ function ProductDetails() {
     : [];
 
 
-  if (!product) return <div>Loading...</div>;
+  if (!product) return <div>Product not found</div>;
 
   return (
     <div className="container p-4 border my-3">
-      <div className="row align-items-start gy-4">
-
-
-        <div className="col-12 col-md-5 text-center">
-          <img src={`${import.meta.env.VITE_IMG_URL}${product.image_url}`} loading="lazy" alt={product.name} className="img-fluid rounded shadow-sm" style={{ width: "100%", objectFit: "contain" }} />
+      {loading ? (
+        <div style={{ minHeight: "70vh" }}>
+          <ShimmerContentBlock
+            title
+            text
+            cta
+            thumbnailWidth={370}
+            thumbnailHeight={370}
+          />
         </div>
+      ) : (
+        <div className="row align-items-start gy-4">
 
 
-        <div className="col-12 col-md-7 p-4">
-          <div className="d-flex justify-content-between align-items-center mb-2">
-            <h2 className="fw-semibold mb-1">{product.name}</h2>
-            <span className="badge bg-purple">{product.brand?.name}</span>
+          <div className="col-12 col-md-5 text-center">
+            <img src={`${import.meta.env.VITE_IMG_URL}${product.image_url}`} loading="lazy" alt={product.name} className="img-fluid rounded shadow-sm" style={{ width: "100%", objectFit: "contain" }} />
           </div>
-          <div className="text-muted small mb-2">{product.category?.name}</div>
 
-          {descriptionItems.length > 0 && (
-            <div className="mt-3">
-              <h5>Description:</h5>
-              <ul className="bullet-list ps-4">
-                {descriptionItems.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
+
+          <div className="col-12 col-md-7 p-4">
+            <div className="d-flex justify-content-between align-items-center mb-2">
+              <h2 className="fw-semibold mb-1">{product.name}</h2>
+              <span className="badge bg-purple">{product.brand?.name}</span>
             </div>
-          )}
+            <div className="text-muted small mb-2">{product.category?.name}</div>
 
-          <div className="mb-2">
-            Availability:{" "}
-            <span className={product.stock > 0 ? "text-success" : "text-danger"}>
-              {product.stock > 0 ? `${product.stock} In Stock` : "Out of Stock"}
-            </span>
-          </div>
-          <div className="d-flex align-items-end mb-3">
-            <span className="fw-bold fs-3">₹{product.price}</span>
-            {product.oldPrice && product.oldPrice > product.price && (
-              <span className="text-muted text-decoration-line-through ms-2 fs-6">₹{product.oldPrice}</span>
+            {descriptionItems.length > 0 && (
+              <div className="mt-3">
+                <h5>Description:</h5>
+                <ul className="bullet-list ps-4">
+                  {descriptionItems.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
             )}
-          </div>
 
-
-          <div className="d-flex flex-column flex-sm-row align-items-start">
-            <div className="d-flex border rounded overflow-hidden me-sm-3 mb-2 mb-sm-0">
-              <button className="btn btn-light px-3" onClick={qtyDec} disabled={count <= 1 || product.stock === 0}>-</button>
-              <span className="px-3 d-flex align-items-center">{count}</span>
-              <button className="btn btn-light px-3" onClick={qtyInc} disabled={count >= product.stock || product.stock === 0}>+</button>
+            <div className="mb-2">
+              Availability:{" "}
+              <span className={product.stock > 0 ? "text-success" : "text-danger"}>
+                {product.stock > 0 ? `${product.stock} In Stock` : "Out of Stock"}
+              </span>
+            </div>
+            <div className="d-flex align-items-end mb-3">
+              <span className="fw-bold fs-3">₹{product.price}</span>
+              {product.oldPrice && product.oldPrice > product.price && (
+                <span className="text-muted text-decoration-line-through ms-2 fs-6">₹{product.oldPrice}</span>
+              )}
             </div>
 
-            <button className={`btn ${inCart ? "btn-danger" : "btn-primary"} px-4`} onClick={handleCartToggle} disabled={product.stock === 0 && !inCart}>
-              {inCart ? "Remove from Cart" : product.stock === 0 ? "Out of Stock" : "Add to Cart"}
-            </button>
-          </div>
 
-          {error && <div className="text-danger mt-2">{error}</div>}
-        </div>
-      </div>
-    </div>
+            <div className="d-flex flex-column flex-sm-row align-items-start">
+              <div className="d-flex border rounded overflow-hidden me-sm-3 mb-2 mb-sm-0">
+                <button className="btn btn-light px-3" onClick={qtyDec} disabled={count <= 1 || product.stock === 0}>-</button>
+                <span className="px-3 d-flex align-items-center">{count}</span>
+                <button className="btn btn-light px-3" onClick={qtyInc} disabled={count >= product.stock || product.stock === 0}>+</button>
+              </div>
+
+              <button className={`btn ${inCart ? "btn-danger" : "btn-primary"} px-4`} onClick={handleCartToggle} disabled={product.stock === 0 && !inCart}>
+                {inCart ? "Remove from Cart" : product.stock === 0 ? "Out of Stock" : "Add to Cart"}
+              </button>
+            </div>
+
+            {error && <div className="text-danger mt-2">{error}</div>}
+          </div>
+        </div >
+      )
+      }
+    </div >
   );
 }
 

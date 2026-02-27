@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
+import { HashLoader } from 'react-spinners';
 import { cardContainer, droppingCard } from "../../animations/globalVariants";
 import { getAdminCategories, deleteCategory as deleteCategoryService } from "../../services/adminService";
 
@@ -11,23 +12,25 @@ function Categories() {
   document.title = ('Category | Power House Ecommerce');
 
   const [categories, setCategories] = useState([]);
-
   const [refresh, setRefresh] = useState(0);
+  const [loading, setLoading] = useState(true);
 
 
   const fetchCategories = async () => {
     try {
+      setLoading(true);
       const response = await getAdminCategories();
       setCategories(response.data);
     } catch (err) {
       console.error('Categories fetch error:', err);
     }
+    finally {
+      setTimeout(() => { setLoading(false) }, 1000);
+    }
   };
 
-  useEffect(() => {
-    fetchCategories();
 
-  }, [refresh]);
+  useEffect(() => { fetchCategories() }, [refresh]);
 
 
   const deleteCategory = async (id) => {
@@ -47,7 +50,16 @@ function Categories() {
 
       <h5 className="border-bottom mb-4 pb-2">Manage Categories</h5>
 
-      {categories.length > 0 ? (
+      {loading ? (
+
+        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "60vh" }}>
+          <HashLoader color="#1dd74b" size={70} />
+
+        </div>
+
+      ) : categories?.length === 0 ? (
+        <div className="d-flex align-items-center h-50 justify-content-center tesxt-muted"  > NO categories found</div>
+      ) : (
         <motion.div
           className="row"
           variants={cardContainer} initial="hidden" animate="visible"
@@ -72,7 +84,7 @@ function Categories() {
                     <button
                       className="btn  btn-sm "
                       onClick={() => deleteCategory(category._id)}
-                     title="delete"
+                      title="delete"
                     >
                       <i className="fas fa-trash fs-6 text-danger"></i>
                     </button>
@@ -82,9 +94,10 @@ function Categories() {
             </div>
           ))}
         </motion.div>
-      ) : (
-        <div className="d-flex align-items-center h-50 justify-content-center tesxt-muted"  > NO categories found</div>
       )}
+
+
+
 
 
       <Link
@@ -99,3 +112,5 @@ function Categories() {
 }
 
 export default Categories;
+
+

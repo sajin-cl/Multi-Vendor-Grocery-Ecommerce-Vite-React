@@ -1,6 +1,7 @@
 import "../../style/ProductCard.css";
 import { useEffect, useState, Suspense, lazy } from "react";
 import { motion } from "framer-motion";
+import { ShimmerPostList, ShimmerThumbnail } from 'react-shimmer-effects'
 
 import { getAllCategories, getAllProducts } from "../../services/productService";
 import Pagination from "../../components/Pagination";
@@ -8,6 +9,7 @@ import Pagination from "../../components/Pagination";
 const BannerCarousel = lazy(() => import("../../components/BannerCarousel"));
 const Footer = lazy(() => import("../../components/Footer"));
 const ProductCard = lazy(() => import("../../components/ProductCard"));
+
 
 function HomePage() {
 
@@ -24,9 +26,9 @@ function HomePage() {
   const [totalPages, setTotalPages] = useState(1);
 
   const [loading, setLoading] = useState(true);
-  
+
   const limit = 12;
-  
+
 
   useEffect(() => {
     getAllCategories()
@@ -34,7 +36,7 @@ function HomePage() {
       .catch(console.error);
   }, []);
 
- 
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -64,7 +66,7 @@ function HomePage() {
       } catch (err) {
         console.error(err);
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     };
 
@@ -76,7 +78,9 @@ function HomePage() {
   return (
     <div className="page-container">
 
-      <Suspense fallback={<div>Loading Banner...</div>}>
+      <Suspense fallback={<div>
+        <ShimmerThumbnail height={300} style={{width:"100%"}} />
+      </div>}>
         <BannerCarousel />
       </Suspense>
 
@@ -115,7 +119,9 @@ function HomePage() {
         <section className="container-fluid">
 
           {loading ? (
-            <div className="text-center p-5 min-vh-100">Loading products...</div>
+            <div className="text-center p-2 min-vh-100">
+              <ShimmerPostList postStyle="STYLE_FOUR" col={4} row={3} gap={30} />
+            </div>
           ) : products?.length === 0 ? (
             <div className="text-center text-muted p-5 min-vh-100">Products not found</div>
           ) : (
