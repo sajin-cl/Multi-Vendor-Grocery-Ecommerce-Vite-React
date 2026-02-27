@@ -9,6 +9,7 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
@@ -48,10 +49,10 @@ function LoginForm() {
       setErrors(validateErrors);
       setTimeout(() => setErrors({}), 3000);
       return
-    } 
+    }
 
     try {
-
+      setLoading(true);
       const response = await login(formData);
 
       const { token, role } = response.data;
@@ -72,6 +73,9 @@ function LoginForm() {
       console.error('Login failed');
       setErrors({ backend: err });
       setTimeout(() => { setErrors({}) }, 3000)
+    }
+    finally {
+      setLoading(false)
     }
 
   };
@@ -139,8 +143,12 @@ function LoginForm() {
                 <Link to="/forgot-password">Forgot Password?</Link>
               </p>
 
-              <button className="btn btn-primary w-100 mt-3" style={{ backgroundColor: "var(--violet-color)" }}>
-                Login
+              <button
+                className="btn btn-primary w-100 mt-3"
+                style={{ backgroundColor: "var(--violet-color)" }}
+                disabled={loading}
+              >
+                {loading ? "Logging in…" : "Login"}
               </button>
 
               <p className="text-center mt-3">

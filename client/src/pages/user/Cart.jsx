@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useCart } from '../../context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import { HashLoader } from "react-spinners";
 import { cardContainer, cardFromLeft, cardFromRight } from '../../animations/globalVariants';
 
 function Cart() {
@@ -52,7 +53,14 @@ function Cart() {
 
 
   if (loading) {
-    return <div className="container py-5 text-center">Loading your cart...</div>;
+    return <div className="container py-5 text-center">
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "60vh" }}
+      >
+        <HashLoader color="#6213c9" size={70} />
+      </div>
+    </div>;
   }
 
 

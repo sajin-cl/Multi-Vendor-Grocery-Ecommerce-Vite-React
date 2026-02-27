@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
 import { cardContainer, cardFromLeft, cardFromRight } from '../../animations/globalVariants'
 
+import { ShimmerTitle } from "react-shimmer-effects";
+
 import { getMyOrders as getMyOrdersApi, cancelMyOrder as cancelMyOrderApi } from "../../services/orderService";
 
 
@@ -11,6 +13,7 @@ function MyOrders() {
   document.title = ('My Orders | Power House Ecommerce');
 
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
 
   const fetchAllorders = async () => {
@@ -21,7 +24,10 @@ function MyOrders() {
     catch (err) {
       console.error(err);
     }
-  }
+    finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => { fetchAllorders() }, []);
 
@@ -43,7 +49,33 @@ function MyOrders() {
   };
 
 
-  if (!orders.length) return <div className="container py-4 d-flex justify-content-center h-100">Your Order is empty.</div>
+  /* -----------------------------------------------------------------------------------------loading UI */
+
+  if (loading) {
+    return (
+      <div className="container py-4">
+        {
+          Array.from({ length: orders?.length }).map((_, index) => (
+            <ShimmerTitle
+              key={index}
+              line={8}
+              gap={10}
+              variant="primary"
+            />
+          ))
+        }
+      </div>
+    )
+  };
+
+  if (!orders) {
+    return (
+      <div className="container py-4">
+        <div className="container py-4 d-flex justify-content-center h-100">Your Order is empty.</div>
+      </div>
+    )
+  };
+
 
   return (
     <div className="container py-4">
@@ -120,6 +152,9 @@ function MyOrders() {
 
         })}
       </motion.div>
+
+
+
     </div >
   );
 }
