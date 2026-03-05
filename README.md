@@ -85,42 +85,42 @@ The system includes authentication, product management, cart functionality, orde
 
 ### Landing Page
 <p align="center">
-  <img src="screenshots/landing_page.png" width="600"/>
+  <img src="screenshots/landing_page.webp" width="600"/>
 </p>
 
 ### Pagination Support
 <p align="center">
-  <img src="screenshots/pagination_support.png" width="600"/>
+  <img src="screenshots/pagination_support.webp" width="600"/>
 </p>
 
 ### User Profile
 <p align="center">
-  <img src="screenshots/user_profile.png" width="600"/>
+  <img src="screenshots/user_profile.webp" width="600"/>
 </p>
 
 ### Product Details
 <p align="center">
-  <img src="screenshots/product_details.png" width="600"/>
+  <img src="screenshots/product_details.webp" width="600"/>
 </p>
 
 ### My Cart
 <p align="center">
-  <img src="screenshots/my_cart.png" width="600"/>
+  <img src="screenshots/my_cart.webp" width="600"/>
 </p>
 
 ### Checkout Page
 <p align="center">
-  <img src="screenshots/checkout_page.png" width="600"/>
+  <img src="screenshots/checkout_page.webp" width="600"/>
 </p>
 
 ### Order Success Page
 <p align="center">
-  <img src="screenshots/order_success_page.png" width="600"/>
+  <img src="screenshots/order_success_page.webp" width="600"/>
 </p>
 
 ### My Order Page
 <p align="center">
-  <img src="screenshots/my_order_page.png" width="600"/>
+  <img src="screenshots/my_order_page.webp" width="600"/>
 </p>
 
 ---
@@ -129,27 +129,27 @@ The system includes authentication, product management, cart functionality, orde
 
 ### Seller Profile
 <p align="center">
-  <img src="screenshots/seller_profile.png" width="600"/>
+  <img src="screenshots/seller_profile.webp" width="600"/>
 </p>
 
 ### Seller Dashboard
 <p align="center">
-  <img src="screenshots/seller_dashboard.png" width="600"/>
+  <img src="screenshots/seller_dashboard.webp" width="600"/>
 </p>
 
 ### Seller Earnings
 <p align="center">
-  <img src="screenshots/seller_earnings.png" width="600"/>
+  <img src="screenshots/seller_earnings.webp" width="600"/>
 </p>
 
 ### Seller Products
 <p align="center">
-  <img src="screenshots/seller_products.png" width="600"/>
+  <img src="screenshots/seller_products.webp" width="600"/>
 </p>
 
 ### Seller Orders
 <p align="center">
-  <img src="screenshots/seller_orders.png" width="600"/>
+  <img src="screenshots/seller_orders.webp" width="600"/>
 </p>
 
 ---
@@ -158,37 +158,37 @@ The system includes authentication, product management, cart functionality, orde
 
 ### Admin Dashboard
 <p align="center">
-  <img src="screenshots/admin_dashboard.png" width="600"/>
+  <img src="screenshots/admin_dashboard.webp" width="600"/>
 </p>
 
 ### Admin Brand List
 <p align="center">
-  <img src="screenshots/admin_brand_list.png" width="600"/>
+  <img src="screenshots/admin_brand_list.webp" width="600"/>
 </p>
 
 ### Admin Category List
 <p align="center">
-  <img src="screenshots/admin_category_list.png" width="600"/>
+  <img src="screenshots/admin_category_list.webp" width="600"/>
 </p>
 
 ### Admin User List
 <p align="center">
-  <img src="screenshots/customer_list.png" width="600"/>
+  <img src="screenshots/customer_list.webp" width="600"/>
 </p>
 
 ### Admin Seller List
 <p align="center">
-  <img src="screenshots/seller_list.png" width="600"/>
+  <img src="screenshots/seller_list.webp" width="600"/>
 </p>
 
 ### Admin Orders
 <p align="center">
-  <img src="screenshots/admin_orders.png" width="600"/>
+  <img src="screenshots/admin_orders.webp" width="600"/>
 </p>
 
 ### Customer Details
 <p align="center">
-  <img src="screenshots/admin_customer_details.png" width="600"/>
+  <img src="screenshots/admin_customer_details.webp" width="600"/>
 </p>
 
 ---
@@ -197,22 +197,22 @@ The system includes authentication, product management, cart functionality, orde
 
 ### Register Page
 <p align="center">
-  <img src="screenshots/register_page.png" width="600"/>
+  <img src="screenshots/register_page.webp" width="600"/>
 </p>
 
 ### Login Page
 <p align="center">
-  <img src="screenshots/login_page.png" width="600"/>
+  <img src="screenshots/login_page.webp" width="600"/>
 </p>
 
 ### Forgot Password Page
 <p align="center">
-  <img src="screenshots/reset_password.png" width="600"/>
+  <img src="screenshots/reset_password.webp" width="600"/>
 </p>
 
 ### OTP Verification
 <p align="center">
-  <img src="screenshots/otp.png" width="600"/>
+  <img src="screenshots/otp.webp" width="600"/>
 </p>
 
 ---
