@@ -6,7 +6,9 @@ const Pagination = ({ page, totalPages, setPage }) => {
   for (let i = 1; i <= totalPages; i++) pages.push(i);
 
   return (
-    <div className="d-flex justify-content-center gap-2 mt-4 flex-wrap">
+    <div
+      className="d-flex justify-content-center gap-2 mt-4 flex-wrap"
+    >
 
       <button
         className="btn btn-sm btn-outline-violet"

@@ -1,9 +1,9 @@
-import "../../style/ProductDetails.css";
+import "@/style/ProductDetails.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useCart } from "../../context/CartContext";
-import { getProductById } from "../../services/productService";
-import { ShimmerContentBlock } from 'react-shimmer-effects'
+import { useCart } from "@/context/CartContext";
+import { getProductById } from "@/services/productService";
+import { ShimmerContentBlock } from 'react-shimmer-effects';
 
 
 function ProductDetails() {

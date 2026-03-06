@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion';
 import { HashLoader } from 'react-spinners';
-import { getSellerProfile as getSellerProfileApi } from "../../services/sellerService";
+import { getSellerProfile as getSellerProfileApi } from "@/services/sellerService";
 
 
 function SellerProfile() {

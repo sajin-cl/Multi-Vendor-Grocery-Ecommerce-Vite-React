@@ -1,10 +1,10 @@
 import { useEffect, useState, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
-import { cardContainer, cardFromLeft, cardFromRight } from "../../animations/globalVariants";
-import { getAllOrders, updateOrderStatus as updateOrderStatusApi } from "../../services/adminService";
+import { cardContainer, cardFromLeft, cardFromRight } from "@/animations/globalVariants";
+import { getAllOrders, updateOrderStatus as updateOrderStatusApi } from "@/services/adminService";
 import { ShimmerTitle } from "react-shimmer-effects";
 
-const CustomerDetailsModal = lazy(() => import("../../components/CustomerDetailsModal"));
+const CustomerDetailsModal = lazy(() => import("@/components/CustomerDetailsModal"));
 
 
 function AdminOrders() {

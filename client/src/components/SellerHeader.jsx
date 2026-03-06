@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '@/hooks/useAuth';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion'
-import { logoVariants } from '../animations/globalVariants';
-import brandLogo from '../assets/brandLogo.png';
-import '../style/SellerHeader.css';
+import { logoVariants } from '@/animations/globalVariants';
+import brandLogo from '@/assets/brandLogo.png';
+import '@/style/SellerHeader.css';
 
 
 function SellerHeader() {
@@ -26,7 +26,10 @@ function SellerHeader() {
               src={brandLogo} alt="logo"
               className="me-2"
               variants={logoVariants}
-              initial="hidden" animate="visible" drag dragConstraints={{ left: 0, top: 0, bottom: 0, right: 0 }}
+              initial="hidden"
+              animate="visible"
+              drag
+              dragConstraints={{ left: 0, top: 0, bottom: 0, right: 0 }}
 
             />
             <span className="text-white fw-bold ms-2">
@@ -41,8 +44,7 @@ function SellerHeader() {
       </nav>
 
       <div
-        className={`seller-sidebar sidebar bg-dark text-white ${sidebarOpen ? "open" : ""
-          } d-flex flex-column`}
+        className={`seller-sidebar sidebar bg-dark text-white ${sidebarOpen ? "open" : ""} d-flex flex-column`}
       >
         <ul className="py-1 px-0 flex-grow-1">
           <li>

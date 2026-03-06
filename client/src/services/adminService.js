@@ -1,4 +1,4 @@
-import axiosInstance from "../utils/axiosInstance";
+import axiosInstance from "@/utils/axiosInstance";
 
 
 export const addCategory = (data) => axiosInstance.post('/admin/categories', data);

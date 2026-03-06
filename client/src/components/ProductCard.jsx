@@ -5,7 +5,9 @@ function ProductCard({ product }) {
   return (
     <>
       <div className="col">
-        <div className="card product-card h-100 w-100 mb-3">
+        <div
+          className="card product-card h-100 w-100 mb-3"
+        >
           <img
             src={`${import.meta.env.VITE_IMG_URL}${product.image_url}`}
             alt={product.name}
@@ -22,7 +24,12 @@ function ProductCard({ product }) {
             </div>
             <div className="card-text product-desc text-muted mb-3">{product.description}</div>
             <div className="mt-auto text-center">
-              <Link to={`/product-details/${product._id}`} className="view-btn">View</Link>
+              <Link
+                to={`/product-details/${product._id}`}
+                className="view-btn"
+              >
+                View
+              </Link>
 
             </div>
           </div>

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 import { motion } from 'framer-motion';
-import { cardContainer, droppingCard } from '../../animations/globalVariants'
-import { getSellerDashboard } from "../../services/sellerService";
+import { cardContainer, droppingCard } from '@/animations/globalVariants'
+import { getSellerDashboard } from "@/services/sellerService";
 
 
 

@@ -1,4 +1,4 @@
-import '../style/footer.css'
+import '@/style/footer.css'
 import footerLogo from '/footer_logo.png'
 import appStore from '/images/logos/App-Store-icon.png'
 import playStore from '/images/logos/playstore-icon.png'
@@ -14,8 +14,8 @@ function Footer() {
       <div className="footer-top">
         <h6>For better experience, download the PowerHouse app now</h6>
         <img src={appStore} alt="App Store" loading='lazy' />
-        <img src={playStore} alt="Play Store" loading='lazy'/>
-         <div className="footer-logo ms-4">
+        <img src={playStore} alt="Play Store" loading='lazy' />
+        <div className="footer-logo ms-4">
           <motion.img
             src={footerLogo}
             alt="PowerHouse Logo"
@@ -28,7 +28,7 @@ function Footer() {
       <div className="footer-body d-flex justify-content-around">
 
         <ul className="footer-links">
-          <li><Link to="/" > Home</Link></li>
+          <li><Link to="/">Home</Link></li>
           <li><Link to="/cart">Cart</Link></li>
           <li><Link to="/orders">Orders</Link></li>
           <li><Link to="/register">Register</Link></li>

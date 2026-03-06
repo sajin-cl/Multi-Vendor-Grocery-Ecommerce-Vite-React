@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { addBrand } from "../../services/adminService";
+import { addBrand } from "@/services/adminService";
 
 function AddBrand() {
 

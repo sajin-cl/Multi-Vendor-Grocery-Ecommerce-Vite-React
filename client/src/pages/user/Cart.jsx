@@ -1,10 +1,10 @@
-import '../../style/cart.css'
+import '@/style/cart.css'
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { useCart } from '../../context/CartContext';
+import { useCart } from '@/context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HashLoader } from "react-spinners";
-import { cardContainer, cardFromLeft, cardFromRight } from '../../animations/globalVariants';
+import { cardContainer, cardFromLeft, cardFromRight } from '@/animations/globalVariants';
 
 function Cart() {
 

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { logout as logoutService, checkSession as validateSessionService } from "../services/authService";
+import { logout as logoutService, checkSession as validateSessionService } from "@/services/authService";
 
 export const useAuth = () => {
   const navigate = useNavigate();
@@ -8,20 +8,15 @@ export const useAuth = () => {
 
 
   useEffect(() => {
-
     const token = localStorage.getItem('token');
-
     if (token) {
       validateSessionService()
         .then(() => setLoggedIn(true))
         .catch(() => {
           logout();
-        })
-
-    }
-    else {
+        });
+    } else {
       setLoggedIn(false);
-      
     }
   }, []);
 

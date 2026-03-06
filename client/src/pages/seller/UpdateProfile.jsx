@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getSellerProfile as getSellerProfileApi, updateSellerProfile } from "../../services/sellerService";
+import { getSellerProfile as getSellerProfileApi, updateSellerProfile } from "@/services/sellerService";
 
 
 function UpdateSellerProfile() {

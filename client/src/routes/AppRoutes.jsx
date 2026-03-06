@@ -1,44 +1,44 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 
-import RegisterForm from '../pages/auth/Register';
-import LoginForm from '../pages/auth/Login';
-import ForgotPassword from '../pages/auth/ForgotPassword';
+import RegisterForm from '@/pages/auth/Register';
+import LoginForm from '@/pages/auth/Login';
+import ForgotPassword from '@/pages/auth/ForgotPassword';
 
-import UserLayout from '../layouts/UserLayout';
-import Home from '../pages/user/Home'
-import ProductDetails from '../pages/user/ProductDetails';
-import Cart from '../pages/user/Cart';
-import Checkout from '../pages/user/Checkout';
-import OrderSuccess from '../pages/user/OrderSuccess';
-import MyOrders from '../pages/user/MyOrders';
-import MyProfile from '../pages/user/MyProfile';
+import UserLayout from '@/layouts/UserLayout';
+import Home from '@/pages/user/Home'
+import ProductDetails from '@/pages/user/ProductDetails';
+import Cart from '@/pages/user/Cart';
+import Checkout from '@/pages/user/Checkout';
+import OrderSuccess from '@/pages/user/OrderSuccess';
+import MyOrders from '@/pages/user/MyOrders';
+import MyProfile from '@/pages/user/MyProfile';
 
-import SellerLayout from '../layouts/SellerLayout';
-import SellerDashboard from '../pages/seller/SellerDashboard';
-import SellerProducts from '../pages/seller/SellerProducts';
-import SellerOrders from '../pages/seller/SellerOrders';
-import SellerProfile from '../pages/seller/SellerProfile';
-import SellerEarnings from '../pages/seller/SellerEanings';
-import AddProduct from '../pages/seller/AddProduct';
-import UpdateProduct from '../pages/seller/UpdateProduct';
-import UpdateProfile from '../pages/seller/UpdateProfile';
-
-
-import AdminLayout from '../layouts/AdminLayout';
-import AdminDashboard from '../pages/admin/AdminDashboard'
-import Categories from '../pages/admin/Categories';
-import AddCategory from '../pages/admin/AddCategory';
-import UpdateCategory from '../pages/admin/UpdateCategory';
-import Brands from '../pages/admin/Brands';
-import AddBrand from '../pages/admin/AddBrand';
-import UpdateBrand from '../pages/admin/UpdateBrand';
-import Users from '../pages/admin/Users';
-import Sellers from '../pages/admin/Sellers';
-import AdminOrders from '../pages/admin/AdminOrders';
+import SellerLayout from '@/layouts/SellerLayout';
+import SellerDashboard from '@/pages/seller/SellerDashboard';
+import SellerProducts from '@/pages/seller/SellerProducts';
+import SellerOrders from '@/pages/seller/SellerOrders';
+import SellerProfile from '@/pages/seller/SellerProfile';
+import SellerEarnings from '@/pages/seller/SellerEanings';
+import AddProduct from '@/pages/seller/AddProduct';
+import UpdateProduct from '@/pages/seller/UpdateProduct';
+import UpdateProfile from '@/pages/seller/UpdateProfile';
 
 
-import NotFound from '../components/NotFound';
+import AdminLayout from '@/layouts/AdminLayout';
+import AdminDashboard from '@/pages/admin/AdminDashboard'
+import Categories from '@/pages/admin/Categories';
+import AddCategory from '@/pages/admin/AddCategory';
+import UpdateCategory from '@/pages/admin/UpdateCategory';
+import Brands from '@/pages/admin/Brands';
+import AddBrand from '@/pages/admin/AddBrand';
+import UpdateBrand from '@/pages/admin/UpdateBrand';
+import Users from '@/pages/admin/Users';
+import Sellers from '@/pages/admin/Sellers';
+import AdminOrders from '@/pages/admin/AdminOrders';
+
+
+import NotFound from '@/components/NotFound';
 
 
 

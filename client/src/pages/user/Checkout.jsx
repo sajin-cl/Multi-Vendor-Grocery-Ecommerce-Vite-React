@@ -1,10 +1,10 @@
-import '../../style/Checkout.css'
+import '@/style/Checkout.css'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useCart } from '../../context/CartContext'
+import { useCart } from '@/context/CartContext'
 
-import { getCart as getCartApi } from '../../services/cartService'
-import { placeOrder as placeOrderApi } from '../../services/orderService'
+import { getCart as getCartApi } from '@/services/cartService'
+import { placeOrder as placeOrderApi } from '@/services/orderService'
 
 
 function Checkout() {

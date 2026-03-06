@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
-import { cardContainer, cardFromLeft, cardFromRight } from '../../animations/globalVariants'
+import { cardContainer, cardFromLeft, cardFromRight } from '@/animations/globalVariants';
 
 import { ShimmerTitle } from "react-shimmer-effects";
 
-import { getMyOrders as getMyOrdersApi, cancelMyOrder as cancelMyOrderApi } from "../../services/orderService";
+import { getMyOrders as getMyOrdersApi, cancelMyOrder as cancelMyOrderApi } from "@/services/orderService";
 
 
 

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import SellerHeader from "../components/SellerHeader";
+import SellerHeader from "@/components/SellerHeader";
 
 function SellerLayout() {
 

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
-import { cardContainer, droppingCard } from "../../animations/globalVariants";
+import { cardContainer, droppingCard } from "@/animations/globalVariants";
 import { HashLoader } from 'react-spinners'
-import { getAllUsers, deleteUser as deleteUserApi, toggleBlockUser as toggleBlockUserApi } from "../../services/adminService";
+import { getAllUsers, deleteUser as deleteUserApi, toggleBlockUser as toggleBlockUserApi } from "@/services/adminService";
 
 function Users() {
 

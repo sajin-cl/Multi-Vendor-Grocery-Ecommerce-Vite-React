@@ -1,7 +1,6 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getBrandById, updateBrand as updateBrandApi } from "../../services/adminService";
+import { getBrandById, updateBrand as updateBrandApi } from "@/services/adminService";
 
 function UpdateBrand() {
 

@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext, useContext } from 'react'
-import { getCart as getCartApi, addToCart as addToCartApi, updateCartItem as updateCartItemApi, removeFromCart as removeFromCartApi } from '../services/cartService';
+import { getCart as getCartApi, addToCart as addToCartApi, updateCartItem as updateCartItemApi, removeFromCart as removeFromCartApi } from '@/services/cartService';
 
 
 const CartContext = createContext();
@@ -69,7 +69,9 @@ export const CartProvider = ({ children }) => {
 
   return (
 
-    <CartContext.Provider value={{ cartCount, cartItems, loading, addToCart, removeCartItem, updateCartItem,fetchCart}}>
+    <CartContext.Provider
+      value={{ cartCount, cartItems, loading, addToCart, removeCartItem, updateCartItem, fetchCart }}
+    >
       {children}
     </CartContext.Provider>
 

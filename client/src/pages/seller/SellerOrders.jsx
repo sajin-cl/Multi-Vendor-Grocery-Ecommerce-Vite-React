@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
 import { HashLoader } from 'react-spinners';
-import { cardContainer, cardFromLeft, cardFromRight } from '../../animations/globalVariants'
-import { getSellerOrders, updateOrderedItemStatus } from "../../services/sellerService";
+import { cardContainer, cardFromLeft, cardFromRight } from '@/animations/globalVariants'
+import { getSellerOrders, updateOrderedItemStatus } from "@/services/sellerService";
 
 
 

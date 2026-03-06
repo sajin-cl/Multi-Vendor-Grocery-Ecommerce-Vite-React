@@ -1,14 +1,14 @@
 import "../../style/ProductCard.css";
 import { useEffect, useState, Suspense, lazy } from "react";
 import { motion } from "framer-motion";
-import { ShimmerPostList, ShimmerThumbnail } from 'react-shimmer-effects'
+import { ShimmerPostList, ShimmerThumbnail } from 'react-shimmer-effects';
 
-import { getAllCategories, getAllProducts } from "../../services/productService";
-import Pagination from "../../components/Pagination";
+import { getAllCategories, getAllProducts } from "@/services/productService";
+import Pagination from "@/components/Pagination";
 
-const BannerCarousel = lazy(() => import("../../components/BannerCarousel"));
-const Footer = lazy(() => import("../../components/Footer"));
-const ProductCard = lazy(() => import("../../components/ProductCard"));
+const BannerCarousel = lazy(() => import("@/components/BannerCarousel"));
+const Footer = lazy(() => import("@/components/Footer"));
+const ProductCard = lazy(() => import("@/components/ProductCard"));
 
 
 function HomePage() {

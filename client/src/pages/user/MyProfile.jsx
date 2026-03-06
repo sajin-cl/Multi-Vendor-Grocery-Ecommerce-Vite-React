@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { HashLoader } from "react-spinners";
-import { useCart } from "../../context/CartContext";
-import { getUserProfile } from "../../services/userService";
+import { useCart } from "@/context/CartContext";
+import { getUserProfile } from "@/services/userService";
 
 const MotionLink = motion(Link);
 

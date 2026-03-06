@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
 import { HashLoader } from 'react-spinners';
-import { droppingCard, cardContainer } from '../../animations/globalVariants'
-import { getAllProducts, deleteProduct } from "../../services/productService";
+import { droppingCard, cardContainer } from '@/animations/globalVariants'
+import { getAllProducts, deleteProduct } from "@/services/productService";
 
 
 function SellerProducts() {

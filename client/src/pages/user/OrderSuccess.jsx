@@ -1,4 +1,4 @@
-import "../../style/OrderSuccess.css";
+import "@/style/OrderSuccess.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function OrderSuccess() {

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { cardContainer, droppingCard } from "../../animations/globalVariants";
+import { cardContainer, droppingCard } from "@/animations/globalVariants";
 import {HashLoader} from 'react-spinners';
-import { getAllSellers, deleteSeller as deleteSellerApi, toggleBlockSeller as toggleBlockSellerApi } from "../../services/adminService";
+import { getAllSellers, deleteSeller as deleteSellerApi, toggleBlockSeller as toggleBlockSellerApi } from "@/services/adminService";
 
 function Sellers() {
 

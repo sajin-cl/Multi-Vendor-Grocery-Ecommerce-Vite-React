@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getCategoryById, updateCategory as updateCategoryApi } from "../../services/adminService";
+import { getCategoryById, updateCategory as updateCategoryApi } from "@/services/adminService";
 
 function UpdateCategory() {
 

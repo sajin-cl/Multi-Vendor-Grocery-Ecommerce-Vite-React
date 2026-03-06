@@ -1,10 +1,10 @@
-import "../style/header.css";
-import { useAuth } from "../hooks/useAuth";
+import "@/style/header.css";
+import { useAuth } from "@/hooks/useAuth";
 import { NavLink } from "react-router-dom";
-import { motion } from 'framer-motion'
-import { logoVariants } from '../animations/globalVariants';
-import { useCart } from "../context/CartContext.jsx";
-import brandLogo from '../assets/brandLogo.png';
+import { motion } from 'framer-motion'  
+import { logoVariants } from '@/animations/globalVariants';
+import { useCart } from "@/context/CartContext.jsx";
+import brandLogo from '@/assets/brandLogo.png';
 
 
 
@@ -22,7 +22,10 @@ function UserHeader() {
           src={brandLogo} alt="logo"
           className="me-2"
           variants={logoVariants}
-          initial="hidden" animate="visible" drag dragConstraints={{ left: 0, top: 0, bottom: 0, right: 0 }}
+          initial="hidden"
+          animate="visible"
+          drag
+          dragConstraints={{ left: 0, top: 0, bottom: 0, right: 0 }}
 
         />
         <NavLink className="navbar-brand text-white fw-bold fs-6">

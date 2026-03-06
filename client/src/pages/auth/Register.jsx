@@ -1,7 +1,7 @@
-import "../../style/register.css";
+import "@/style/register.css";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { register } from "../../services/authService";
+import { register } from "@/services/authService";
 
 function RegisterForm() {
 

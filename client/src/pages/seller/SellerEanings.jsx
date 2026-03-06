@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { cardContainer, droppingCard } from '../../animations/globalVariants'
-import { getSellerEarnings } from "../../services/sellerService";
+import { cardContainer, droppingCard } from '@/animations/globalVariants'
+import { getSellerEarnings } from "@/services/sellerService";
 
 
 function SellerEarnings() {

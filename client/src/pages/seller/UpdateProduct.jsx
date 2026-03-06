@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getAllBrands, getAllCategories, getProductById, updateProduct } from "../../services/productService";
+import { getAllBrands, getAllCategories, getProductById, updateProduct } from "@/services/productService";
 
 
 function UpdateProduct() {

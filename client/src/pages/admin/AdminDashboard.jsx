@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
-import { cardContainer, droppingCard } from '../../animations/globalVariants'
-import { getAdminDashboard } from "../../services/adminService";
+import { cardContainer, droppingCard } from '@/animations/globalVariants'
+import { getAdminDashboard } from "@/services/adminService";
 
 function AdminDashboard() {
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllCategories, getAllBrands, addProduct } from "../../services/productService";
+import { getAllCategories, getAllBrands, addProduct } from "@/services/productService";
 
 
 

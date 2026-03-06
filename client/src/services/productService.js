@@ -1,4 +1,4 @@
-import axiosInstance from "../utils/axiosInstance";
+import axiosInstance from "@/utils/axiosInstance";
 
 // Public Data (For dropdowns and lists)
 export const getAllProducts = (params) => axiosInstance.get('/products', { params });

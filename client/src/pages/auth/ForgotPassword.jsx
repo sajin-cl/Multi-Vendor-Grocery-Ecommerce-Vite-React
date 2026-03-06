@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { forgotPassword, verifyOtp, resetPassword } from '../../services/authService';
+import { forgotPassword, verifyOtp, resetPassword } from '@/services/authService';
 
 
 function ForgotPassword() {

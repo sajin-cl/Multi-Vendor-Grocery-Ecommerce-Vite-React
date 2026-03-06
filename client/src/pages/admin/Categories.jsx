@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
 import { HashLoader } from 'react-spinners';
-import { cardContainer, droppingCard } from "../../animations/globalVariants";
-import { getAdminCategories, deleteCategory as deleteCategoryService } from "../../services/adminService";
+import { cardContainer, droppingCard } from "@/animations/globalVariants";
+import { getAdminCategories, deleteCategory as deleteCategoryService } from "@/services/adminService";
 
 
 function Categories() {
