@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import UserHeader from '@/components/UserHeader';
+import { useEffect } from 'react';
 
 
 function UserLayout() {
