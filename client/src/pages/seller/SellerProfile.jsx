@@ -10,7 +10,7 @@ function SellerProfile() {
 
   document.title = ('Seller Profile | Power House Ecommerce');
 
-  const [seller, setSeller] = useState(null);
+  const [seller, setSeller] = useState("");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 

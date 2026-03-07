@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { logout as logoutService, checkSession as validateSessionService } from "@/services/authService";
+import {  checkSession as validateSessionService } from "@/services/authService";
 
 export const useAuth = () => {
   const navigate = useNavigate();
@@ -23,16 +23,10 @@ export const useAuth = () => {
 
 
   const logout = async () => {
-    try {
-      await logoutService();
-    } catch (err) {
-      console.error("Logout failed on backend:", err);
-    } finally {
-      localStorage.removeItem('token');
-      localStorage.removeItem('role');
-      setLoggedIn(false);
-      navigate("/login");
-    }
+    localStorage.clear();
+    setLoggedIn(false);
+    navigate("/login");
+
   };
 
   return { loggedIn, logout };

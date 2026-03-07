@@ -96,19 +96,6 @@ exports.checkSession = (req, res) => {
 
 };
 
-exports.logout = (req, res) => {
-  try {
-    res.status(200).json({
-      success: true,
-      message: 'Logged out successfully!'
-    });
-  } catch (err) {
-    res.status(500).json({ error: 'Logout failed' });
-  }
-};
-
-
-
 
 //Forgot password 
 exports.forgotPassword = async (req, res) => {
