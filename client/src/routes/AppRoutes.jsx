@@ -41,6 +41,10 @@ import Settings from '@/pages/admin/Settings';
 
 import NotFound from '@/components/NotFound';
 
+import ProtectedRoute from '@/guards/ProtectedRoute';
+import SellerRoute from '../guards/SellerRoute';
+import AdminRoute from '../guards/AdminRoute';
+
 
 
 const router = createBrowserRouter([
@@ -49,46 +53,62 @@ const router = createBrowserRouter([
     path: '/', element: <UserLayout />,
     children: [
       { index: true, element: <Home /> },
-      { path: '/product-details/:id', element: <ProductDetails /> },
-      { path: '/cart', element: <Cart /> },
-      { path: '/checkout', element: <Checkout /> },
-      { path: '/order-success', element: <OrderSuccess /> },
-      { path: '/myorders', element: <MyOrders /> },
-      { path: '/myprofile', element: <MyProfile /> }
+      { path: 'product-details/:id', element: <ProductDetails /> },
+      { path: 'cart', element: <Cart /> },
+
+      {
+        element: <ProtectedRoute />,
+        children: [
+          { path: 'checkout', element: <Checkout /> },
+          { path: 'order-success', element: <OrderSuccess /> },
+          { path: 'myorders', element: <MyOrders /> },
+          { path: 'myprofile', element: <MyProfile /> }
+        ]
+      }
+    ]
+  },
+  {
+    path: '/seller',
+    element: <SellerRoute />,
+    children: [
+      {
+        element: <SellerLayout />,
+        children: [
+          { index: true, element: <Navigate to="dashboard" replace /> },
+          { path: 'dashboard', element: <SellerDashboard /> },
+          { path: 'products', element: <SellerProducts /> },
+          { path: 'orders', element: <SellerOrders /> },
+          { path: 'profile', element: <SellerProfile /> },
+          { path: 'earnings', element: <SellerEarnings /> },
+          { path: 'add-product', element: <AddProduct /> },
+          { path: 'update-product/:id', element: <UpdateProduct /> },
+          { path: 'update-profile/:id', element: <UpdateProfile /> }
+        ]
+      }
     ]
   },
 
   {
-    path: '/seller', element: <SellerLayout />,
+    path: '/admin',
+    element: <AdminRoute />,   // guard
     children: [
-      { index: true, element: <Navigate to="dashboard" replace /> },
-      { path: 'dashboard', element: <SellerDashboard /> },
-      { path: 'products', element: <SellerProducts /> },
-      { path: 'orders', element: <SellerOrders /> },
-      { path: 'profile', element: <SellerProfile /> },
-      { path: 'earnings', element: <SellerEarnings /> },
-      { path: 'add-product', element: <AddProduct /> },
-      { path: 'update-product/:id', element: <UpdateProduct /> },
-      { path: 'update-profile/:id', element: <UpdateProfile /> }
-    ]
-  },
-
-  {
-    path: '/admin', element: <AdminLayout />,
-    children: [
-      { index: true, element: <Navigate to="dashboard" replace /> },
-      { path: "dashboard", element: <AdminDashboard /> },
-      { path: 'categories', element: <Categories /> },
-      { path: 'add-category', element: <AddCategory /> },
-      { path: 'update-category/:id', element: <UpdateCategory /> },
-      { path: 'brands', element: <Brands /> },
-      { path: 'add-brand', element: <AddBrand /> },
-      { path: 'update-brand/:id', element: <UpdateBrand /> },
-      { path: 'users', element: <Users /> },
-      { path: 'sellers', element: <Sellers /> },
-      { path: 'orders', element: <AdminOrders /> },
-      { path: 'settings', element: <Settings /> },
-
+      {
+        element: <AdminLayout />,
+        children: [
+          { index: true, element: <Navigate to="dashboard" replace /> },
+          { path: "dashboard", element: <AdminDashboard /> },
+          { path: 'categories', element: <Categories /> },
+          { path: 'add-category', element: <AddCategory /> },
+          { path: 'update-category/:id', element: <UpdateCategory /> },
+          { path: 'brands', element: <Brands /> },
+          { path: 'add-brand', element: <AddBrand /> },
+          { path: 'update-brand/:id', element: <UpdateBrand /> },
+          { path: 'users', element: <Users /> },
+          { path: 'sellers', element: <Sellers /> },
+          { path: 'orders', element: <AdminOrders /> },
+          { path: 'settings', element: <Settings /> }
+        ]
+      }
     ]
   },
 

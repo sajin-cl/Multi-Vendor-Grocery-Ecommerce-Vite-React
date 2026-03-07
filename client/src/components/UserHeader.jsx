@@ -1,21 +1,19 @@
 import "@/style/header.css";
 import { useAuth } from "@/hooks/useAuth";
 import { NavLink } from "react-router-dom";
-import { motion } from 'framer-motion'  
+import { motion } from 'framer-motion';
 import { logoVariants } from '@/animations/globalVariants';
 import { useCart } from "@/context/CartContext.jsx";
 import brandLogo from '@/assets/brandLogo.png';
 
-
-
 function UserHeader() {
-
-  const { loggedIn, logout } = useAuth();
-
+  const { loggedIn, role, logout } = useAuth();  
   const { cartCount } = useCart();
 
+ 
+  const showUserMenu = loggedIn && role === "user";
+
   return (
-    
     <nav className="navbar navbar-expand-lg navbar-light sticky-top w-100">
       <div className="container-fluid">
         <motion.img
@@ -26,12 +24,10 @@ function UserHeader() {
           animate="visible"
           drag
           dragConstraints={{ left: 0, top: 0, bottom: 0, right: 0 }}
-
         />
+
         <NavLink className="navbar-brand text-white fw-bold fs-6">
-          <small>
-            POWER <span className="text-warning">HOUSE</span>
-          </small>
+          <small>POWER <span className="text-warning">HOUSE</span></small>
         </NavLink>
 
         <button
@@ -51,7 +47,7 @@ function UserHeader() {
               </NavLink>
             </li>
 
-            {loggedIn ? (
+            {showUserMenu ? (
               <>
                 <li className="nav-item position-relative">
                   <NavLink to="/cart" className="nav-link text-white">
@@ -66,6 +62,7 @@ function UserHeader() {
                     )}
                   </NavLink>
                 </li>
+
                 <li className="nav-item">
                   <NavLink to="/myorders" className="nav-link text-white">
                     <i className="fa-solid fa-bag-shopping fs-7 me-1"></i> Orders
@@ -80,10 +77,10 @@ function UserHeader() {
 
                 <li className="nav-item d-flex align-items-sm-center">
                   <button
-                    className="btn btn-danger btn-sm  px-3 py-0"
+                    className="btn btn-danger btn-sm px-3 py-0"
                     onClick={logout}
                   >
-                    <i className="fa-solid fa-right-from-bracket fs-7 ms-0 me-1 "></i> Logout
+                    <i className="fa-solid fa-right-from-bracket fs-7 ms-0 me-1"></i> Logout
                   </button>
                 </li>
               </>
