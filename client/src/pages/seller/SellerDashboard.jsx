@@ -32,7 +32,7 @@ function SellerDashboard() {
   useEffect(() => {
 
     fetchSellerDashboardData();
-    
+
   }, []);
 
 
@@ -45,9 +45,10 @@ function SellerDashboard() {
         variants={cardContainer} initial="hidden" animate="visible"
       >
 
-        <Link className="col-md-3 mb-3 text-light" to={'/seller/products'}>
+        <Link className="col-md-3 mb-3" to={'/seller/products'}>
           <motion.div
-            className="card text-center shadow-sm bg-warning p-2"
+            className="card text-center shadow-sm  p-2"
+            style={{ backgroundColor: "var(--seller-dashboard-card)" }}
             variants={droppingCard} drag
           >
             <div className="card-body">
@@ -57,9 +58,10 @@ function SellerDashboard() {
           </motion.div>
         </Link>
 
-        <Link className="col-md-3 mb-3 text-light" to={'/seller/orders'}>
+        <Link className="col-md-3 mb-3" to={'/seller/orders'}>
           <motion.div
-            className="card text-center text-white shadow-sm bg-success p-2"
+            className="card text-center shadow-sm  p-2"
+            style={{ backgroundColor: "var(--seller-dashboard-card)" }}
             variants={droppingCard} drag
           >
             <div className="card-body">
@@ -69,9 +71,10 @@ function SellerDashboard() {
           </motion.div>
         </Link>
 
-        <div className="col-md-3 mb-3 text-light">
+        <div className="col-md-3 mb-3">
           <motion.div
-            className="card text-center shadow-sm bg-danger text-white p-2"
+            className="card text-center shadow-sm p-2"
+            style={{ backgroundColor: "var(--seller-dashboard-card)" }}
             variants={droppingCard} drag
           >
             <div className="card-body">
@@ -81,9 +84,10 @@ function SellerDashboard() {
           </motion.div>
         </div>
 
-        <Link className="col-md-3 mb-3 text-light" to={'/seller/earnings'}>
+        <Link className="col-md-3 mb-3" to={'/seller/earnings'}>
           <motion.div
-            className="card text-center shadow-sm bg-info text-white p-2"
+            className="card text-center shadow-sm p-2"
+            style={{ backgroundColor: "var(--seller-dashboard-card)" }}
             variants={droppingCard} drag
           >
             <div className="card-body">

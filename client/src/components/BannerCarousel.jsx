@@ -27,8 +27,6 @@ function BannerCarousel() {
           ></button>
           <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2" aria-label="Slide 3"
           ></button>
-          <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="3" aria-label="Slide 4"
-          ></button>
         </div>
 
         <div className="carousel-inner">
@@ -40,6 +38,11 @@ function BannerCarousel() {
               alt="Banner 1"
               style={bannerStyle}
             />
+            <div className="carousel-caption d-none d-md-block" style={captionStyle}>
+              <h1 style={companyNameStyle}>Power House</h1>
+              <h5>Fresh from the Farm</h5>
+              <p>Organic vegetables handpicked to keep your meals healthy and tasty.</p>
+            </div>
 
           </div>
 
@@ -62,20 +65,6 @@ function BannerCarousel() {
               src="/images/banner/banner3.webp"
               className="d-block w-100"
               alt="Banner 3"
-              style={bannerStyle}
-            />
-            <div className="carousel-caption d-none d-md-block" style={captionStyle}>
-              <h1 style={companyNameStyle}>Power House</h1>
-              <h5>Fresh from the Farm</h5>
-              <p>Organic vegetables handpicked to keep your meals healthy and tasty.</p>
-            </div>
-          </div>
-
-          <div className="carousel-item">
-            <img
-              src="/images/banner/banner4.webp"
-              className="d-block w-100"
-              alt="Banner 4"
               style={bannerStyle}
             />
             <div className="carousel-caption d-none d-md-block" style={captionStyle}>
