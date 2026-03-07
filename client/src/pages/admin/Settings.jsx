@@ -4,7 +4,7 @@ import { HashLoader } from 'react-spinners';
 
 function Settings() {
 
-  document.title = ('All Orders | Power House Ecommerce');
+  document.title = ('Admin Permission | Power House Ecommerce');
 
   const [loading, setLoading] = useState(true);
   const [sellers, setSellers] = useState([]);
