@@ -29,7 +29,8 @@ exports.register = async (req, res) => {
       password: hashedPwd,
       role: role || 'user',
       shopName: role === 'seller' ? shopName : undefined,
-      shopAddress: role === 'seller' ? shopAddress : undefined
+      shopAddress: role === 'seller' ? shopAddress : undefined,
+      isApproved: role === 'seller' ? false : true
     });
 
     res.status(201).json({ message: 'User registered successfully', newUser })
@@ -56,6 +57,12 @@ exports.login = async (req, res) => {
 
     const match = await bcrypt.compare(password, user.password);
     if (!match) return res.status(400).json({ error: 'Invalid user or password' });
+
+    if (user.role === 'seller' && !user.isApproved) {
+      return res.status(403).json({
+        error: "Seller account waiting for admin approval"
+      })
+    };
 
     const token = jwt.sign(
       { id: user._id, role: user.role },

@@ -215,7 +215,7 @@ exports.toggleBlockUser = async (req, res) => {
 
 exports.getSellers = async (req, res) => {
   try {
-    const sellers = await User.find({ role: 'seller' }).sort({ name: 1 });
+    const sellers = await User.find({ role: 'seller', isApproved:true }).sort({ name: 1 });
     if (!sellers) return res.status(400).json({ error: 'sellers not found' });
 
     res.status(200).json(sellers);
@@ -267,7 +267,7 @@ exports.getAllOrders = async (req, res) => {
       .sort({ createdAt: -1 })
       .populate("user", "fullName email")
       .populate("items.product", "name price")
-      .populate("items.seller","shopName")
+      .populate("items.seller", "shopName")
 
     res.status(200).json(orders);
   }
@@ -347,5 +347,34 @@ exports.getAdminDashboard = async (req, res) => {
   catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to fetch dashboard data' })
+  }
+};
+
+
+exports.getPendingSellers = async (req, res) => {
+  try {
+    const sellers = await User.find({ role: 'seller', isApproved: false }).sort({ createdAt: -1 });
+    return res.status(200).json(sellers)
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch pending seller' })
+  }
+};
+
+
+exports.approveSellers = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const seller = await User.findById(id);
+    if (!seller) return res.status(404).json({ error: 'Seller not found' });
+
+    seller.isApproved = true;
+    await seller.save();
+    res.status(201).json({ message: "Seller approved successfully" })
+  }
+  catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
   }
 }

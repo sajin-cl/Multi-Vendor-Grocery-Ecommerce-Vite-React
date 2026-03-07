@@ -28,3 +28,7 @@ export const toggleBlockSeller = (id) => axiosInstance.patch(`/admin/sellers/${i
 export const getAllOrders = () => axiosInstance.get('/admin/orders');
 export const updateOrderStatus = (id, status) => axiosInstance.patch(`/admin/orders/${id}/status`, { status });
 
+
+export const getPendingSellers = () => axiosInstance.get('/admin/settings');
+export const approveSellers = (id) => axiosInstance.patch(`/admin/approve-seller/${id}`, null);
+

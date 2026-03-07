@@ -44,7 +44,7 @@ function Sellers() {
 
     }
     catch (err) {
-      console.error(err || 'seller deleted successfully');
+      console.error(err);
     }
   };
 

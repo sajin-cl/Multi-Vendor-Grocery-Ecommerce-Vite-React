@@ -36,12 +36,10 @@ import UpdateBrand from '@/pages/admin/UpdateBrand';
 import Users from '@/pages/admin/Users';
 import Sellers from '@/pages/admin/Sellers';
 import AdminOrders from '@/pages/admin/AdminOrders';
+import Settings from '@/pages/admin/Settings';
 
 
 import NotFound from '@/components/NotFound';
-
-
-
 
 
 
@@ -89,6 +87,7 @@ const router = createBrowserRouter([
       { path: 'users', element: <Users /> },
       { path: 'sellers', element: <Sellers /> },
       { path: 'orders', element: <AdminOrders /> },
+      { path: 'settings', element: <Settings /> },
 
     ]
   },

@@ -32,6 +32,9 @@ router.patch('/sellers/:id/toggle-block', adminAuth, adminController.toggleBlock
 
 router.get('/orders', adminAuth, adminController.getAllOrders);
 router.patch('/orders/:orderId/status', adminAuth, adminController.updateOrderStatus);
-router.get('/dashboard',adminAuth,adminController.getAdminDashboard)
+router.get('/dashboard', adminAuth, adminController.getAdminDashboard);
+
+router.get('/settings', adminAuth, adminController.getPendingSellers);
+router.patch('/approve-seller/:id', adminAuth, adminController.approveSellers);
 
 module.exports = router;

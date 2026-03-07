@@ -37,6 +37,13 @@ const userSchema = mongoose.Schema({
     type: Boolean,
     default: false
   },
+  isApproved: {
+    type: Boolean,
+    default: false,
+    required: function () {
+      return this.role === 'seller'
+    }
+  },
   resetOtp: {
     type: String
   },

@@ -111,6 +111,17 @@ function AdminHeader() {
               <i className="fa fa-shopping-cart me-2"></i> Orders
             </NavLink>
           </li>
+
+          <li>
+            <NavLink
+              to="/admin/settings"
+              className={({ isActive }) =>
+                `text-white ${isActive ? "active" : ""}`
+              }
+            >
+              <i className="fa fa-gear me-2"></i> Settings
+            </NavLink>
+          </li>
         </ul>
 
         <div className="logout-container">
