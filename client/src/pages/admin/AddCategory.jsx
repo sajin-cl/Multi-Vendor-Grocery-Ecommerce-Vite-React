@@ -31,7 +31,6 @@ function AddCategory() {
 
     try {
       const response = await addCategory(formData);
-      console.log(response);
       setFormData({
         name: "",
         description: ""

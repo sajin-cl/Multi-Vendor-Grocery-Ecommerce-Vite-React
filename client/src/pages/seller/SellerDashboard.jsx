@@ -24,7 +24,6 @@ function SellerDashboard() {
     try {
       const response = await getSellerDashboard();
       setStats(response.data);
-      console.log(response.data);
     }
     catch (err) {
       console.error(err);

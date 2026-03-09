@@ -73,7 +73,6 @@ function HomePage() {
     fetchProducts();
   }, [page, category, searchQuery]);
 
-  console.log({ page, limit, category, searchQuery });
 
   return (
     <div className="page-container">
