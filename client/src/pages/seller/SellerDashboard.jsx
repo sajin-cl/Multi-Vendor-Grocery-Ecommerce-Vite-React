@@ -12,6 +12,7 @@ function SellerDashboard() {
   document.title = ('Seller Dashboard | Power House Ecommerce');
 
   const [stats, setStats] = useState({
+    sellerName: '',
     totalProducts: 0,
     totalOrders: 0,
     pendingOrders: 0,
@@ -23,6 +24,7 @@ function SellerDashboard() {
     try {
       const response = await getSellerDashboard();
       setStats(response.data);
+      console.log(response.data);
     }
     catch (err) {
       console.error(err);
@@ -38,8 +40,14 @@ function SellerDashboard() {
 
   return (
     <div className="container mt-4">
-      <h5 className="border-bottom mb-4 pb-2">Seller Dashboard</h5>
-
+      <h5 className="border-bottom fw-bold mb-4 pb-2">Seller <span className="text-purple">Dashboard</span></h5>
+      <motion.p
+        initial={{ x: -50, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        Welcome back <strong>{stats?.sellerName}</strong>, Here's what's happening today
+      </motion.p>
       <motion.div
         className="row my-3"
         variants={cardContainer} initial="hidden" animate="visible"

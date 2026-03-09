@@ -41,8 +41,14 @@ function AdminDashboard() {
 
   return (
     <div className="container mt-4">
-      <h5 className="border-bottom mb-4 pb-2">Admin Dashboard</h5>
-
+      <h5 className="border-bottom mb-4 fw-bold pb-2">Dashboard <span className="text-success">Overview</span></h5>
+      <motion.p
+        initial={{ x: -50, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        Welcome back <strong>Admin</strong>, Here's what's happening today
+      </motion.p>
       <motion.div
         className="row g-4"
         variants={cardContainer} initial="hidden" animate="visible"

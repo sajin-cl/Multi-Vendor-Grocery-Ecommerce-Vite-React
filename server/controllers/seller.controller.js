@@ -9,7 +9,7 @@ exports.getSellerOrders = async (req, res) => {
     if (!sellerId) return res.status(401).json({ error: "Unauthorized seller" });
 
 
-    const orders = await Order.find().populate("items.product").sort({createdAt:-1});
+    const orders = await Order.find().populate("items.product").sort({ createdAt: -1 });
 
     const sellerOrders = orders
       .map(order => ({
@@ -103,6 +103,9 @@ exports.getSellerDashboard = async (req, res) => {
     const sellerId = req.userData?.id;
     if (!sellerId) return res.status(401).json({ error: 'Unauthorized seller' });
 
+    const seller = await User.findById(sellerId).select('fullName');
+    if (!seller) return res.status(404).json({ error: 'Seller not found' });
+
     const totalProducts = await Product.countDocuments({ sellerId });
 
     const orders = await Order.find({ 'items.seller': sellerId });
@@ -131,7 +134,8 @@ exports.getSellerDashboard = async (req, res) => {
       totalProducts,
       totalOrders,
       pendingOrders,
-      totalEarnings
+      totalEarnings,
+      sellerName: seller.fullName || 'seller'
     })
 
   }
