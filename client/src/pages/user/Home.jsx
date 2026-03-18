@@ -1,12 +1,13 @@
 import "../../style/ProductCard.css";
 import { useEffect, useState, Suspense, lazy } from "react";
 import { motion } from "framer-motion";
-import { ShimmerPostList, ShimmerThumbnail } from 'react-shimmer-effects';
+import { ShimmerPostList } from 'react-shimmer-effects';
 
 import { getAllCategories, getAllProducts } from "@/services/productService";
 import Pagination from "@/components/Pagination";
+import Hero from "../../components/Hero";
 
-const BannerCarousel = lazy(() => import("@/components/BannerCarousel"));
+
 const Footer = lazy(() => import("@/components/Footer"));
 const ProductCard = lazy(() => import("@/components/ProductCard"));
 
@@ -77,11 +78,7 @@ function HomePage() {
   return (
     <div className="page-container">
 
-      <Suspense fallback={<div>
-        <ShimmerThumbnail height={300} style={{width:"100%"}} />
-      </div>}>
-        <BannerCarousel />
-      </Suspense>
+      <Hero />
 
       <main>
         <div className="container-fluid ">
@@ -115,7 +112,7 @@ function HomePage() {
           </div>
         </div>
 
-        <section className="container-fluid">
+        <section className="container-fluid" id="product-section">
 
           {loading ? (
             <div className="text-center p-2 min-vh-100">
