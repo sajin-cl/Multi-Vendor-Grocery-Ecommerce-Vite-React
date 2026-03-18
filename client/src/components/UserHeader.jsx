@@ -92,7 +92,7 @@ function UserHeader() {
                   </NavLink>
                 </li>
                 <li className="nav-item d-flex align-items-center">
-                  <NavLink className="nav-link text-light" to="/login">
+                  <NavLink className="nav-link text-light-green" to="/login">
                     <i className="bi bi-box-arrow-in-right me-1"></i> Login
                   </NavLink>
                 </li>

@@ -1,18 +1,35 @@
 import { serviceHighlights } from "../data/data";
+import Typewriter from "typewriter-effect";
 
 function Hero() {
   return (
     <section className="hero-section px-4 py-2">
       <div className="d-flex justify-content-between mb-5 mt-5">
         <div className="heroo-section-info">
-          <h1 className="text-light-green fw-bold mb-3" style={{fontFamily:"monospace"}}>Fill your cart with freshness</h1>
+          <h1 className="text-light-green fw-bold mb-3" style={{ fontFamily: "monospace" }}>FILL YOUR CART WITH FRESHNESS</h1>
           <p className="mb-4">Discover great deals, fresh products, and a seamless shopping experience.</p>
           <a
-          href="#product-section"
-            className="btn btn-light-green"
+            href="#product-section"
+            className="btn btn-light-green mb-4"
           >
-            Shop Now
+            SHOP NOW
           </a>
+          <span className="text-dark fw-semibold" style={{fontFamily:"monospace"}}>
+            <Typewriter
+              options={{
+                strings: [
+                  "Fresh fruits delivered straight to your doorstep, daily and organic",
+                  "Organic veggies, hand-picked and ready for your kitchen",
+                  "Fill your cart with freshness, from farm to your table"
+                ],
+                autoStart: true,
+                loop: true,
+                delay: 75,
+                deleteSpeed: 50,
+              }}
+            />
+          </span>
+
         </div>
         <div className="hero-section-image d-none d-lg-block">
           <img
