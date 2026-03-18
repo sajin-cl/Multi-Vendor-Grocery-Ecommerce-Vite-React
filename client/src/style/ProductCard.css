@@ -29,11 +29,12 @@
 .view-btn {
   background-color: var(--light-green-color);
   color: white;
-  padding: 5px 20px;
+  padding: 5px 70px;
   text-decoration: none;
   cursor: pointer;
   border: none;
   border-radius: 5px;
+
 }
 
 .view-btn:hover {

@@ -26,7 +26,7 @@ function ProductCard({ product }) {
             <div className="mt-auto text-center">
               <Link
                 to={`/product-details/${product._id}`}
-                className="view-btn"
+                className="view-btn d-block w-100"
               >
                 View
               </Link>
