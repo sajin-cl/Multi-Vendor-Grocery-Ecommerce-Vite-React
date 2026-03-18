@@ -21,7 +21,7 @@ const Pagination = ({ page, totalPages, setPage }) => {
       {pages.map(p => (
         <button
           key={p}
-          className={`btn btn-sm ${p === page ? "btn-violet" : "btn-outline-violet"}`}
+          className={`btn btn-sm ${p === page ? "btn-light-green" : "btn-outline-violet"}`}
           onClick={() => setPage(p)}
         >
           {p}

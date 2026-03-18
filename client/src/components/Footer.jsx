@@ -11,17 +11,11 @@ function Footer() {
   return (
     <footer className="footer">
 
-      <div className="footer-top">
+      <div className="footer-top d-flex gap-5">
         <h6>For better experience, download the PowerHouse app now</h6>
-        <img src={appStore} alt="App Store" loading='lazy' />
-        <img src={playStore} alt="Play Store" loading='lazy' />
-        <div className="footer-logo ms-4">
-          <motion.img
-            src={footerLogo}
-            alt="PowerHouse Logo"
-            drag
-            loading='lazy'
-          />
+        <div className='d-flex gap-3'>
+          <img src={appStore} alt="App Store" loading='lazy' />
+          <img src={playStore} alt="Play Store" loading='lazy' />
         </div>
       </div>
 
@@ -34,7 +28,6 @@ function Footer() {
           <li><Link to="/register">Register</Link></li>
           <li><Link to="/login">Login</Link></li>
           <li><Link to="/contact">Contact</Link></li>
-          <li><Link to="/faq">FAQ</Link></li>
         </ul>
 
         <div className="footer-social">

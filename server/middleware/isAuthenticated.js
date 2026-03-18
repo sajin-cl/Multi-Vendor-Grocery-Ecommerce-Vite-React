@@ -14,7 +14,7 @@ const isAuthenticated = (req, res, next) => {
 
     next();
   } catch (err) {
-    return res.status(401).json({ error: 'Session expired or invalid token!' });
+    return res.status(401).json({ error: 'Invalid token!' });
   }
 };
 

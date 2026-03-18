@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { motion } from 'framer-motion';
 import { logoVariants } from '@/animations/globalVariants';
 import { useCart } from "@/context/CartContext.jsx";
-import brandLogo from '@/assets/brandLogo.png';
+import brandLogo from '@/assets/brandLogo-dark.webp';
 
 function UserHeader() {
   const { loggedIn, role, logout } = useAuth();  
@@ -26,8 +26,8 @@ function UserHeader() {
           dragConstraints={{ left: 0, top: 0, bottom: 0, right: 0 }}
         />
 
-        <NavLink className="navbar-brand text-white fw-bold fs-6">
-          <small>POWER <span className="text-warning">HOUSE</span></small>
+        <NavLink className="navbar-brand text-dark fw-bold fs-6">
+          <small>POWER <span className="text-success">HOUSE</span></small>
         </NavLink>
 
         <button
@@ -42,7 +42,7 @@ function UserHeader() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto gap-3">
             <li className="nav-item">
-              <NavLink className="nav-link text-white" to="/">
+              <NavLink className="nav-link text-dark" to="/">
                 <i className="fa-solid fa-house fs-7 me-1"></i> Home
               </NavLink>
             </li>
@@ -50,7 +50,7 @@ function UserHeader() {
             {showUserMenu ? (
               <>
                 <li className="nav-item position-relative">
-                  <NavLink to="/cart" className="nav-link text-white">
+                  <NavLink to="/cart" className="nav-link text-dark">
                     <i className="fa-solid fa-cart-shopping fs-7 me-1"></i> Cart
                     {cartCount > 0 && (
                       <span
@@ -64,13 +64,13 @@ function UserHeader() {
                 </li>
 
                 <li className="nav-item">
-                  <NavLink to="/myorders" className="nav-link text-white">
+                  <NavLink to="/myorders" className="nav-link text-dark">
                     <i className="fa-solid fa-bag-shopping fs-7 me-1"></i> Orders
                   </NavLink>
                 </li>
 
                 <li className="nav-item">
-                  <NavLink to="/myprofile" className="nav-link text-white">
+                  <NavLink to="/myprofile" className="nav-link text-dark">
                     <i className="fa fa-user fs-7 me-1"></i> My Profile
                   </NavLink>
                 </li>
@@ -87,7 +87,7 @@ function UserHeader() {
             ) : (
               <>
                 <li className="nav-item">
-                  <NavLink className="nav-link text-white" to="/register">
+                  <NavLink className="nav-link text-dark" to="/register">
                     <i className="bi bi-person-plus-fill me-1"></i> Register
                   </NavLink>
                 </li>

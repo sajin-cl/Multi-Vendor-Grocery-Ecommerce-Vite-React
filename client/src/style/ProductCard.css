@@ -27,7 +27,7 @@
 }
 
 .view-btn {
-  background-color: #4c00b0;
+  background-color: var(--light-green-color);
   color: white;
   padding: 5px 20px;
   text-decoration: none;
@@ -38,7 +38,7 @@
 
 .view-btn:hover {
   color: white;
-  background-color: #6b32b4;
+  background-color: var(--dark-green-color);
 }
 
 
@@ -48,7 +48,13 @@
   box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
               rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
   width: 100%; 
- 
+  
+}
+.search-bar:focus {
+  outline: none;
+  border: 1px solid #6fbc6f;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+              rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 
 /* hovering  section started here*/
@@ -58,6 +64,6 @@
 }
 
 .product-name:hover {
-  color: #4c00b0 !important;
+  color: var(--light-green-color) !important;
   cursor: pointer;
 }

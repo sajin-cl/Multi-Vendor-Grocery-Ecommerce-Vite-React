@@ -148,7 +148,7 @@ function ProductDetails() {
                 <button className="btn btn-light px-3" onClick={qtyInc} disabled={count >= product.stock || product.stock === 0}>+</button>
               </div>
 
-              <button className={`btn ${inCart ? "btn-danger" : "btn-primary"} px-4`} onClick={handleCartToggle} disabled={product.stock === 0 && !inCart}>
+              <button className={`btn ${inCart ? "btn-danger" : "btn-light-green"} px-4`} onClick={handleCartToggle} disabled={product.stock === 0 && !inCart}>
                 {inCart ? "Remove from Cart" : product.stock === 0 ? "Out of Stock" : "Add to Cart"}
               </button>
             </div>

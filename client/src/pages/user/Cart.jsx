@@ -166,7 +166,7 @@ function Cart() {
             </div>
 
             <button
-              className="btn btn-primary w-100 mt-3"
+              className="btn btn-light-green w-100 mt-3"
               onClick={goToCheckout}
             >
               Proceed to Checkout

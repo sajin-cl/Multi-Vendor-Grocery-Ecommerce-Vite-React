@@ -44,7 +44,7 @@
 }
 
 .footer-links li a:hover {
-  color: #ff6600;
+  color: var(--light-green-color);
 }
 
 .footer-social i {

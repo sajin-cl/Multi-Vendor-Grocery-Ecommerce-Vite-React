@@ -64,7 +64,7 @@ function MyProfile() {
 
       <div className="row">
         <div className="border p-4 rounded shadow-sm text-center">
-          <i className="fa fa-user-circle fa-8x text-violet mb-3"></i>
+          <i className="fa fa-user-circle fa-8x text-light-green mb-3"></i>
 
           <motion.h5
             initial={{ opacity: 0, x: -10 }}
@@ -119,7 +119,7 @@ function MyProfile() {
 
         <MotionLink
           to="/edit-profile"
-          className="mt-3 btn btn-violet"
+          className="mt-3 btn btn-light-green"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.8 }}

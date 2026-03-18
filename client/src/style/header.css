@@ -1,8 +1,8 @@
-nav {
-  background-color: var(--violet-color);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.navbar {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
 }
 
-.navbar-nav li a:hover {
-  color: red;
+.navbar .nav-link:hover {
+  color: #28a745!important;
 }

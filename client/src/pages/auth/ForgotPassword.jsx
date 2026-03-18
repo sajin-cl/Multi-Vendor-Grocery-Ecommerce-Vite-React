@@ -109,7 +109,7 @@ function ForgotPassword() {
                   required
                 />
               </div>
-              <button className="btn btn-primary w-100 mt-2 shadow-sm" style={{ backgroundColor: "var(--violet-color)", border: "none" }} disabled={loading}>
+              <button className="btn send-otp-btn w-100 mt-2 shadow-sm" style={{ backgroundColor: "var(--light-green-color)", border: "none" }} disabled={loading}>
                 {loading ? "Sending..." : "Send OTP"}
               </button>
             </form>
@@ -129,7 +129,7 @@ function ForgotPassword() {
                   required
                 />
               </div>
-              <button className="btn btn-primary w-100 mt-2 shadow-sm" style={{ backgroundColor: "var(--violet-color)", border: "none" }} disabled={loading}>
+              <button className="btn verify-otp-btn w-100 mt-2 shadow-sm" style={{ backgroundColor: "var(--light-green-color)", border: "none" }} disabled={loading}>
                 {loading ? "Verifying..." : "Verify OTP"}
               </button>
               <div className="text-center mt-3">
@@ -151,7 +151,7 @@ function ForgotPassword() {
                   minLength="5"
                 />
               </div>
-              <button className="btn btn-primary w-100 mt-2 shadow-sm" style={{ backgroundColor: "var(--violet-color)", border: "none" }} disabled={loading}>
+              <button className="btn btn-primary w-100 mt-2 shadow-sm" style={{ backgroundColor: "var(--light-green-color)", border: "none" }} disabled={loading}>
                 {loading ? "Updating..." : "Update Password"}
               </button>
             </form>
@@ -161,7 +161,7 @@ function ForgotPassword() {
           {error && <div className="alert alert-danger mt-3 py-2 small text-center">{error}</div>}
 
           <div className="text-center mt-4">
-            <Link to="/login" className="text-decoration-none" style={{ color: "var(--violet-color)" }}>
+            <Link to="/login" className="text-decoration-none" style={{ color: "var(--light-green-color)" }}>
               <i className="bi bi-arrow-left me-1"></i> Back to Login
             </Link>
           </div>

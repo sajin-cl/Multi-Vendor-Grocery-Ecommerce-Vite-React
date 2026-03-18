@@ -17,7 +17,7 @@ function ProductCard({ product }) {
           />
           <div className="card-body P-2">
             <div
-              className="card-title product-name text-primary fw-bold mb-0"
+              className="card-title product-name text-success fw-bold mb-0"
               title={product.name}
             >
               {product.name}

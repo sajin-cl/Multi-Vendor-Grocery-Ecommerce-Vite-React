@@ -87,8 +87,8 @@ function LoginForm() {
 
           <div className="col-md-6 d-none d-md-flex auth-left text-white">
             <div className="auth-left-content">
-              <h3>Welcome to Power House</h3>
-              <p>
+              <h3 className='text-dark'>Welcome to Power House</h3>
+              <p className='text-dark'>
                 Your trusted marketplace for quality products from verified sellers, designed
                 for a smooth and secure shopping experience.
               </p>
@@ -144,8 +144,8 @@ function LoginForm() {
               </p>
 
               <button
-                className="btn btn-primary w-100 mt-3"
-                style={{ backgroundColor: "var(--violet-color)" }}
+                className="btn login-btn w-100 mt-3"
+                style={{ backgroundColor: "var(--light-green-color)" }}
                 disabled={loading}
               >
                 {loading ? "Logging in…" : "Login"}

@@ -5,11 +5,11 @@ function Hero() {
     <section className="hero-section px-4 py-2">
       <div className="d-flex justify-content-between mb-5 mt-5">
         <div className="heroo-section-info">
-          <h1 className="text-violet">Fill your cart with freshness</h1>
-          <p>Discover great deals, fresh products, and a seamless shopping experience.</p>
+          <h1 className="text-light-green fw-bold mb-3" style={{fontFamily:"monospace"}}>Fill your cart with freshness</h1>
+          <p className="mb-4">Discover great deals, fresh products, and a seamless shopping experience.</p>
           <a
           href="#product-section"
-            className="btn btn-violet"
+            className="btn btn-light-green"
           >
             Shop Now
           </a>
@@ -36,7 +36,7 @@ function Hero() {
           {serviceHighlights.map((item, index) => (
             <div key={index} className="col-12 col-md-4 ">
               <div className="service-card d-flex align-items-start gap-3 p-3 h-100 bg-light rounded">
-                <i className={`fa-solid ${item.icon} fs-3 text-violet`}></i>
+                <i className={`fa-solid ${item.icon} fs-3 text-light-green`}></i>
                 <div>
                   <h6 className="mb-1 fw-bold">{item.title}</h6>
                   <p className="mb-0 small text-muted">{item.description}</p>

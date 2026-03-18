@@ -3,7 +3,7 @@
 }
 
 .auth-left {
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background: linear-gradient(135deg, #7ae983, #afe2b1, #75f179);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,8 +32,9 @@
 }
 
 
-.btn-primary {
+.register-btn,.login-btn,.send-otp-btn,.verify-otp-btn {
   border-radius: 8px;
   padding: 10px;
   font-weight: 500;
+   
 }

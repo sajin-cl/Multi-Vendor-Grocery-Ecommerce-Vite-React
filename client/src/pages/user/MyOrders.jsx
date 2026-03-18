@@ -100,7 +100,7 @@ function MyOrders() {
               variants={isLeft ? cardFromLeft : cardFromRight}
             >
               <div className="d-flex justify-content-between align-items-center mb-2">
-                <h6 className="text-danger">Order ID: #{order._id}</h6>
+                <h6 className="text-success fs-6">Order ID: #{order._id}</h6>
                 <span
                   className={`badge p-2 ${order.status === "delivered"
                     ? "bg-success"
@@ -113,7 +113,7 @@ function MyOrders() {
                   {order.status}
                 </span>
               </div>
-              <p className="mb-2 fw-bold">
+              <p className="mb-2 fw-bold fs-7">
                 Order Date: {new Date(order.createdAt).toLocaleDateString()}
               </p>
 
@@ -123,7 +123,7 @@ function MyOrders() {
                     key={idx}
                     className="d-flex justify-content-between mb-2"
                   >
-                    <span className="text-purple">
+                    <span className="text-muted">
                       {item.product.name} x {item.quantity}
                     </span>
                     <span >₹{item.price * item.quantity}</span>

@@ -31,7 +31,7 @@ axiosInstance.interceptors.response.use(
     else if (error.response.status === 401) {
       localStorage.removeItem('token');
       localStorage.removeItem('role');
-      message = "Session expired. Please login again!";
+      message = "Token expired. Please login again!";
     }
     else {
       message = error.response.data?.error || "Server Error!";

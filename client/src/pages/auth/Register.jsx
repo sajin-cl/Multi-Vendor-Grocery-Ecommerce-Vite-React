@@ -101,8 +101,8 @@ function RegisterForm() {
 
         <div className="col-md-6 d-none d-md-flex auth-left text-white">
           <div className="auth-left-content">
-            <h3>Welcome to Power House</h3>
-            <p>
+            <h3 className="text-dark">Welcome to Power House</h3>
+            <p className="text-dark">
               Your trusted marketplace for quality products from verified sellers,
               designed for a smooth and secure shopping experience.
             </p>
@@ -244,7 +244,7 @@ function RegisterForm() {
             {errors.backend && <div className="text-danger mb-2 text-center">{errors.backend}</div>}
 
 
-            <button className="btn btn-primary w-100 mt-3" style={{ backgroundColor: "var(--violet-color)" }} disabled={loading}>
+            <button className="btn register-btn w-100 mt-3" style={{ backgroundColor: "var(--light-green-color)" }} disabled={loading}>
               {loading ? 'Registering...' :'Register now'}
             </button>
 
