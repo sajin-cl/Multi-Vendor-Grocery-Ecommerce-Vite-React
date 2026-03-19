@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
 import { HashLoader } from 'react-spinners';
 import { droppingCard, cardContainer } from '@/animations/globalVariants'
-import { getAllProducts, deleteProduct } from "@/services/productService";
+import { getSellerProducts, deleteProduct } from "@/services/productService";
 
 
 function SellerProducts() {
@@ -17,7 +17,7 @@ function SellerProducts() {
 
   const fetchAllProducts = async () => {
     try {
-      const response = await getAllProducts();
+      const response = await getSellerProducts();
       setProducts(response.data.products || []);
     }
     catch (err) {

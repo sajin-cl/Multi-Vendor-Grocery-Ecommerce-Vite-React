@@ -2,6 +2,21 @@ const Order = require('../models/order.models');
 const Product = require('../models/product.model');
 const User = require('../models/auth.model');
 
+
+exports.getSellerProducts = async (req, res) => {
+  try {
+    const sellerId = req.userData?.id;
+    if (!sellerId) return res.status(401).json({ error: "Unauthorized seller" });
+
+    const products = await Product.find({ sellerId });
+    res.status(200).json(products);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch products" });
+  }
+};
+
 exports.getSellerOrders = async (req, res) => {
   try {
 

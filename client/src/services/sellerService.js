@@ -1,6 +1,6 @@
 import axiosInstance from "@/utils/axiosInstance";
 
-
+export const getSellerProducts = () => axiosInstance.get('/seller/products');
 export const getSellerDashboard = () => axiosInstance.get('/seller/dashboard');
 export const getSellerEarnings = () => axiosInstance.get('/seller/earnings');
 export const getSellerOrders = () => axiosInstance.get('/seller/orders');

@@ -2,6 +2,8 @@ const Category = require('../models/category.model');
 const Brand = require('../models/brand.model');
 const User = require('../models/auth.model');
 const Order = require('../models/order.models');
+const nodemailer = require('nodemailer');
+const { approveSellerTemplate } = require('../utils/emailTemplates/approveSellerTemplate');
 
 exports.addCategory = async (req, res) => {
   try {
@@ -214,7 +216,7 @@ exports.toggleBlockUser = async (req, res) => {
 
 exports.getSellers = async (req, res) => {
   try {
-    const sellers = await User.find({ role: 'seller', isApproved:true }).sort({ name: 1 });
+    const sellers = await User.find({ role: 'seller', isApproved: true }).sort({ name: 1 });
     if (!sellers) return res.status(400).json({ error: 'sellers not found' });
 
     res.status(200).json(sellers);
@@ -370,10 +372,29 @@ exports.approveSellers = async (req, res) => {
 
     seller.isApproved = true;
     await seller.save();
-    res.status(201).json({ message: "Seller approved successfully" })
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+
+    const mailOptions = {
+      from: `"Power House Support" <${process.env.EMAIL_USER}>`,
+      to: seller?.email,
+      subject: "Your Seller Account is Approved!",
+      html: approveSellerTemplate(seller.fullName)
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    res.status(201).json({ message: "Seller approved and email sent successfully" })
   }
   catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
   }
-}
+};
