@@ -9,7 +9,7 @@ exports.getSellerProducts = async (req, res) => {
     if (!sellerId) return res.status(401).json({ error: "Unauthorized seller" });
 
     const products = await Product.find({ sellerId });
-    res.status(200).json(products);
+    res.status(200).json({products});
 
   } catch (err) {
     console.error(err);

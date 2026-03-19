@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
 import { HashLoader } from 'react-spinners';
 import { droppingCard, cardContainer } from '@/animations/globalVariants'
-import { getSellerProducts, deleteProduct } from "@/services/productService";
+import { deleteProduct } from "@/services/productService";
+import { getSellerProducts } from "@/services/sellerService";
 
 
 function SellerProducts() {
