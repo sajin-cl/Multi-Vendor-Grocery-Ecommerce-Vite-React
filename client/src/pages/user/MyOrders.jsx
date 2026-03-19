@@ -124,7 +124,7 @@ function MyOrders() {
                     className="d-flex justify-content-between mb-2"
                   >
                     <span className="text-muted">
-                      {item.product.name} x {item.quantity}
+                      {item.product?.name} x {item.quantity}
                     </span>
                     <span >₹{item.price * item.quantity}</span>
                   </div>

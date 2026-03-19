@@ -2,7 +2,8 @@ const bcrypt = require('bcrypt');
 const User = require('../models/auth.model.js');
 const jwt = require('jsonwebtoken');
 const validator = require('validator');
-const nodemailer = require('nodemailer');
+
+const sendEmail = require('../utils/sendEmail.js');
 const { forgotPasswordTemplate } = require('../utils/emailTemplates/forgotPasswordTemplate.js');
 
 
@@ -113,7 +114,7 @@ exports.forgotPassword = async (req, res) => {
     await user.save();
 
 
-    const transporter = nodemailer.createTransport({
+    /* const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.EMAIL_USER,
@@ -129,7 +130,11 @@ exports.forgotPassword = async (req, res) => {
       html: forgotPasswordTemplate(user.fullName, otp)
     };
 
-    await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions); */
+
+    const mailContent = forgotPasswordTemplate(user.fullName, otp);
+    await sendEmail(email, 'Password Reset OTP', mailContent);
+
     res.status(200).json({ message: "OTP sent on your email!" });
 
   }

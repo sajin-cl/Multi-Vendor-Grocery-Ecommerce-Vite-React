@@ -23,7 +23,7 @@ exports.approveSellerTemplate = (name) => {
       </p>
 
       <p style="font-size: 16px; color: #555; margin-top: 25px;">
-        <a href="${process.env.SELLER_PLATFORM_URL}" 
+        <a href="${process.env.PLATFORM_URL}/seller/dashboard" 
            style="color: #ffffff; 
                   background-color: #6f42c1; 
                   padding: 12px 25px; 

@@ -2,8 +2,10 @@ const Category = require('../models/category.model');
 const Brand = require('../models/brand.model');
 const User = require('../models/auth.model');
 const Order = require('../models/order.models');
-const nodemailer = require('nodemailer');
+
+const sendEmail = require('../utils/sendEmail');
 const { approveSellerTemplate } = require('../utils/emailTemplates/approveSellerTemplate');
+const { orderStatusTemplate } = require('../utils/emailTemplates/orderStatusTemplate');
 
 exports.addCategory = async (req, res) => {
   try {
@@ -311,6 +313,10 @@ exports.updateOrderStatus = async (req, res) => {
     order.status = status;
     await order.save();
 
+    const userEmail = order?.user?.email;
+    const mailContent = orderStatusTemplate(order.user.fullName, status, orderId);
+    await sendEmail(userEmail, 'Order Status', mailContent);
+
     res.json({ message: "Order status updated", order });
 
   } catch (err) {
@@ -373,7 +379,7 @@ exports.approveSellers = async (req, res) => {
     seller.isApproved = true;
     await seller.save();
 
-    const transporter = nodemailer.createTransport({
+    /* const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.EMAIL_USER,
@@ -389,7 +395,11 @@ exports.approveSellers = async (req, res) => {
       html: approveSellerTemplate(seller.fullName)
     };
 
-    await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions); */
+
+    const mailContent = approveSellerTemplate(seller.fullName);
+    await sendEmail(seller?.email, 'Your Seller Account is Approved!', mailContent);
+
 
     res.status(201).json({ message: "Seller approved and email sent successfully" })
   }

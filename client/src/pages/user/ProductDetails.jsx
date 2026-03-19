@@ -105,13 +105,13 @@ function ProductDetails() {
 
 
           <div className="col-12 col-md-5 text-center">
-            <img src={`${import.meta.env.VITE_IMG_URL}${product.image_url}`} loading="lazy" alt={product.name} className="img-fluid rounded shadow-sm" style={{ width: "100%", objectFit: "contain" }} />
+            <img src={`${import.meta.env.VITE_IMG_URL}${product.image_url}`} loading="lazy" alt={product?.name} className="img-fluid rounded shadow-sm" style={{ width: "100%", objectFit: "contain" }} />
           </div>
 
 
           <div className="col-12 col-md-7 p-4">
             <div className="d-flex justify-content-between align-items-center mb-2">
-              <h2 className="fw-semibold mb-1">{product.name}</h2>
+              <h2 className="fw-semibold mb-1">{product?.name}</h2>
               <span className="badge bg-purple">{product.brand?.name}</span>
             </div>
             <div className="text-muted small mb-2">{product.category?.name}</div>
