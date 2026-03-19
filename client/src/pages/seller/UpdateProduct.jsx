@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getAllBrands, getAllCategories, getProductById, updateProduct } from "@/services/productService";
+import { getAllBrands, getAllCategories, getProductById } from "@/services/productService";
+import { updateProduct } from "@/services/sellerService";
 
 
 function UpdateProduct() {
@@ -212,12 +213,12 @@ function UpdateProduct() {
                   <div className="mb-2 text-center">
                     {preview ? (
                       <div className="border rounded p-1">
-                        
+
                         <img src={preview} alt="New Preview" loading="lazy" style={{ width: "100%", height: "200px", objectFit: "contain" }} />
                       </div>
                     ) : currentImage ? (
                       <div className="border rounded p-1">
-                      
+
                         <img src={`${import.meta.env.VITE_IMG_URL}${currentImage}`} alt="Current" loading="lazy" style={{ width: "100%", height: "200px", objectFit: "contain" }} />
                       </div>
                     ) : null}

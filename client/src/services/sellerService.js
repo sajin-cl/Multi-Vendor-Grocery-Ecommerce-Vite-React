@@ -10,3 +10,7 @@ export const updateOrderedItemStatus = (orderId, itemId, status) =>
 
 export const getSellerProfile = () => axiosInstance.get('/seller/profile');
 export const updateSellerProfile = (data) => axiosInstance.patch('/seller/profile', data);
+
+export const deleteProduct = (id) => axiosInstance.delete(`/products/${id}`);
+export const addProduct = (formData) => axiosInstance.post('/products', formData);
+export const updateProduct = (id, formData) => axiosInstance.patch(`/products/${id}`, formData);
