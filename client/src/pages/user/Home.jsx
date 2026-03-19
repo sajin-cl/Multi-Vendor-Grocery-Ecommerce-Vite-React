@@ -5,11 +5,14 @@ import { ShimmerPostList } from 'react-shimmer-effects';
 
 import { getAllCategories, getAllProducts } from "@/services/productService";
 import Pagination from "@/components/Pagination";
-import Hero from "../../components/Hero";
+import Hero from "@/components/Hero";
+import CategoryList from "@/components/CategoryList";
+import { categoryListData,testimonialsData } from "@/data/data";
 
 
 const Footer = lazy(() => import("@/components/Footer"));
 const ProductCard = lazy(() => import("@/components/ProductCard"));
+const Testimonials = lazy(() => import("@/components/Testimonials"))
 
 
 function HomePage() {
@@ -91,6 +94,17 @@ function HomePage() {
             onChange={(e) => setSearch(e.target.value)}
           />
 
+          {/*  Category List bar */}
+          <div className="container mb-5">
+            <div className="category-list-container row g-4 justify-content-center">
+              {categoryListData.map((category, id) => (
+                <div key={id} className="col-12 col-sm-6 col-md-3 col-lg-2">
+                  <CategoryList category={category} />
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="d-flex justify-content-end align-items-center gap-3 mx-0 mb-4 category-dropdown">
             <label className="fw-semibold">Category:</label>
             <select
@@ -137,6 +151,10 @@ function HomePage() {
 
           <div className="mb-4">
             <Pagination page={page} totalPages={totalPages} setPage={setPage} />
+          </div>
+
+          <div className="mb-4">
+            <Testimonials testimonials={testimonialsData}/>
           </div>
 
         </section>

@@ -4,6 +4,15 @@
   box-sizing: border-box;
 }
 
+.horizontal-scroll {
+  overflow-x: auto;
+  scrollbar-width: none; 
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none; 
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -50,7 +59,7 @@ body::-webkit-scrollbar {
 .page-container main {
   display: block;
   flex: 1;
-  padding: 2px 20px;
+  padding: 0px 20px;
 }
 
 
