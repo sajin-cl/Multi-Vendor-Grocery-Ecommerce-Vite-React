@@ -69,6 +69,8 @@ function Hero() {
               loop
               muted
               playsInline
+              preload="metadata"
+              poster="/thumbnails/intro1-thumb.webp"
             >
               <source src="/videos/intro1.mp4" type="video/mp4" />
             </video>
@@ -85,6 +87,8 @@ function Hero() {
               loop
               muted
               playsInline
+               preload="metadata"
+              poster="/thumbnails/intro2-thumb.webp"
             >
               <source src="/videos/intro2.mp4" type="video/mp4" />
             </video>
@@ -96,6 +100,8 @@ function Hero() {
               loop
               muted
               playsInline
+               preload="metadata"
+              poster="/thumbnails/intro3-thumb.webp"
             >
               <source src="/videos/intro3.mp4" type="video/mp4" />
             </video>
@@ -103,8 +109,8 @@ function Hero() {
         </div>
       </div>
 
-      
-     {/*  SErvice Highlights */}
+
+      {/*  SErvice Highlights */}
       <div className="service-highlights mt-4 ">
         <div className="row g-4">
           {serviceHighlights.map((item, index) => (
