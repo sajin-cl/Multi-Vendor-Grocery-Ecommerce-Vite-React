@@ -28,32 +28,32 @@ export const categoryListData = [
 export const testimonialsData = [
   {
     quote: "I switched to Power House for my weekly groceries and haven’t gone back. Vegetables are fresh, delivery is always on time, and prices are better than my local store.",
-    name: "RAVI",
-    title: "Working Professional",
+    name: "Adharsh",
+    title: "Chemical Shop owner",
   },
   {
     quote: "Ordering groceries used to be a hassle, but Power House made it simple. Everything is well-organized, and I can find what I need in seconds. Huge time saver.",
-    name: "PRIYA",
+    name: "HEMA PRIYA",
     title: "Homemaker",
   },
   {
     quote: "What I like most is the consistency. Every order from Power House arrives exactly as expected. No missing items, no low-quality products.",
-    name: "ARUN",
+    name: "DIVYA",
     title: "Regular Customer",
   },
   {
     quote: "Power House helps me stick to my budget. The deals are actually useful, not fake discounts. I’ve cut down my monthly grocery spending.",
-    name: "DIVYA",
+    name: "Praveen",
     title: "College Student",
   },
   {
     quote: "The delivery speed is impressive. Even during peak hours, Power House delivers without delays. It’s reliable, and that’s what matters.",
-    name: "KARTHIK",
+    name: "Ashanth",
     title: "Business Owner",
   },
   {
     quote: "The delivery speed is impressive. Even during peak hours, Power House delivers without delays. It’s reliable, and that’s what matters.",
-    name: "KARTHIK",
-    title: "Business Owner",
+    name: "Anish",
+    title: "Pharmasist",
   },
 ];
