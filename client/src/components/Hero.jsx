@@ -14,7 +14,7 @@ function Hero() {
           >
             SHOP NOW
           </a>
-          <span className="text-dark fw-semibold" style={{fontFamily:"monospace"}}>
+          <span className="text-dark fw-semibold" style={{ fontFamily: "monospace" }}>
             <Typewriter
               options={{
                 strings: [
@@ -48,6 +48,63 @@ function Hero() {
         <p>|| we ensure that our customer have the best shopping experience</p>
       </div>
 
+
+      <div className="text-center mt-5 px-3">
+        <h5 className="fw-bold text-light-green">Experience Freshness Like Never Before</h5>
+        <p className="text-muted mb-0">
+          From farm-fresh fruits to premium coffee powder, we bring quality products straight to your doorstep with care and convenience.
+        </p>
+      </div>
+
+      {/*  Video Intro */}
+      <div className="video-intro container-fluid mt-4">
+        <div className="row">
+
+          {/* LEFT: 1 BIG VIDEO */}
+          <div className="col-md-6">
+            <video
+              className="w-100 "
+              style={{ height: "500px", objectFit: "cover" }}
+              autoPlay
+              loop
+              muted
+              playsInline
+            >
+              <source src="/videos/intro1.mp4" type="video/mp4" />
+            </video>
+
+          </div>
+
+          {/* RIGHT: 2 SMALL VIDEOS */}
+          <div className="col-md-6 d-flex flex-column gap-3">
+
+            <video
+              className="w-100"
+              style={{ height: "280px", objectFit: "cover" }}
+              autoPlay
+              loop
+              muted
+              playsInline
+            >
+              <source src="/videos/intro2.mp4" type="video/mp4" />
+            </video>
+
+            <video
+              className="w-100"
+              style={{ height: "200px", objectFit: "cover" }}
+              autoPlay
+              loop
+              muted
+              playsInline
+            >
+              <source src="/videos/intro3.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+
+      
+     {/*  SErvice Highlights */}
       <div className="service-highlights mt-4 ">
         <div className="row g-4">
           {serviceHighlights.map((item, index) => (
