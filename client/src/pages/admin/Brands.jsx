@@ -70,12 +70,12 @@ function Brands() {
                 variants={droppingCard}
               >
                 <div className="card-body d-flex flex-column">
-                  <h6 className="card-title">{brand.name}</h6>
+                  <h6 className="card-title">{brand?.name}</h6>
                   <p className="card-text text-muted">{brand.description}</p>
                   <div className="mt-auto d-flex justify-content-between">
 
                     <Link
-                      to={`/admin/update-brand/${brand._id}`}
+                      to={`/admin/update-brand/${brand?._id}`}
                       className="btn  btn-sm"
                       title="edit"
                     >
@@ -84,7 +84,7 @@ function Brands() {
 
                     <button
                       className="btn  btn-sm "
-                      onClick={() => { deleteBrand(brand._id) }}
+                      onClick={() => { deleteBrand(brand?._id) }}
                       title="delete"
                     >
                       <i className="fas fa-trash fs-6 text-danger"></i>

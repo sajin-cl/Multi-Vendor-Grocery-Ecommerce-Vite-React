@@ -47,13 +47,13 @@ function Testimonials({ testimonials }) {
               >
                 <div className="card-body">
                   <p className="card-text mb-4">
-                    “{item.quote}”
+                    “{item?.quote}”
                   </p>
 
                   <hr />
 
-                  <h6 className="mb-0 fw-bold">{item.name}</h6>
-                  <small className="text-muted">{item.title}</small>
+                  <h6 className="mb-0 fw-bold">{item?.name}</h6>
+                  <small className="text-muted">{item?.title}</small>
                 </div>
               </div>
             ))}

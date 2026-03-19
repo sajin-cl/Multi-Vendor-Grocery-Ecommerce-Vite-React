@@ -81,7 +81,7 @@ function UpdateCategory() {
                     className="form-control"
                     placeholder="Enter the category name"
                     name="name"
-                    value={data.name}
+                    value={data?.name}
                     onChange={handleChange}
                   />
                 </div>

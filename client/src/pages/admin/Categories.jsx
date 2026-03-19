@@ -71,11 +71,11 @@ function Categories() {
                 variants={droppingCard} drag
               >
                 <div className="card-body d-flex flex-column">
-                  <h6 className="card-title">{category.name}</h6>
+                  <h6 className="card-title">{category?.name}</h6>
                   <p className="card-text text-muted">{category.description}</p>
                   <div className="mt-auto d-flex justify-content-between">
                     <Link
-                      to={`/admin/update-category/${category._id}`}
+                      to={`/admin/update-category/${category?._id}`}
                       className="btn  btn-sm"
                       title="edit"
                     >
@@ -83,7 +83,7 @@ function Categories() {
                     </Link>
                     <button
                       className="btn  btn-sm "
-                      onClick={() => deleteCategory(category._id)}
+                      onClick={() => deleteCategory(category?._id)}
                       title="delete"
                     >
                       <i className="fas fa-trash fs-6 text-danger"></i>

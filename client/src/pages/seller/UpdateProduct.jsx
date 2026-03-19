@@ -44,7 +44,7 @@ function UpdateProduct() {
       setCurrentImage(prod.image_url);
 
       setFormValues({
-        name: prod.name || '',
+        name: prod?.name || '',
         description: prod.description || '',
         brand: prod.brand?._id || '',
         category: prod.category?._id || '',
@@ -124,7 +124,7 @@ function UpdateProduct() {
                     className="form-control"
                     placeholder="Product name"
                     name="name"
-                    value={formValues.name}
+                    value={formValues?.name}
                     onChange={handleChange}
                   />
                 </div>
@@ -156,7 +156,7 @@ function UpdateProduct() {
                         key={category._id + '-' + index}
                         value={category._id}
                       >
-                        {category.name}
+                        {category?.name}
                       </option>
                     ))}
                   </select>
@@ -176,7 +176,7 @@ function UpdateProduct() {
                         key={brand._id + '-' + index}
                         value={brand._id}
                       >
-                        {brand.name}
+                        {brand?.name}
                       </option>
                     ))}
                   </select>

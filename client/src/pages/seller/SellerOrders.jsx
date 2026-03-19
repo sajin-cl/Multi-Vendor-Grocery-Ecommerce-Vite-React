@@ -100,7 +100,7 @@ function SellerOrders() {
                     <div key={item._id} className="d-flex justify-content-between align-items-center mb-1">
                       <ul className="bullet-list mb-0">
                         <li className="mb-0">
-                          {item.product.name} x {item.quantity} – ₹{item.price * item.quantity}
+                          {item.product?.name} x {item.quantity} – ₹{item.price * item.quantity}
                         </li>
                       </ul>
                       <div>

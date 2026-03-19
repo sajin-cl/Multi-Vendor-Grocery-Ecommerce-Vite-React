@@ -69,15 +69,15 @@ function SellerProducts() {
                 <img
                   src={`${import.meta.env.VITE_IMG_URL}${product.image_url}`}
                   className="card-img-top"
-                  alt={product.name}
+                  alt={product?.name}
                   loading="lazy"
                 />
                 <div className="card-body d-flex flex-column">
                   <h6
                     className="card-title text-purple fw-semibold cursor-pointer"
-                    title={product.name}
+                    title={product?.name}
                   >
-                    {product.name.length > 20 ? product.name.slice(0, 19) + ".." : product.name}
+                    {product.name.length > 20 ? product.name.slice(0, 19) + ".." : product?.name}
 
                   </h6>
                   <p

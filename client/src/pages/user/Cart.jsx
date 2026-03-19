@@ -96,13 +96,13 @@ function Cart() {
                   <motion.img
                     src={`${import.meta.env.VITE_IMG_URL}${item.product.image_url}`}
                     loading='lazy'
-                    alt={item.product.name}
+                    alt={item.product?.name}
                     className="cart-img rounded-circle"
                     whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }}
                   />
 
                   <div className="ms-3 flex-grow-1">
-                    <h6 className="mb-1">{item.product.name}</h6>
+                    <h6 className="mb-1">{item.product?.name}</h6>
                     <p
                       className="text-muted fs-7 mb-2"
                       style={{ fontFamily: "Intel" }}

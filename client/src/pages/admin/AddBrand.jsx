@@ -63,7 +63,7 @@ function AddBrand() {
                     placeholder="Enter the brand name"
                     name="name"
                     onChange={handleChange}
-                    value={formData.name}
+                    value={formData?.name}
                   />
                 </div>
 
@@ -76,7 +76,7 @@ function AddBrand() {
                     placeholder="Enter the  description"
                     name="description"
                     onChange={handleChange}
-                    value={formData.description}
+                    value={formData?.description}
                   />
                 </div>
 

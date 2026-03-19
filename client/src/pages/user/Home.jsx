@@ -119,7 +119,7 @@ function HomePage() {
               <option value="">All</option>
               {categories.map(cat => (
                 <option key={cat._id} value={cat._id}>
-                  {cat?.name?.length > 20 ? cat.name.slice(0, 20) + ".." : cat.name}
+                  {cat?.name?.length > 20 ? cat.name.slice(0, 20) + ".." : cat?.name}
                 </option>
               ))}
             </select>

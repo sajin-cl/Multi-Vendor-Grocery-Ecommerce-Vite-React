@@ -10,7 +10,7 @@ function ProductCard({ product }) {
         >
           <img
             src={`${import.meta.env.VITE_IMG_URL}${product.image_url}`}
-            alt={product.name}
+            alt={product?.name}
             className="card-img-top "
             style={{ maxWidth: "400px", height: "250px", margin: "auto" }}
             loading='lazy'
@@ -18,9 +18,9 @@ function ProductCard({ product }) {
           <div className="card-body P-2">
             <div
               className="card-title product-name text-success fw-bold mb-0"
-              title={product.name}
+              title={product?.name}
             >
-              {product.name}
+              {product?.name}
             </div>
             <div className="card-text product-desc text-muted mb-3">{product.description}</div>
             <div className="mt-auto text-center">

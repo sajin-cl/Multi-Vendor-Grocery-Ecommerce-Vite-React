@@ -6,7 +6,7 @@ function CategoryList({ category }) {
         style={{ fontSize: "30px" }}
       ></i>
       <span className="text-success small text-center">
-        {category.name}
+        {category?.name}
       </span>
     </div>
   );

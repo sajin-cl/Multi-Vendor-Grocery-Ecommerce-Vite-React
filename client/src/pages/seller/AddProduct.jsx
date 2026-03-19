@@ -122,7 +122,7 @@ function AddProduct() {
                     className="form-control"
                     placeholder="Product name"
                     name="name"
-                    value={formValues.name}
+                    value={formValues?.name}
                     onChange={handleChange}
                   />
                 </div>
@@ -135,7 +135,7 @@ function AddProduct() {
                     className="form-control"
                     placeholder="Product description"
                     name="description"
-                    value={formValues.description}
+                    value={formValues?.description}
                     onChange={handleChange}
                   />
                 </div>
@@ -147,7 +147,7 @@ function AddProduct() {
                     id="prodCategory"
                     className="form-select"
                     onChange={handleChange}
-                    value={formValues.category}
+                    value={formValues?.category}
                   >
                     <option value="" disabled>Select Category </option>
                     {categories.map((category, index) => (
@@ -155,7 +155,7 @@ function AddProduct() {
                         key={category._id + '-' + index}
                         value={category._id}
                       >
-                        {category.name}
+                        {category?.name}
                       </option>
                     ))}
                   </select>
@@ -176,7 +176,7 @@ function AddProduct() {
                         key={brand._id + '-' + index}
                         value={brand._id}
                       >
-                        {brand.name}
+                        {brand?.name}
                       </option>
                     ))}
                   </select>

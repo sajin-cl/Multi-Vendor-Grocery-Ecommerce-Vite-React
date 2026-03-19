@@ -65,7 +65,7 @@ function AddCategory() {
                     placeholder="Enter the category name"
                     name="name"
                     onChange={handleChange}
-                    value={formData.name}
+                    value={formData?.name}
                   />
                 </div>
 
@@ -78,7 +78,7 @@ function AddCategory() {
                     placeholder="Enter the  description"
                     name="description"
                     onChange={handleChange}
-                    value={formData.description}
+                    value={formData?.description}
                   />
                 </div>
 

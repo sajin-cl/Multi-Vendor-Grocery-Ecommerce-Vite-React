@@ -79,7 +79,7 @@ function UpdateBrand() {
                     className="form-control"
                     placeholder="Enter the brand name"
                     name="name"
-                    value={brand.name}
+                    value={brand?.name}
                     onChange={handleChange}
                   />
                 </div>

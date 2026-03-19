@@ -65,7 +65,7 @@ function Checkout() {
   const handleChange = (e) => {
     setAddress({
       ...address,
-      [e.target.name]: e.target.value
+      [e.target?.name]: e.target.value
     })
   }
 
