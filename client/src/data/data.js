@@ -31,6 +31,11 @@ export const testimonialsData = [
     name: "Adharsh",
     title: "Chemical Shop owner",
   },
+    {
+    quote: "Power House is built really well. The UI is smooth, performance is solid, and the overall experience feels polished. As a developer, I can appreciate the effort behind it.",
+    name: "Abinaya Shree",
+    title: "MERN Stack Developer",
+  },
   {
     quote: "Ordering groceries used to be a hassle, but Power House made it simple. Everything is well-organized, and I can find what I need in seconds. Huge time saver.",
     name: "HEMA PRIYA",
@@ -55,5 +60,5 @@ export const testimonialsData = [
     quote: "The delivery speed is impressive. Even during peak hours, Power House delivers without delays. It’s reliable, and that’s what matters.",
     name: "Anish",
     title: "Pharmasist",
-  },
+  }
 ];
