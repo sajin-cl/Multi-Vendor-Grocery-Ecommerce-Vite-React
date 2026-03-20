@@ -24,14 +24,14 @@ function Testimonials({ testimonials }) {
             zIndex: 2
           }} />
 
-         
+          {/* Testimonials */}
           <motion.div
             className="d-flex"
             style={{ gap: "20px" }}
-            animate={{ x: ["0%", "-50%"] }}
+            animate={{ x: [0, -testimonials.length * 320] }}
             transition={{
               repeat: Infinity,
-              duration: 20, 
+              duration: 50,
               ease: "linear",
             }}
           >
@@ -45,15 +45,15 @@ function Testimonials({ testimonials }) {
                   flex: "0 0 auto",
                 }}
               >
-                <div className="card-body">
+                <div className="card-body d-flex flex-column justify-content-between h-100">
                   <p className="card-text mb-4">
                     “{item?.quote}”
                   </p>
 
-                  <hr />
-
-                  <h6 className="mb-0 fw-bold">{item?.name}</h6>
-                  <small className="text-muted">{item?.title}</small>
+                  <div className="pt-3 mt-auto border-top border-success">
+                    <h6 className="mb-0 fw-bold">{item?.name}</h6>
+                    <small className="text-muted">{item?.title}</small>
+                  </div>
                 </div>
               </div>
             ))}
