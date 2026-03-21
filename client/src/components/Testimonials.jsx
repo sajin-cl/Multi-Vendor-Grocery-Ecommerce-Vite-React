@@ -46,6 +46,9 @@ function Testimonials({ testimonials }) {
                 }}
               >
                 <div className="card-body d-flex flex-column justify-content-between h-100">
+                  <div className="fs-1 text-center">
+                    <i className="fas fa-quote-left text-light-green"></i>
+                  </div>
                   <p className="card-text mb-4">
                     “{item?.quote}”
                   </p>

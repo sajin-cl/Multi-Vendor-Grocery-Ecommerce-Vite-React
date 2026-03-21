@@ -11,7 +11,7 @@ function Footer() {
   return (
     <footer className="footer">
 
-      <div className="footer-top d-flex gap-5">
+      <div className="footer-top d-flex justify-content-evenly">
         <h6>For better experience, download the PowerHouse app now</h6>
         <div className='d-flex gap-3'>
           <img src={appStore} alt="App Store" loading='lazy' />
