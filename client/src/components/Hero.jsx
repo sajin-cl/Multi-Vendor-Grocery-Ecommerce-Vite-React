@@ -69,7 +69,7 @@ function Hero() {
               loop
               muted
               playsInline
-              preload="metadata"
+              preload="auto"
               poster="/thumbnails/intro1-thumb.webp"
             >
               <source src="https://res.cloudinary.com/dpc9p1npw/video/upload/f_auto,q_auto/intro1_mng0dj.mp4" type="video/mp4" />
@@ -87,7 +87,7 @@ function Hero() {
               loop
               muted
               playsInline
-               preload="metadata"
+               preload="auto"
               poster="/thumbnails/intro2-thumb.webp"
             >
               <source src="https://res.cloudinary.com/dpc9p1npw/video/upload/f_auto,q_auto/intro2_eanfd4.mp4" type="video/mp4" />
@@ -100,7 +100,7 @@ function Hero() {
               loop
               muted
               playsInline
-               preload="metadata"
+               preload="auto"
               poster="/thumbnails/intro3-thumb.webp"
             >
               <source src="https://res.cloudinary.com/dpc9p1npw/video/upload/f_auto,q_auto/intro3_q6fbwd.mp4" type="video/mp4" />
