@@ -38,7 +38,6 @@ import Sellers from '@/pages/admin/Sellers';
 import AdminOrders from '@/pages/admin/AdminOrders';
 import Settings from '@/pages/admin/Settings';
 
-
 import NotFound from '@/components/NotFound';
 
 import ProtectedRoute from '@/guards/ProtectedRoute';

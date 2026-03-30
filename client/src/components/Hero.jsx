@@ -72,7 +72,7 @@ function Hero() {
               preload="metadata"
               poster="/thumbnails/intro1-thumb.webp"
             >
-              <source src="/videos/intro1.mp4" type="video/mp4" />
+              <source src="https://res.cloudinary.com/dpc9p1npw/video/upload/f_auto,q_auto/intro1_mng0dj.mp4" type="video/mp4" />
             </video>
 
           </div>
@@ -90,7 +90,7 @@ function Hero() {
                preload="metadata"
               poster="/thumbnails/intro2-thumb.webp"
             >
-              <source src="/videos/intro2.mp4" type="video/mp4" />
+              <source src="https://res.cloudinary.com/dpc9p1npw/video/upload/f_auto,q_auto/intro2_eanfd4.mp4" type="video/mp4" />
             </video>
 
             <video
@@ -103,7 +103,7 @@ function Hero() {
                preload="metadata"
               poster="/thumbnails/intro3-thumb.webp"
             >
-              <source src="/videos/intro3.mp4" type="video/mp4" />
+              <source src="https://res.cloudinary.com/dpc9p1npw/video/upload/f_auto,q_auto/intro3_q6fbwd.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
