@@ -34,7 +34,7 @@ exports.orderStatusTemplate = (name, status, orderId) => {
       </div>
 
       <p style="font-size: 14px; color: #555;">
-        You can check your order details on your <a href="${process.env.PLATFORM_URL}/myorders" style="color:#6f42c1; text-decoration:none;">dashboard</a>.
+        You can check your order details on your <a href="${process.env.APPLICATION_URL}/myorders" style="color:#6f42c1; text-decoration:none;">dashboard</a>.
       </p>
 
       <p style="font-size: 14px; color: #555; margin-top: 30px; text-align: left;">
